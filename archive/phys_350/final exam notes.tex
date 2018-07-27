@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage[numbered]{matlab-prettifier}
+
+%% Metadata
+\renewcommand{\Title}{Final Exam Notes}
+\renewcommand{\Course}{PHYS 350}
+\renewcommand{\Date}{December 12, 2016}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\subsection*{Appendix C --- Second-Order Linear Differential Equations}
+
+Given a differential equation of the form $a\ddot{x} + b\dot{x} + cx = 0$ with roots $r_1$ and $r_2$ of the characteristic polynomial, there are three possible forms for the solution:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ll}
+		%\toprule
+		\textbf{Roots} & \textbf{General Solution} \\
+		\midrule
+		Real, unequal ($r_1 \ne r_2$) & $c_1e^{r_1t} + c_2e^{r_2t}$ \\
+		Real, equal ($r_1 = r_2 \equiv r$) & $c_1e^{rt} + c_2te^{rt}$ \\
+		Imaginary ($r_1, r_2 = a \pm bi$) & $c_1e^{at}\cos bt + c_2e^{at}\sin bt$ \\
+		%\bottomrule
+	\end{tabular}
+\end{table}
+
+Note: Case 3 can also be written in the same form as Case 1 if convenient, as they are equivalent by Euler's formula ($e^{ix} = \cos x + i\sin x$). The following equivalencies might also be useful:
+\begin{equation*}
+\begin{aligned}
+\cos x &= \frac{1}{2}(e^{ix} + e^{-ix}) \\
+\sin x &= \frac{1}{2i}(e^{ix}-e^{-x})
+\end{aligned}
+\end{equation*}
+
+\subsection*{Integrating With Trigonometric Substitutions}
+
+Inverse trig integrals might come in handy here:
+\begin{equation*}
+\begin{aligned}
+\int\frac{\dd x}{\sqrt{1-x^2}} &= \sin^{-1}x + C \\
+\int\frac{\dd x}{1+x^2} &= \tan^{-1}x + C \\
+\int\frac{\dd x}{|x|\sqrt{x^2-1}} &= \sec^{-1}x + C
+\end{aligned}
+\end{equation*}
+
+The power-reduction formulas might also be useful:
+\begin{equation*}
+\begin{aligned}
+\sin^2x &= \frac{1}{2} - \frac{1}{2}\cos 2x \\
+\cos^2x &= \frac{1}{2} + \frac{1}{2}\cos 2x
+\end{aligned}
+\end{equation*}
+
+\subsection*{Miscellaneous Formulas}
+\begin{center}
+Newton's drag law (high velocity): $F_{\text{drag}} = -\dfrac{1}{2}C_D\rho Av^2$
+
+Stokes' drag law (low velocity): $F_{\text{drag}} = -6\pi \eta rv$
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cl}
+		%\toprule
+		\textbf{Symbol} & \textbf{Variable} \\
+		\midrule
+		$C_D$ & Drag coefficient (0.47 for sphere) \\
+		$\rho$ & Mass density of fluid \\
+		$A$ & Cross-sectional area of object \\
+		$\eta$ & Dynamic viscosity \\
+		$r$ & Radius \\
+		%\bottomrule
+	\end{tabular}
+\end{table}
+\end{center}
+\subsection*{Matlab Example Code}
+\begin{lstlisting}[style=Matlab-editor]
+% Rocket Problem Plot Code
+
+clf;
+t = 0:0.01:0.9;
+
+% Variable Beta Plot
+for B = [0.01, 0.1, 0.5, 0.9]
+    v = -log(1-t) - B*t;
+    plot(t,v,'lineWidth',2);
+    hold on;
+end
+h_legend = legend({'$\beta = 0.01$','$\beta = 0.1$','$\beta = 0.5$',...
+                   '$\beta = 0.9$'}, 'Interpreter','latex');
+set(h_legend,'FontSize',16);
+
+% Big Beta Plot
+B = 2;
+v = -log(1-t) - B*t;
+plot(t,v,'lineWidth',2);
+hold on;
+
+grid on;
+xlabel({'$t_n$'}, 'Interpreter','latex','FontSize',20);
+ylabel({'$v_n$'}, 'Interpreter','latex','FontSize',20,'rot',0);
+\end{lstlisting}
+
+\end{document}

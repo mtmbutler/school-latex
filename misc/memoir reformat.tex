@@ -1,0 +1,38 @@
+\documentclass{book}
+\usepackage[letterpaper, margin=0in]{geometry}    % page setup
+\usepackage{pdfpages}
+
+% Font - undecided
+% No roman #, begin numbering with prologue
+% No ToC
+% Left header: page # section break Book title
+% Right header: Chapter 2 section break Page number
+% Replace * with ~
+% Blank page before parts, part on right side, blank page after, other
+%     chapters can start on any side
+% Spell out Part One, Part Two, and numerals for chapters (Chapter 1, 2)
+% Change cover font
+% Spine/back cover?
+% Size of book/paper type (acid free?): trade paper & rough edges?
+        % Section breaks: Asterisk?
+% Set off formatting for his journal entries? For Kay’s emails?
+
+% 5.5 * 8.25 in dimensions
+% 0.75 in margins
+% 6.5 x 4 in text area, excluding header
+
+% 25 copies
+
+% journal entries, emails in italics
+% section break at very end
+
+\begin{document}
+\includepdf[pages=-,
+            signature=16,
+            landscape,
+            delta=0in -1.8in,
+            offset=0in 0in,
+            noautoscale,
+            width=1\textwidth
+            ]{"memoir test".pdf}
+\end{document}

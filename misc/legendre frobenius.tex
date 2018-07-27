@@ -1,0 +1,128 @@
+\documentclass{article}
+
+% Packages
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}                                % Don't indent paragraphs
+\usepackage[letterpaper, margin=1.5in]{geometry}    % Set page size and margins
+
+% Metadata
+\newcommand{\Title}     {Legendre Functions with Frobenius's Method}
+\newcommand{\Author}   {Miles Moser}
+\newcommand{\Course}    {}
+
+\begin{document}
+{\Large\bf\Title}
+
+\hfill \Author
+
+\textbf{Problem.} Legendre's differential equation
+\begin{equation*}
+\begin{aligned}
+	(1-x^2)y'' - 2xy' + n(n+1)y = 0
+\end{aligned}
+\end{equation*}
+has a regular solution $P_n(x)$ that can be found by Frobenius's method.
+
+\textbf{Solution.} Expressing $y$ as a power series and calculating the first and second derivatives:
+\begin{equation*}
+\begin{aligned}
+	y &= x^s(a_0 + a_1 x + a_2 x^2 + \dots ) \\
+	  &= \sum_{j=0}^\infty a_j x^{s+j} \\
+	y' &= \sum_{j=0}^\infty a_j(s+j)  x^{s+j-1}\\
+	y'' &= \sum_{j=0}^\infty a_j(s+j)(s+j-1) x^{s+j-2}
+\end{aligned}
+\end{equation*}
+Substituting into the original differential equation:
+\begin{equation*}
+\begin{aligned}
+	0 &= (1-x^2)\sum_{j=0}^\infty a_j(s+j)(s+j-1) x^{s+j-2} - 2x\sum_{j=0}^\infty a_j(s+j)  x^{s+j-1} + n(n+1)\sum_{j=0}^\infty a_j x^{s+j} \\
+	&= \sum_{j=0}^\infty a_j(s+j)(s+j-1) x^{s+j-2} - \sum_{j=0}^\infty a_j(s+j)(s+j-1) x^{s+j} \\
+	&\phantom{==}- 2\sum_{j=0}^\infty a_j(s+j)  x^{s+j} + n(n+1)\sum_{j=0}^\infty a_j x^{s+j} \\
+	&= \sum_{j=0}^\infty a_j(s+j)(s+j-1) x^{s+j-2} + \sum_{j=0}^\infty a_j\left[-(s+j)(s+j-1)-2(s+j)+n(n+1)\right]x^{s+j}
+\end{aligned}
+\end{equation*}
+Setting the coefficient of $x^{s-2}$ to zero:
+\begin{equation*}
+\begin{aligned}
+	a_0 s(s-1) &= 0 \\
+	s &= 0, 1
+\end{aligned}
+\end{equation*}
+Now the coefficient of $x^{s-1}$:
+\begin{equation*}
+\begin{aligned}
+	a_1s(s+1) &= 0 \\
+\end{aligned}
+\end{equation*}
+So, if $s = 1$, then $a_1 = 0$. If $s = 0$, then there is no restriction on $a_1$. Let's consider the $s=1$ case first:
+\begin{equation*}
+\begin{aligned}
+	0 &= \sum_{j=2}^\infty a_j j(1+j) x^{j-1} + \sum_{j=0}^\infty a_j\left[-j(1+j)-2(1+j)+n(n+1)\right]x^{1+j} \\
+	&= \sum_{j=0}^\infty a_{j+2} (j+2)(j+3) x^{j+1} - \sum_{j=0}^\infty a_j\left[(j+2)(j+1)-n(n+1)\right]x^{j+1} \\
+	&= \sum_{j=0}^\infty \left[a_{j+2}(j+2)(j+3) - a_j\left[(j+2)(j+1) - n(n+1)\right]\right]x^{j+1}
+\end{aligned}
+\end{equation*}
+Setting each coefficient to zero to find the indicial equation:
+\begin{equation*}
+\begin{aligned}
+	a_{j+2}(j+2)(j+3) &= a_j\left[(j+2)(j+1) - n(n+1)\right] \\
+	a_{j+2} &= \frac{(j+2)(j+1)-n(n+1)}{(j+2)(j+3)}a_j \\
+	&= \frac{j^2+3j+2-n^2-n}{(j+2)(j+3)}a_j \\
+	&= \frac{(2+j+n)(1+j-n)}{(j+2)(j+3)}a_j
+\end{aligned}
+\end{equation*}
+Since $a_1 = 0$, we can see that all the $a_j$'s for odd $j$ must also be zero. Now, finding an explicit expression for the even $a_j$'s by inspection:
+\begin{equation*}
+\begin{aligned}
+	a_2 &= \frac{(2+n)(1-n)}{3\cdot 2}a_0 \\
+	a_4 &= \frac{(4+n)(3-n)}{5\cdot 4}a_2 = \frac{(4+n)(3-n)(2+n)(1-n)}{5\cdot 4\cdot 3\cdot 2}a_0
+\end{aligned}
+\end{equation*}
+From this pattern, we can write the first solution:
+\begin{equation*}
+\begin{aligned}
+	y_{s=1}(x) = a_0\left[x + \frac{(2+n)(1-n)}{3!}x^3 + \frac{(4+n)(3-n)(2+n)(1-n)}{5!}x^5+\dots\right]
+\end{aligned}
+\end{equation*}
+Now, if $s=0$, 
+\begin{equation*}
+\begin{aligned}
+	0 &= \sum_{j=2}^\infty a_j j(j-1) x^{j-2} + \sum_{j=0}^\infty a_j\left[-j(j-1)-2j+n(n+1)\right]x^{j} \\
+	&= \sum_{j=0}^\infty a_{j+2} (j+2)(j+1) x^{j} + \sum_{j=0}^\infty a_j\left[-j(j-1)-2j+n(n+1)\right]x^{j} \\
+	&= \sum_{j=0}^\infty \left[a_{j+2}(j+2)(j+1) - a_j[j(j+1)-n(n+1)]\right]x^j
+\end{aligned}
+\end{equation*}
+Setting each coefficient to zero to find the indicial equation:
+\begin{equation*}
+\begin{aligned}
+	a_{j+2}(j+2)(j+1) &= a_j[j(j+1)-n(n+1)] \\
+	a_{j+2} &= \frac{j(j+1)-n(n+1)}{(j+2)(j+1)}a_j \\
+	&= \frac{(1+j+n)(j-n)}{(j+2)(j+1)}a_j \\
+\end{aligned}
+\end{equation*}
+Finding an expression for the even $a_j$'s:
+\begin{equation*}
+\begin{aligned}
+	a_2 &= \frac{(1+n)(0-n)}{2\cdot 1}a_0 \\
+	a_4 &= \frac{(3+n)(2-n)}{4\cdot 3}a_2 = \frac{(3+n)(2-n)(1+n)(0-n)}{4\cdot 3\cdot 2\cdot 1}a_0
+\end{aligned}
+\end{equation*}
+Now the odd $a_j$'s:
+\begin{equation*}
+\begin{aligned}
+	a_3 &= \frac{(2+n)(1-n)}{3\cdot 2}a_1 \\
+	a_5 &= \frac{(4+n)(3-n)}{5\cdot 4}a_3 = \frac{(4+n)(3-n)(2+n)(1-n)}{5\cdot 4\cdot 3\cdot 2}a_1
+\end{aligned}
+\end{equation*}
+So the second solution is:
+\begin{equation*}
+\begin{aligned}
+	y_{s=0}(x) &= a_0\left[1 + \frac{(1+n)(0-n)}{2!}x^2 + \frac{(3+n)(2-n)(1+n)(0-n)}{4!}+\dots\right] \\
+	&\phantom{=} + a_1\left[x+ \frac{(2+n)(1-n)}{3!}x^3 + \frac{(4+n)(3-n)(2+n)(1-n)}{5!}x^5 + \dots\right]
+\end{aligned}
+\end{equation*}
+Since this solution contains the first solution, we can simply call this the complete regular solution of Legendre's differential equation $P_n(x)$.
+
+\end{document}

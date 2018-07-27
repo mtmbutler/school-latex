@@ -1,0 +1,104 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+% \usepackage{}
+
+%% Metadata
+\renewcommand{\Title}{Acceleration Due to Gravity}
+\renewcommand{\Course}{Physics 350 Lab}
+\renewcommand{\Date}{February 20, 2018}
+\renewcommand{\Author}{Sanad Swailim}
+
+\begin{document}
+\insertTitle
+
+\section{Theory}
+
+In this experiment, we test whether an object falling near Earth's surface obeys this one-dimensional kinematic equation for position as a function of time:
+\begin{equation}\label{eq:kinematic}
+    y(t) = y_0 + v_0t -\frac{g}{2}t^2,
+\end{equation}
+where $y$ is the object's height, $y_0$ is the initial height, $v_0$ is the initial speed, $t$ is the elapsed time, and $g$ is the acceleration due to gravity near Earth's surface (9.81 $\si{\m/\s^2}$).
+
+In our experiment, we let the ground be at $y=0$, and $t$ is the time it takes for a dropped object to fall to the ground. Since the object is dropped from rest, $v_0$ is also 0. So our equation looks like this:
+\[
+    0 = y_0 -\frac{g}{2}t^2
+\]
+For our experiment, $y_0$ is the independent variable that we control, and $t$ is the dependent variable that we will measure. So, it makes sense to rewrite this equation in terms of $t$:
+\begin{equation}\label{eq:test}
+    t = \sqrt{\frac{2y_0}{g}}
+\end{equation}
+We can use this equation to generate the theoretical values of $t$ for each of our chosen initial drop heights:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        $y_0$ (m) & $t_\text{theory}$ (s) \\
+        \midrule        
+        0.8800 & 0.4236 \\
+        0.8100 & 0.4064 \\
+        0.6100 & 0.3527 \\
+        0.5535 & 0.3359 \\
+        0.4450 & 0.3012 \\
+        0.3900 & 0.2820 \\
+        0.2900 & 0.2432 \\
+        0.2200 & 0.2118 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Theoretical time values}
+\end{table}
+
+\section{Materials and Methods}
+
+In this experiment, we dropped an object from various initial heights ($y_0$), measured with a meter stick. For each height, we did three drops, and measured the time it took for the object to hit the ground. The time was measured with a timer system connected to the object release mechanism and the pad that the object landed on. We then averaged the time results for each height and used the averages as our experimental values.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{"example lab report setup".png}
+\caption{Experimental setup}
+\end{figure}
+
+\section{Results}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccccccc}
+        \toprule
+        $y_0$ (m) & $t_\text{theory}$ (s) & Run 1 (s) & Run 2 (s) & Run 3 (s) & $t_\text{avg}$ (s) & Error (\%) \\
+        \midrule        
+        0.8800 & 0.4236 & 0.4241 & 0.4240 & 0.4239 & 0.4240 & 0.10 \\
+        0.8100 & 0.4064 & 0.4065 & 0.4059 & 0.4057 & 0.4060 & 0.09 \\
+        0.6100 & 0.3527 & 0.3533 & 0.3530 & 0.3528 & 0.3530 & 0.10 \\
+        0.5535 & 0.3359 & 0.3366 & 0.3376 & 0.3379 & 0.3374 & 0.44 \\
+        0.4450 & 0.3012 & 0.3017 & 0.3028 & 0.3076 & 0.3040 & 0.93 \\
+        0.3900 & 0.2820 & 0.2808 & 0.2806 & 0.2813 & 0.2809 & 0.38 \\
+        0.2900 & 0.2432 & 0.2405 & 0.2416 & 0.2409 & 0.2410 & 0.89 \\
+        0.2200 & 0.2118 & 0.2132 & 0.2115 & 0.2117 & 0.2121 & 0.15 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Results and error}
+\end{table}
+
+Our data looks sound for two main reasons:
+\begin{enumerate}[1.]
+    \item The data is precise: there was little variance between runs, which suggests that our methodology was consistent, and our equipment functioned as expected.
+    \item The data is accurate: even the largest error is less than 1\%.
+\end{enumerate}
+
+The theoretical values in column 2 are taken from the Theory section, where they were calculated from equation (\ref{eq:test}).
+
+The error was calculated with the standard error equation:
+\begin{equation}
+    \text{Error (\%)} = 100\cdot\abs{\frac{\text{observed}-\text{theoretical}}{\text{theoretical}}},
+\end{equation}
+where $t_\text{avg}$ is the observed value in our case.
+
+To visualize how small the error is, we can impose a scatterplot of our observed data on top of a plot of the theoretical relationship, given by equation (\ref{eq:test}):
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{"example lab report plot".pdf}
+\caption{Visualization of error}
+\end{figure}
+
+In light of the quality of our data, we can safely conclude that our object obeyed the kinematic equation (\ref{eq:kinematic}) for constant acceleration.
+\end{document}

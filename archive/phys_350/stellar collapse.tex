@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+% \usepackage{}
+
+%% Metadata
+\renewcommand{\Author}{Miles Moser}
+\renewcommand{\Title}{Stellar Collapse Problem}
+\renewcommand{\Date}{October 21, 2016}
+\renewcommand{\Course}{PHYS 350}
+
+\begin{document}
+\insertTitle
+
+%------------------------------------------------------------------------------
+\textbf{Problem.} A large, spherical cloud of gas with uniform initial density $\rho$ and radius $R$ collapses under gravity alone. Now, one of Newton's results shows that a spherically symmetric mass distribution will interact with particles outside of its radius just as if all of its mass were concentrated at the center of the sphere. This simplifies the problem.
+
+Another assumption we can make is that $\rho$ is small enough compared to $R$ that the particles in the cloud will not collide with each other during the collapse (of course they have to eventually, but that is essentially at $x = 0$, so we can neglect it for now).
+
+This means that we can consider a test particle located at the edge of the cloud instead of trying to consider the whole cloud. When that test particle reaches the center, the cloud will have collapsed. So, if we can compute the time it takes for a particle to fall from $x = R$ to $x = 0$, we will have found the collapse time $t_c$ for the whole cloud.
+
+Using the initial conditions that $v(0) = 0$ and $x(0) = R$, we can show that $t_c = \sqrt{\dfrac{3\pi}{32G\rho}}$.
+
+\textbf{Solution.} At $t = 0$, the particle's energy is purely gravitational potential energy, because it is not moving yet:
+\begin{equation*}
+E = -\frac{GMm}{R}
+\end{equation*}
+
+Because the particle and the sphere consisting of every other particle in the cloud form a closed system, energy is conserved:
+\begin{equation*}
+\begin{aligned}
+    E &= T + U \\
+    -\frac{GMm}{R} &= \frac{1}{2} m{v}^2 - \frac{GMm}{x} \\
+    2GM\left(\frac{1}{x} - \frac{1}{R}\right) &= {v}^2
+\end{aligned}
+\end{equation*}
+
+Now, when we square root both sides, we only need to take the negative result, because the velocity of the particle will always be inward.
+\begin{equation*}
+\begin{aligned}
+    v = \dv{x}{t} &= -\sqrt{2GM\left(\frac{R-x}{Rx}\right)} \\
+    \dd{t} &= -\frac{1}{\sqrt{2GM}} \sqrt{\frac{Rx}{R-x}} \dd{x} \\
+    \int_0^{t_c} \, \dd{t} &= -\frac{1}{\sqrt{2GM}} \int_R^0 \sqrt{\frac{Rx}{R-x}} \dd{x}
+\end{aligned}
+\end{equation*}
+
+Note that the right-hand side boundaries are flipped because $x = R$ initially, and decreases to $0$ when $t = t_c$. We can correct those boundaries and take out the negative in front, as well as bring a factor of $\sqrt{R}$ outside the integral when we evaluate the left-hand side:
+\begin{equation*}
+t_c = \sqrt{\frac{R}{2GM}} \int_0^R \sqrt{\frac{x}{R-x}} \, \dd{x}
+\end{equation*}
+
+This integral is solvable with a trig substitution. Let $x = R{\sin}^2 \theta$:
+\begin{equation*}
+\begin{aligned}
+    t_c &= \sqrt{\frac{R}{2GM}} \int_0^{\pi/2} \sqrt{\frac{R{\sin}^2 \theta}{R-R{\sin}^2 \theta}}(2R\sin\theta \cos\theta)\dd{\theta} \\
+    &= 2R \sqrt{\frac{R}{2GM}} \int_0^{\pi/2} \tan\theta \sin\theta \cos\theta\dd{\theta} \\
+    &= \sqrt{\frac{2R^3}{GM}} \int_0^{\pi/2} \sin^2\theta\dd{\theta}
+\end{aligned}
+\end{equation*}
+
+We can use a power-reduction trig identity to make the integral easier:
+\begin{equation*}
+\begin{aligned}
+    t_c &= \sqrt{\frac{2R^3}{GM}} \int_0^{\pi/2} \frac{1}{2} - \frac{1}{2} \cos 2\theta \\
+    &= \sqrt{\frac{2R^3}{GM}} \left[\frac{\theta}{2} - \frac{1}{4} \sin 2\theta\right]^{\pi/2}_0 \\
+    &= \sqrt{\frac{\pi^2 R^3}{8GM}}
+\end{aligned}
+\end{equation*}
+
+Now, because the cloud is spherical and has uniform density, we can substitute for its mass:
+\begin{equation*}
+M = \rho V = \rho \left(\frac{4}{3}\pi R^3\right) = \frac{4\pi\rho R^3}{3}
+\end{equation*}
+
+Substituting this result back into the expression for $t_c$ gives the final result, from which we can conclude that the collapse time of a spherical, uniformly dense cloud is independent of the cloud's radius:
+\begin{equation*}
+t_c = \sqrt{\frac{3\pi}{32G\rho}}
+\end{equation*}
+
+\end{document}

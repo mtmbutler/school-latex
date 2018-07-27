@@ -1,0 +1,70 @@
+\documentclass[letterpaper]{article}
+\usepackage{../hw}
+
+%% Metadata
+\newcommand{\Author}{Miles Moser}
+\newcommand{\Title}{200B Notes}
+\newcommand{\Date}{}
+\newcommand{\courseCode}{}
+\newcommand{\insertTitle}{{\noindent\Huge\bf  \\[0.5\baselineskip] {\selectfont \Title{}}}}
+
+\begin{document}
+\insertTitle
+
+Wednesday, January 17, 2018
+-------------------------------------------------------------------------------
+
+Rena said there's a homework problem about constructing a non-spherically-symmetric charge distribution that multipole expansion works for, and hinted that we'll start by putting a charge at the center. Maybe this is to create a monopole term that kills off the other terms?
+
+Field created by a dipole ($\vect{p}$ is the dipole moment):
+\begin{equation*}
+\begin{aligned}
+	\vect{E} = \frac{1}{4\pi\epsilon_0}\left[\frac{3\hat{\vect{r}}\left(\hat{\vect{r}}\cdot \vect{p}\right)-\vect{p}}{r^3}\right]
+\end{aligned}
+\end{equation*}
+
+Zangwill, in his calculation for the torque on a dipole in an external field, has a weird, second term. It's just a parallel-axis theorem term that comes from the force on the dipole, if your origin is fixed somewhere in space and the dipole is moving relative to it (as opposed to putting the origin in the middle of the dipole.)
+
+Now quadrupoles. The quadrupole moment is a rank-2 tensor instead of a vector. Fortunately, it's a symmetric tensor, so we only have 6 components to worry about.
+\begin{equation*}
+\begin{aligned}
+	Q_{ij} = \frac{1}{2}\int\dthreer '\rho(\vect{r'})r_i'r_j'
+\end{aligned}
+\end{equation*}
+	
+Sometimes, it can be diagonalized. Not always, though. Sometimes you don't know the principal axes.
+
+There's another redudancy that means you might not need all 6 components, but it can't be easily written while the quadrupole moment is written as above. Let's do this instead:
+\begin{equation*}
+\begin{aligned}
+	\varphi_\text{quadrupole}(\vect{r}) &= \frac{1}{4\pi\epsilon_0}\mathlarger{\mathlarger{\mathlarger{\Theta}}}\!\!\!\phantom{.}_{ij}\frac{r_ir_j}{r^5},\quad \mathlarger{\mathlarger{\mathlarger{\Theta}}}\!\!\!\phantom{.}_{ij} = 3Q_{ij}-Q_{kk}\delta_{ij}
+\end{aligned}
+\end{equation*}
+So $\Theta$ is the traceless quadrupole moment. I missed the reasoning, but for some reason, this means you only need two diagonal elements. Maybe it's just extra information so you can eliminate one, I'm not sure how quite yet. It would make sense if somehow we knew the trace before calculating all the diagonal elements.
+
+Next point: look at all the $r$'s in the equation. Why aren't we doing this in spherical coordinates? Rena's argument:
+
+When we're doing multipole expansion, we're way out in space, far from the charge distribution. That means we're basically just trying to solve Laplace's equation, which is separable.
+From PDE's:
+\begin{equation*}
+\begin{aligned}
+	\nabla^2\varphi &= 0 \\
+	\varphi &= \Theta(\theta)\Phi(\phi)R(r) \\
+	\Theta(\theta) &= P_\ell^m(\cos\theta) \\
+	\Phi(\phi) &= e^{\pm im\phi} \\
+	R(r) &= r^\ell,\,\,\frac{1}{r^{\ell+1}}
+\end{aligned}
+\end{equation*}
+
+Rena threw this up but I'm not quite sure what it is yet:
+\begin{equation*}
+\begin{aligned}
+	\varphi (\vect{r}) &= \frac{1}{4\pi\epsilon_0}\sum_{\ell=0}^\infty \sum_{m =-\ell}^\ell A_{\ell m}\frac{Y_{\ell m}(\theta,\phi)}{r^{\ell+1}},\,\,(r>R)
+\end{aligned}
+\end{equation*}
+
+This is an argument that you definitely need at least 5 terms for the quadrupole moment?
+
+Now the octopole moment is a rank-3 tensor, so there are 27 terms. But - there's a lot of symmetry. $T_{123} = T_{213} = T_{231}$, for example. Basically, anything with the same number of $x$'s, $y$'s, and $z$'s, in any order, will be equal. So there wind up being 7 distinct elements. The trace issue is a bit trickier too, since we have a cube, so there are three diagonals. Thought: they might all have to be equal?
+	
+\end{document}

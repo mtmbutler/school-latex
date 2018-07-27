@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+
+%% Metadata
+\renewcommand{\Title}{EM Field Problem}
+\renewcommand{\Course}{PHYS 350}
+\renewcommand{\Date}{October 21, 2016}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+%------------------------------------------------------------------------------
+\textbf{Problem.} A particle exists under the simultaneous influence of an electric field $\vb{E}$ and a magnetic field $\vb{B}$, where $\vb{E}$ points only in the $y$--direction and $\vb{B}$ points only in the $z$--direction:
+\begin{center}
+\tdplotsetmaincoords{65}{120}
+\begin{tikzpicture}
+[scale=3, tdplot_main_coords, axis/.style={->,color=black,thick},
+vector/.style={-stealth,color={blue!65},thin}]
+
+\coordinate (O) at (0,0,0);
+\draw[axis] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+\draw[axis] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
+\draw[axis] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+
+\draw[vector, color={red!55}, thick] (0,0.25,0.3) -- (0,0.25,0.8) node[midway,left] {$\vb{B}$};
+\draw[vector, color={blue!55}, thick] (0,0.3,0.25) -- (0,0.8,0.25) node[midway,below] {$\vb{E}$};
+\end{tikzpicture}
+\end{center}
+Under these conditions, the motion of the particle is subject to the Lorentz equation:
+\[
+    \vb{F} = q\vb{E} + q\vb{v}\times\vb{B}
+\]
+Also, it will later become useful to use the following substitutions, where $\omega$ is the cyclotron frequency and $\alpha$ is simply the ratio of the two fields:
+\[
+    \omega \equiv \frac{qB}{m}, \quad \alpha \equiv \frac{E}{B}
+\]
+Our goal is to find the position function of the particle under certain initial conditions.
+
+\textbf{Solution.} In equation (1), we can use Newton's Second Law to substitute $m\vb{a}$ for $\vb{F}$, and calculate the cross product term like so:
+\[
+\begin{aligned}
+    m\vb{a} &= q\vb{E} + q\vb{v}\times\vb{B} \\
+    &= (qB\dot{y})\vu{x} + (qE - qB\dot{x})\vu{y} \\
+    \vb{a} &= \left(\frac{qB}{m}\dot{y}\right)\vu{x} + \left(\frac{qE}{m} - \frac{qB}{m}\dot{x}\right)\vu{y} \\
+    \vb{a} &= (\omega \dot{y})\vu{x} + \left(\omega \alpha - \omega \dot{x}\right)\vu{y}
+\end{aligned}
+\]
+Separating this result into components results in a system of differential equations:
+\[
+\begin{aligned}
+    \ddot{x} &= \omega \dot{y} \\
+    \ddot{y} &= \omega \alpha - \omega \dot{x}
+\end{aligned}
+\]
+To solve this, differentiate the first and substitute the second into it:
+\[
+\begin{aligned}
+    \dddot{x} &= \omega \ddot{y} \\
+    \dddot{x} &= \omega(\omega \alpha - \omega \dot{x}) \\
+    \dddot{x} + {\omega}^2 \dot{x} &= {\omega}^2 \alpha
+\end{aligned}
+\]
+This is a linear, inhomogeneous differential equation. Instead of solving it for $x$, however, we can solve it for $\dot{x}$. This way, there is one fewer constant of integration. Further, it allows us to directly substitute the solution back into our equation, rather than reversing the above process (differentiating one and substituting the other into it), which would introduce even more, separate constants of integration. Here is the homogeneous solution, beginning with the characteristic polynomial:
+\begin{gather*}
+    {r}^2 + {\omega}^2 = 0 \\
+    r = \pm \omega i \\
+    \dot{x}_h = c_1 \cos(\omega t) + c_2 \sin(\omega t)
+\end{gather*}
+Now, since the right-hand side of the inhomogeneous equation is constant, we should guess $\dot{x}_p = \alpha$. Substituting this in shows that it works, so our complete solution is the following:
+\[
+    \dot{x} = c_1 \cos(\omega t) + c_2 \sin(\omega t) + \alpha
+\]
+Now, substituting this result and integrating:
+\[
+\begin{aligned}
+    \ddot{y} &= \omega \alpha - \omega (c_1 \cos(\omega t) + c_2 \sin(\omega t) + \alpha) \\
+    &= -\omega c_1 \cos(\omega t) - \omega c_2 \sin(\omega t) \\
+    \dot{y} &= -c_1 \sin(\omega t) + c_2 \cos(\omega t) + c_3
+\end{aligned}
+\]
+Now, because equation $\ddot{x}$ is a linear multiple of $\dot{y}$, and differentiating shows us that $\ddot{x}$ has no constant terms, we can immediately tell that $c_3$ must be 0 here. Now, let's apply some initial conditions to solve for the constants of integration before we integrate up to $x(t)$ and $y(t)$. Let the initial velocity be zero, so $\dot{x}(0) = \dot{y}(0) = 0$:
+\[
+\begin{aligned}
+\dot{y} &= -c_1 \sin(\omega t) + c_2 \cos(\omega t) \quad\longrightarrow\quad \dot{y}(0) = c_2 = 0 \\
+\dot{x} &= c_1 \cos(\omega t) + c_2 \sin(\omega t) + \alpha \quad\longrightarrow\quad \dot{x}(0) -\alpha = c_1 = -\alpha
+\end{aligned}
+\]
+So our final velocity equations are:
+\[
+\begin{aligned}
+    \dot{x} &= -\alpha \cos(\omega t) + \alpha \\
+    \dot{y} &= \alpha \sin(\omega t)
+\end{aligned}
+\]
+Now, when we integrate them with the initial conditions $x(0) = y(0) = 0$, we get the following parametric equations of motion:
+\[
+\begin{aligned}
+    x(t) &= \alpha t - \frac{\alpha}{\omega} \sin(\omega t) \\
+    y(t) &= \frac{\alpha}{\omega} - \frac{\alpha}{\omega} \cos(\omega t)
+\end{aligned}
+\]
+We can define a characteristic time $\tau \equiv 1/\omega$ and a characteristic length $L \equiv \alpha/\omega = \alpha \tau$ and rewrite the parametric equations as functions of $t_n \equiv t/\tau$:
+\[
+\begin{aligned}
+    x(t_n) &= L(t_n - \sin(t_n)) \\
+    y(t_n) &= L(1 - \cos(t_n))
+\end{aligned}
+\]
+To completely nondimensionalize these equations, we can let $x_n \equiv x/L$ and $y_n \equiv y/L$:
+\[
+\begin{aligned}
+    x_n &= t_n - \sin(t_n) \\
+    y_n &= 1 - \cos(t_n)
+\end{aligned}
+\]
+The following figures illustrate the functions $x_n (t_n), y_n (t_n)$ and $y_n (x_n)$:
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{"em field fig1".pdf}
+    \captionof{figure}{$x_n$ and $y_n$ vs. $t_n$}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{"em field fig2".pdf}
+    \captionof{figure}{$y_n$ vs. $x_n$}
+\end{minipage}
+\end{figure}
+
+\textbf{Discussion.}
+
+\textbf{Solving for }$\boldsymbol{y(x)}$\textbf{.} Although I could graph $y$ versus $x$ in Matlab using the parametric equations, I could not figure out how to explicitly solve for $y(x)$, because there was no clear way to solve for $t(x)$ and substitute it into $y(t)$. It is possible to solve for $x(y)$, but domain limitations (due to inverse trig functions) make it less illustrative than the parametric approach.
+
+\textbf{Graphing nondimensionalized functions for different values of} $\boldsymbol{\alpha}$\textbf{.}
+The assignment calls to graph the nondimensionalized equations with different values of $\alpha$, but the fully nondimensionalized equations do not depend on $\alpha$, so I don't quite understand what to do. My nearest guess is to only partially dimensionalize the equations, leaving $\alpha$ in as a multiplier:
+\[
+\begin{aligned}
+x(t_n) &= \alpha \tau(t_n - \sin(t_n)) \\
+y(t_n) &= \alpha \tau(1 - \cos(t_n))
+\end{aligned}
+\]
+This doesn't seem as elegant as the fully nondimensionalized solution, but I think it allows me to follow the instructions as closely as possible. The following figures illustrate the partially dimensionalized functions $x(t_n), y(t_n)$ and $y(x)$ for different values of $\alpha$:
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{"em field fig3".pdf}
+    \captionof{figure}{$x_n$ and $y_n$ vs. $t_n$}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{"em field fig4".pdf}
+    \captionof{figure}{$y_n$ vs. $x_n$}
+\end{minipage}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{"em field fig5".pdf}
+\caption{$y/\tau$ vs. $x/\tau$ \label{5figure}}
+\end{figure}
+\end{document}

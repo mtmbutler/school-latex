@@ -1,0 +1,56 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Problem Set 6}
+\newcommand{\DueDate}   {March 5, 2018}
+\newcommand{\Course}    {PHY 200B}
+
+% Problem Set 6
+% Physics 200B
+% Due at start of class, Monday March 5, 2018
+% Zangwill 9.5
+% Zangwill 9.17 Add part c: Explain the importance of this result for actual measurements. Bear in mind that experimentalists often want to extract intrinsic quantities such as resistivity.
+% Zangwill 9.23 and 9.24
+% Zangwill 10.6 Add part c: Repeat the derivation a third way, using only Ampe`re’s law and symmetry.
+% Zangwill 10.8 Add part d: Give at least two examples of situations that use planar coils. You are welcome to use any internet resources you like on this one.
+% Zangwill 10.20 and 10.24
+
+\begin{document}
+{\huge\textbf{\Title}}
+
+Due \DueDate \hfill \Course
+
+\hrulefill
+
+\begin{enumerate}[align=parleft]%,labelsep=26pt]
+    \item This is an item in the first list, with some subitems.
+    \begin{enumerate}[(a), align=parleft,labelsep=26pt]
+        \item Show that the electrostatic potential produced at point $C$ by the current injected at point $A$ is
+        \[
+            \varphi_{AC} = -\frac{I}{\pi d\sigma}\ln(a+b).
+        \]
+
+        \item Prove that
+        \[
+            \exp\pqty{-\pi d\sigma R_{AB,CD}} + \exp\pqty{-\pi d\sigma R_{BC,DA}} = 1.
+        \]
+    \end{enumerate}
+    \item This is the second item in the first list.
+\end{enumerate}
+\end{document}

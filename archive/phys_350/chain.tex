@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Metadata
+\renewcommand{\Title}{Chain Problem}
+\renewcommand{\Course}{PHYS 350}
+\renewcommand{\Date}{December 9, 2016}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\section{Introduction}
+
+Consider a chain of length $L$ lying on a table, partially hanging over the edge so that the tip of the chain is a distance $x$ below the edge. Assuming the table is near sea level on Earth, the chain's acceleration will gradually increase as the amount of chain hanging over the edge increases. In class, we found the following differential equation to describe the velocity and position of the tip of the chain:
+\begin{equation}\label{given}
+\dv{v}{t} = \frac{g}{L}x
+\end{equation}
+
+Using the initial conditions $v(0) = 0$ and $x(0) = x_o$, we can find explicit expressions for position and velocity as functions of time.
+
+\section{Solution}
+
+We can rewrite equation (\ref{given}) in the standard form for a second-order linear differential equation, then solve using the characteristic polynomial:
+\begin{equation*}
+\begin{aligned}
+\ddot{x} - \frac{g}{L}x &= 0 \\
+r^2 - \frac{g}{L} &= 0 \\
+r &= \sqrt{\frac{g}{L}} \\
+x(t) &= c_1 e^{rt} + c_2 e^{-rt}
+\end{aligned}
+\end{equation*}
+
+Differentiating gives us the velocity function:
+\begin{equation*}
+v(t) = c_1 re^{rt} - c_2 re^{-rt}
+\end{equation*}
+
+Using the initial conditions to solve for the coefficients yields the following solutions:
+\begin{equation}
+\begin{aligned}
+x(t) &= \frac{x_0}{2}e^{rt} + \frac{x_0}{2}e^{-rt} \\
+v(t) &= \frac{x_0}{2}re^{rt} - \frac{x_0}{2}re^{-rt}
+\end{aligned}
+\end{equation}
+
+These can be written as hyperbolic trig functions:
+\begin{equation}
+\begin{aligned}
+x(t) &= x_0 \cosh \left(\sqrt{\frac{g}{L}} t\right) \\
+v(t) &= x_0 \sqrt{\frac{g}{L}} \sinh \left(\sqrt{\frac{g}{L}} t\right)
+\end{aligned}
+\end{equation}
+
+Now, we can nondimensionalize the above solutions by defining a characteristic time $\tau \equiv \sqrt{L/g}$, a characteristic length $\ell \equiv x_0$, and a corresponding characteristic speed  $\tilde{v} \equiv \ell/\tau$:
+
+\begin{equation}
+\begin{aligned}
+x_n &= \frac{x(t)}{\ell} = \cosh t_n \\
+v_n &= \frac{v(t)}{\tilde{v}} = \sinh t_n
+\end{aligned}
+\end{equation}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{"chain fig1".pdf}
+	\caption{Plot of $x_n$ and $v_n$ vs. $t_n$}\label{Fig:graph}
+\end{figure}
+
+The above plot illustrates that the chain's displacement and velocity both grow exponentially with time while part of the chain is still on the table.
+\end{document}

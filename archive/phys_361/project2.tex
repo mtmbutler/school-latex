@@ -1,0 +1,280 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage{mathtools}  % Aboxed
+\usepackage{nicefrac}
+\newcommand{\ol}[1]{\overline{#1}\,} % Overline with spacing
+
+%% Metadata
+\renewcommand{\Title}{Project Set 2}
+\renewcommand{\Course}{PHYS 361}
+\renewcommand{\Date}{March 1, 2017}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\section{Deriving the Wien Displacement Law}
+
+\textbf{Problem 1.} Use the relationship $c = \lambda\nu$ to derive a result for changes in frequency with respect to wavelength. Use this to show that the spectral radiancy is
+\begin{equation*}
+\begin{aligned}
+\rho_T(\lambda) = \frac{8\pi hc}{\lambda^5}\frac{1}{e^{hc/\lambda kT} - 1}
+\end{aligned}
+\end{equation*}
+
+\textbf{Solution.} Planck's Law in terms of frequency $\nu$:
+\begin{equation}
+\rho_T(\nu) = \frac{8\pi\nu^2}{c^3}\frac{h\nu}{e^{h\nu/kT} - 1}
+\end{equation}
+
+The given relationship between $\rho_T(\nu)$ and $\rho_T(\lambda)$:
+\begin{equation}
+\rho_T(\lambda)\dd\lambda = -\rho_T(\nu)\dd\nu
+\end{equation}
+
+Substituting and solving:
+\begin{equation*}
+\begin{aligned}
+\rho_T(\lambda) &= -\rho_T(\nu)\frac{\dd\nu}{\dd\lambda} \\
+&= -\left(\frac{8\pi\nu^2}{c^3}\frac{h\nu}{e^{h\nu/kT} - 1}\right)\left(\frac{\dd\nu}{\dd\lambda}\right) \\
+&= -\left(\frac{8\pi(c/\lambda)^2}{c^3}\frac{h(c/\lambda)}{e^{h(c/\lambda)/kT} - 1}\right)\left(-\frac{c}{\lambda^2}\right) \\
+&= \frac{8\pi c^2}{c^3\lambda^2}\frac{hc}{\lambda\left(e^{hc/\lambda kT} - 1\right)}\frac{c}{\lambda^2} \\
+\Aboxed{&= \frac{8\pi hc}{\lambda^5}\frac{1}{e^{hc/\lambda kT} - 1}}
+\end{aligned}
+\end{equation*}
+
+\textbf{Problem 2.} By the usual calculus techniques, find a transcendental (i.e. analytically unsolvable) relation that allows you to determine the maximum wavelength $\lambda_{\text{max}}$ for a given temperature.
+
+\textbf{Solution.} To determine the maximum wavelength, we simply set $\dv*{\rho_T}{\lambda}$ to 0, knowing roughly what the function looks like (i.e., it doesn't have a minimum). We can also define $\beta \equiv hc/kT$ for clarity.
+\begin{equation*}
+\begin{aligned}
+\rho_T &= 8\pi hc\lambda^{-5}\left(e^{\beta\lambda^{-1}}-1\right)^{-1} \\
+\frac{\dd\rho_T}{\dd \lambda} &= 8\pi hc\left(-5\lambda^{-6}\left(e^{\beta\lambda^{-1}}-1\right)^{-1} + \lambda^{-5}(-1)\left(e^{\beta\lambda^{-1}}-1\right)^{-2}\left(e^{\beta\lambda^{-1}}\left(-\beta\lambda^{-2}\right)\right)\right) \\
+0 &= 8\pi hc\left(\frac{-5}{\lambda^6\left(e^{\beta\lambda^{-1}}-1\right)} + \frac{\beta e^{\beta\lambda^{-1}}}{\lambda^7\left(e^{\beta\lambda^{-1}}-1\right)^2}\right) \\
+0 &= -5\lambda\left(e^{\beta\lambda^{-1}}-1\right) + \beta e^{\beta\lambda^{-1}} \\
+0 &= \beta e^{\beta\lambda^{-1}} - 5\lambda e^{\beta\lambda^{-1}} + 5\lambda \\
+\Aboxed{0 &= \frac{\beta}{\lambda} e^{\beta\lambda^{-1}} - 5e^{\beta\lambda^{-1}} + 5}
+\end{aligned}
+\end{equation*}
+
+Note that above, once I set the derivative to 0, $\lambda$ actually became $\lambda_\text{max}$, though I kept the simpler notation to avoid clutter.
+
+\textbf{Problem 3.} Introduce a dimensionless variable $x$ to rewrite this equation as
+\begin{equation*}
+\begin{aligned}
+1 - \frac{x}{5} = e^{-x}
+\end{aligned}
+\end{equation*}
+
+\textbf{Solution.} Let $x$ be given by the following:
+\begin{equation}
+x = \frac{\beta}{\lambda_\text{max}} = \frac{hc}{kT\lambda_\text{max}}
+\end{equation}
+
+Now our equation from Problem 2 can be rewritten:
+\begin{equation*}
+\begin{aligned}
+\frac{\beta}{\lambda} e^{\beta\lambda^{-1}} - 5e^{\beta\lambda^{-1}} + 5 &= 0\\
+xe^x - 5e^x + 5 &= 0\\
+e^x (x - 5) &= -5 \\
+x - 5 &= -5e^{-x} \\
+\Aboxed{1 - \frac{x}{5} &= e^{-x}}
+\end{aligned}
+\end{equation*}
+
+\textbf{Problem 4.} Solve this equation in some way. What is the value of $x$?
+
+\textbf{Solution.} Graphing each side in Mathematica and calculating the intercept yields $\boxed{x \approx 4.965}$.
+
+\textbf{Problem 5.} Write Wien's Law in the form
+\begin{equation*}
+\begin{aligned}
+\lambda_\text{max} T = \text{number} * \left(\text{constants}\right)
+\end{aligned}
+\end{equation*}
+
+\textbf{Solution.}
+\begin{equation*}
+\begin{aligned}
+\lambda_\text{max} &= \frac{1}{x}\frac{hc}{kT} \\
+\Aboxed{\lambda_\text{max} T &= 0.201 * \left(\frac{hc}{k}\right)}
+\end{aligned}
+\end{equation*}
+
+\section{Determining the Planck Constant from Data}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc}
+		\toprule
+		$T$ (K) & $\lambda_\text{max}$ ($\mu$m) \\
+		\midrule
+		1025 & 2.817 \\
+		1153 & 2.496 \\
+		1223 & 2.343 \\
+		1301 & 2.209 \\
+		1338 & 2.151 \\
+		1351 & 2.127 \\
+		1377 & 2.092 \\
+		1401 & 2.059 \\
+		1420 & 2.026 \\
+		1453 & 1.992 \\
+		1479 & 1.947 \\
+		1501 & 1.918 \\
+		1525 & 1.893 \\
+		1687 & 1.717 \\
+		\bottomrule
+	\end{tabular}
+	\caption{$T$ and $\lambda_\text{max}$ data from Coblentz's 1916 publication in the \textit{Bulletin of the National Bureau of Standards}, referring to observations of a black chromium oxide cavity.}
+\end{table}
+
+\textbf{Problem 1.} If Wien's Law holds, then the product of $T$ and $\lambda_\text{max}$ should be constant. Comment on whether this is true for the data.
+
+\textbf{Response.} Using Excel, I can see that the product always falls within 16 K$\cdot\mu$m of the average, 2881 K$\cdot\mu$m (about a 0.5\% error). So, Wien's Law appears to hold for these observations.
+
+\textbf{Problem 2.} This data should be well-described by an inverse relationship if Wien's Law holds. Determine the least-squares fit for the relationship
+\begin{equation*}
+\begin{aligned}
+\lambda_\text{max} = \frac{C}{T}
+\end{aligned}
+\end{equation*}
+
+\textbf{Solution.} Using our least-squares general formula:
+\begin{equation*}
+\begin{aligned}
+F(\lambda_i, T_i, C) &= \sum_{i=1}^n\left(\lambda_i-\frac{C}{T_i}\right)^2 \\
+\pdv{F}{C} &= \sum_{i=1}^n 2\left(\lambda_i - \frac{C}{T_i}\right)\left(-\frac{1}{T_i}\right) \\
+0 &= \sum_{i=1}^n\left(\frac{\lambda_i T_i - C}{{T_i}^2}\right)
+\end{aligned}
+\end{equation*}
+
+Note that $\lambda_i T_i$ should be constant, so we can take it out of the sum:
+\begin{equation*}
+\begin{aligned}
+0 &= \left(\overline{\lambda T} - C\right)\sum_{i=1}^n\left(\frac{1}{{T_i}^2}\right) \\
+0 &= \overline{\lambda T} - C \\
+\Aboxed{C &= \overline{\lambda T}}
+\end{aligned}
+\end{equation*}
+
+\textbf{Problem 3.} Use your answer from Problem 1 to determine the best value of $C$ as determined by the least-squares process.
+
+\textbf{Solution.} From Problem 1, we see that $\boxed{C = 2881 \text{K}\cdot\mu\text{m}}$.
+
+\textbf{Problem 4.} Combine this with your result from Planck's Law to obtain a value for $h$.
+
+\textbf{Solution.} Recall the solution from Part 1:
+\begin{equation}
+\lambda_\text{max} T = 0.201 *\left(\frac{hc}{k}\right)
+\end{equation}
+
+Combining our solution from Problem 3:
+\begin{equation*}
+\begin{aligned}
+C &= 0.201*\left(\frac{hc}{k}\right) \\
+h &= \frac{Ck}{0.201*c} \\
+&= \frac{(2881 \text{K}\cdot\mu\text{m})(1.38\times10^{-23}\nicefrac{\text{J}}{\text{K}})}{(0.201)(3\times 10^8 \nicefrac{\text{m}}{\text{s}})} \\
+\Aboxed{&= 6.59\times10^{-34} \text{J}\cdot\text{s}}
+\end{aligned}
+\end{equation*}
+
+\section{Using Planck's Law to Fit the Spectrum at 2360 Kelvins}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc|cc}
+		\toprule
+		$\lambda$ (nm) & Energy (arb. units) & $\lambda$ (nm) & Energy (arb. units)\\
+		\midrule
+		400 & \phantom{5}5.0 & 600 & \phantom{1}62.5 \\
+		425 & \phantom{5}7.0 & 620 & \phantom{1}73.3 \\
+		440 & \phantom{5}8.5 & 625 & \phantom{1}76.1 \\
+		450 & 10.0 & 640 & \phantom{1}85.0 \\
+		460 & 11.8 & 650 & \phantom{1}91.2 \\
+		475 & 15.0 & 660 & \phantom{1}97.6 \\
+		500 & 20.9 & 675 & 107.5 \\
+		520 & 27.5 & 680 & 110.9 \\
+		525 & 29.2 & 700 & 124.1 \\
+		540 & 34.6 & 720 & 137.5 \\
+		550 & 38.9 & 725 & 141.0 \\
+		560 & 42.9 & 740 & 151.0 \\
+		575 & 49.8 & 750 & 157.9 \\
+		580 & 52.2 &  	 & \\
+		\bottomrule
+	\end{tabular}
+	\caption{Coblentz's data on the spectral radiancy of an acetylene flame at $T = 2360$ K, published by the Bureau of Standards in 1920.}
+\end{table}
+
+\textbf{Problem 1.} Plot these data. Based on their appearance, comment on whether they appear to be consistent with Planck's general form for the spectral radiancy. Does it appear that the energies involved are bigger or smaller than $kT$? How can you tell?
+
+\textbf{Response.} This is my plot of the data from Excel:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{"project2 fig1".png}
+\caption{Excel plot of above table.}
+\end{figure}
+
+Judging from the plot, the data may be consistent with Planck's Law, simply representing the left part of the curve (with the peak wavelength occurring outside of the visible spectrum). I can't tell whether the energies are larger or smaller than kT, because the energy data are in arbitrary units, and the horizontal compression of the function is unclear when we can only see the left part.
+
+\textbf{Problem 2.} Assume that these data can be fit by a version of Planck's Law:
+\begin{equation}
+E(\lambda) = \frac{A}{\lambda^5}\frac{1}{e^{hc/\lambda kT} - 1}
+\end{equation}
+where $A$ and $h$ are the two unknown parameters. Derive (but do not solve) the equations for determining these parameters with a least-squares method. Comment on the ease of solving these equations.
+
+\textbf{Solution.} Using our known form for a least-squares function:
+\begin{equation*}
+\begin{aligned}
+F(A,h) &= \sum_{i=1}^n\left(E_i - \frac{A}{{\lambda_i}^5}\frac{1}{e^{hc/ kT\lambda_i} - 1}\right)^2 \\
+\pdv{F}{A} &= \sum_{i=1}^n 2\left(E_i - \frac{A}{{\lambda_i}^5}\frac{1}{e^{hc/ kT\lambda_i} - 1}\right)\left(-\frac{1}{{\lambda_i}^5}\frac{1}{e^{hc/kT\lambda_i}-1}\right) \\
+&\Rightarrow\boxed{\sum_{i=1}^n\left(\frac{1}{{\lambda_i}^5}\frac{1}{e^{hc/kT\lambda_i}-1}\left(E_i - \frac{A}{{\lambda_i}^5}\frac{1}{e^{hc/kT\lambda_i}-1}\right)\right)=0} \\
+\pdv{F}{H} &= \sum_{i=1}^n 2\left(E_i - \frac{A}{{\lambda_i}^5}\frac{1}{e^{hc/ kT\lambda_i} - 1}\right)\left(-\frac{A}{{\lambda_i}^5}(-1)\left(e^{hc/kT\lambda_i}-1\right)^{-2}\left(e^{hc/kT\lambda_i}\right)\left(\frac{c}{kT\lambda_i}\right)\right) \\
+&\Rightarrow\boxed{\sum_{i=1}^n \left(\frac{Ac}{kT{\lambda_i}^6}\frac{e^{hc/kT\lambda_i}}{\left(e^{hc/kT\lambda_i}-1\right)^2}\left(E_i-\frac{A}{{\lambda_i}^5}\frac{1}{\left(e^{hc/kT\lambda_i}-1\right)}\right)\right)}
+\end{aligned}
+\end{equation*}
+
+These equations are impossible to solve analytically, and even doing them computationally looks difficult.
+
+\textbf{Problem 3.} In Excel, make a column in which you can calculate the values of $E(\lambda)$ and then display them on the same set of axes as Coblentz's data. Find reasonable values for $A$ and $h$ to try to get the Planck's Law curve to match the data. When you are happy with the description, add a column to calculate squares of the differences between the data and your curve, and sum those values.
+
+\textbf{Results.} 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{"project2 fig2".png}
+\caption{Excel plot. Orange is the estimated fit, and blue is the actual data.}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc}
+		\toprule
+		Quantity & Value \\
+		\midrule
+		$A$ & $1.277\times 10^{-25}$ \\
+		$h$ & $6.626\times 10^{-34}$ \\
+		Sum of Squares & 16.75 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Estimated values for $A$ and $h$, and resulting sum of squares value (represents goodness of fit).}
+\end{table}
+
+\textbf{Problem 4.} To wrap up this project, then turn to Graphical Analysis and attempt to fit Planck's Law to this data. Compare the value of the sum of squares for its result to yours.
+
+\textbf{Results.} My fit actually beat Graphical Analysis's, but that's because I already know what Planck's constant is!
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc}
+		\toprule
+		Quantity & Value \\
+		\midrule
+		$A$ & $1.294\times 10^{-25}$ \\
+		$h$ & $6.641\times 10^{-34}$ \\
+		Sum of Squares & 25.49 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Generated values for $A$ and $h$, and resulting sum of squares value (represents goodness of fit).}
+\end{table}
+\end{document}

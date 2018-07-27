@@ -1,0 +1,231 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage{multicol}
+\usepackage{nicefrac}
+\newcommand{\marginwidth}{1in}
+
+%% Metadata
+\renewcommand{\Title}{Chapter 13 \& 14 Problems}
+\renewcommand{\Course}{PHYS 411}
+\renewcommand{\Date}{December 13, 2016}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\newgeometry{left=\marginwidth,right=\marginwidth,top=\marginwidth,bottom=\marginwidth} % Define new margins
+\fancyhfoffset[O]{0pt}  % Recalculate footer width
+\insertTitle
+
+\section*{Chapter 13}
+\textbf{HW13-9} A cylindrical solenoid 40 cm long with a radius of 5 mm has 300 tightly-wound turns of wire uniformly distributed along its length. Around the middle of the solenoid is a two-turn rectangular loop 3 cm by 2 cm made of resistive wire having a resistance of 150 $\Omega$. One microsecond after connecting the loose wire to the battery to form a series circuit with the battery and a 20 $\Omega$ resistor, what is the magnitude of the current in the rectangular loop and its direction (clockwise or counter-clockwise in the diagram)?
+
+\begin{multicols}{2}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.35]{"ch13_14 13_9".png}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cl}
+		\toprule
+		\textbf{Symbol} & \textbf{Variable} \\
+		\midrule
+		$\ell$ & length of solenoid \\
+		$r$ & radius of solenoid \\
+		$A$ & cross-sectional area of solenoid \\
+		$h$ & height of rectangular loop \\
+		$w$ & width of rectangular loop \\
+		$N_1$ & \# of turns in solenoid \\
+		$N_2$ & \# of turns in rectangular loop \\
+		$B$ & magnitude of B-field inside solenoid \\
+		$I_1$ & current inside solenoid \\
+		$I_2$ & induced current in rectangular loop \\
+		$L$ & inductance of solenoid \\
+		$V$ & voltage of battery \\
+		$R_1$ & resistance of resistor in solenoid circuit \\
+		$R_2$ & resistance of wire in rectangular loop \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+\end{multicols}
+\textbf{Solution:} When the switch is closed, the current in the circuit increases gradually from 0 up to a maximum current. As the current increases, the magnetic field inside the solenoid also increases to the right, which means the magnetic flux through the rectangular loop increases to the right. Lenz's Law tells us that, because the flux is increasing to the right, the induced current will produce a magnetic field pointing to the left, implying that the induced current must move clockwise through the rectangular loop in the diagram above.
+
+To calculate the magnitude of the induced current, we have to know the magnitude of the magnetic field inside the solenoid, given by the following:
+\begin{equation}\label{magField}
+B = \frac{\mu_0N_1I_1}{\ell}
+\end{equation}
+
+We don't know the current yet, so we'll have to apply Kirchhoff's closed loop law:
+\[V - L\frac{\dd I_1}{\dd t} - R_1I_1 = 0\]
+
+This is a second-order, inhomogeneous, linear differential equation that can be solved with the characteristic polynomial:
+\begin{equation*}
+\begin{aligned}
+V &= L\frac{\dd I_1}{\dd t} + R_1I_1\\
+0 &= L\mathrm{D} + R_1 \\
+\mathrm{D} &= -\frac{R_1}{L} \\
+I_{1h} &= c_1\exp\left(-\frac{R_1}{L}t\right)
+\end{aligned}
+\end{equation*}
+
+Now we have the homogeneous solution. Since the right-hand side of the inhomogeneous equation is a constant, we can guess a constant particular solution $I_{1p} = \nicefrac{V}{R_1}$ and quickly verify that it works. So, the complete solution is:
+\[I_1 = c_1\exp\left(-\frac{R_1}{L}t\right) + \frac{V}{R_1}\]
+
+We know that $I_1 = 0$ when $t = 0$, so $c_1$ must equal $\frac{V}{R}$, which gives us this:
+\begin{equation*}
+\begin{aligned}
+I_1 &= -\frac{V}{R_1}\exp\left(-\frac{R_1}{L}t\right) + \frac{V}{R_1} \\
+&= \frac{V}{R_1}\left(1-\exp\left(-\frac{R_1}{L}t\right)\right)
+\end{aligned}
+\end{equation*}
+
+Substituting this result into equation (\ref{magField}):
+\begin{equation*}
+\begin{aligned}
+B &= \frac{\mu_0N_1}{\ell}\left(\frac{V}{R_1}\left(1-\exp\left(-\frac{R_1}{L}t\right)\right)\right)
+\end{aligned}
+\end{equation*}
+
+Now, since the magnetic field inside the solenoid points normal to the planes of the two rectangular loops, the magnetic flux through the rectangular coil $\Phi_B$ has magnitude $B\cdot A = \pi r^2B$. Here, we multiply by the cross-sectional area of the solenoid (rather than the rectangular loop), because that's the only area with a nonzero field. Substituting our above result:
+\begin{equation*}
+\begin{aligned}
+\Phi_B &= \pi r^2\frac{\mu_0N_1}{\ell}\left(\frac{V}{R_1}\left(1-\exp\left(-\frac{R_1}{L}t\right)\right)\right) \\
+&= \frac{\pi\mu_0N_1Vr^2}{\ell R_1}\left(1-\exp\left(-\frac{R_1}{L}t\right)\right) \\
+\frac{\dd\Phi_B}{\dd t} &= \frac{\pi\mu_0N_1Vr^2}{\ell R_1}\left(\frac{R_1}{L}\exp\left(-\frac{R_1}{L}t\right)\right)
+\end{aligned}
+\end{equation*}
+
+Faraday's Law tells us that the induced emf in the rectangular loop is given by:
+\[|\mathcal{E}| = N_2\left|\frac{\dd\Phi_B}{\dd t}\right|\]
+
+Since the rectangular loop has resistance and no other circuit elements, Ohm's Law tells us that the emf can be expressed as $\mathcal{E} = R_2I_2$, and we're left with:
+\begin{equation*}
+\begin{aligned}
+|\mathcal{E}| &= N_2\left|\frac{\dd\Phi_B}{\dd t}\right| \\
+R_2|I_2| &= N_2\left|\frac{\pi\mu_0N_1Vr^2}{\ell R_1}\left(\frac{R_1}{L}\exp\left(-\frac{R_1}{L}t\right)\right)\right| \\
+|I_2| &= \frac{\pi\mu_oN_1N_2Vr^2}{\ell LR_2}\exp\left(-\frac{R_1}{L}t\right)
+\end{aligned}
+\end{equation*}
+
+All of these values are provided in the given except for $L$, the inductance. The inductance of a solenoid is given by the following:
+\[ L = \frac{\mu_0N_1^2A}{\ell} = \frac{\mu_0N_1^2\pi r^2}{\ell} \]
+
+So the final expression for the magnitude of the induced current is:
+\begin{equation}
+|I_2| = \frac{N_2V}{N_1 R_2}\exp\left(-\frac{\ell R_1}{\mu_0N_1^2\pi r^2}t\right)
+\end{equation}
+
+For the values provided, we get:
+\begin{equation}
+\begin{aligned}
+|I_2| &= \frac{(2\text{ turns})(9\text{ V})}{(300\text{ turns})(150\;\Omega)}\exp\left(-\frac{(0.4\text{ m})(20\;\Omega)}{(1.26\times 10^{-6}\text{ m kg s}^{-2}\text{ A}^{-2})(300\text{ turns})^2\pi (5\times 10^{-3}\text{ m}^2)}(10^{-6}\text{ s})\right) \\
+&= 4\times 10^{-4}\text{ A} = 0.4\text{ mA}
+\end{aligned}
+\end{equation}
+
+So the induced current moves clockwise in the rectangular loop with a small magnitude of 0.4 mA. %\hfill $\qed$
+\pagebreak
+
+\textbf{HW13-10} The magnetic field is uniform and out of the page inside a circle of radius $R$. The magnetic field is essentially zero outside the circular region. The magnitude of the magnetic field as a function of time is $|\vb{B}| = B_0 + bt^3$. $B_0$ and $b$ are positive constants, and $t$ is time. Find the direction and magnitude of the induced electric fields at points $P$ and $Q$, at distances of $r_1 < R$ and $r_2 > R$, respectively.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1.3]{"ch13_14 13_10".jpg}
+\end{figure}
+
+\textbf{Solution:} For point $P$, we consider a circular path with the same center as the circle in the diagram, but with smaller radius $r_1$. The "emf " induced by Faraday's law is equivalent to the electric field integrated around a closed loop, so we can substitute this definition in the absence of an actual wire:
+\[ \oint\vb{E}\cdot d\vb*{\ell} = -\frac{\dd \Phi_B}{\dd t}\]
+
+At a fixed radius from the center of the circle, the electric field is constant by symmetry, so the path integral is easy to evaluate. Also, since the magnetic field points in a direction normal to the face of the circle, the magnetic flux is just the product of the field and the area. Note that in this case, the area in question is the smaller circle with radius $r_1$. All of these observations lead to these calculations:
+\begin{equation*}
+\begin{aligned}
+\oint\vb{E_P}\cdot d\vb*{\ell} &= -\frac{\dd \Phi_B}{\dd t} \\
+E_P(2\pi r_1) &= -(\pi r_1^2)\frac{\dd B}{\dd t} \\
+2\pi r_1E_P &= -\pi r_1^2 (3bt^2) \\
+E_P &= -\frac{3}{2}r_1bt^2
+\end{aligned}
+\end{equation*}
+
+We can apply Lenz's Law by imagining a wire along the imaginary circular path. Since the flux would be increasing out of the page, the induced current would produce a magnetic field going into the page, implying a clockwise current, which points up at point P. This elucidates the minus sign in the equation a bit $-$ if we take the direction of $\frac{\dd \Phi_B}{\dd t}$ to be positive (as well as its corresponding right-hand-rule rotational direction around the circle), then the direction of $\vb{E}$ naturally comes out negative, referring to the opposite right-hand-rule direction around the circle.
+
+For point $Q$, everything is the same except that the path integral will be around a circle with radius $r_2$, and the area corresponding to a change in magnetic flux will be the circle with radius $R$ (since there is no magnetic field outside that circle).
+\begin{equation*}
+\begin{aligned}
+\oint\vb{E_Q}\cdot d\vb*{\ell} &= -\frac{\dd \Phi_B}{\dd t} \\
+E_Q(2\pi r_2) &= -(\pi R^2)\frac{\dd B}{\dd t} \\
+2\pi r_2E_Q &= -\pi R^2 (3bt^2) \\
+E_Q &= -\frac{3}{2}\frac{R^2}{r_2}bt^2
+\end{aligned}
+\end{equation*}
+
+$\vb{E}_Q$ also points in a clockwise direction along the circular path, which is down at point $Q$.
+\pagebreak
+
+\section*{Chapter 14}
+
+\textbf{HW14-2} A D-shaped frame is made out of plastic of small square cross section and tightly wrapped uniformly with $N$ turns as shown, so that the magnetic field has essentially the same magnitude throughout the plastic. ($R$ is much bigger than $w$.)
+
+With a current $I$ flowing, what is the (uniform-magnitude) magnetic field inside the plastic? Calculate the magnitude and show the direction of the magnetic field in the plastic at the indicated locations on a diagram.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{"ch13_14 14_2a".png}
+	\caption{Diagram from a later edition of the book. Note that this diagram is slightly different than the diagram\\from the first edition $-$ $R$ is supposed to point to the middle of the outer brace, not stop short at the inside.}
+\end{figure}
+
+\textbf{Solution:} Consider the D-shaped path that connects the middle of every cross-section of the frame. The vertical part of the path would have length $2R$, and the semi-circle part would have length $\pi R$. Also, as mentioned in the given, the cross-section is small enough relative to $R$ that the magnetic field $B$ has a constant magnitude throughout. Inside the path, there are $N$ short lengths of wire carrying the same current $I$ into the page. This is an easy application of Amp\`{e}re's Law:
+\begin{equation*}
+\begin{aligned}
+\oint\vb{B}\cdot d\vb*{\ell} &= \mu_0\sum I \\
+B(2+\pi)R &= \mu_0NI \\
+B &= \frac{\mu_0NI}{(2+\pi)R}
+\end{aligned}
+\end{equation*}
+
+Applying the Lorentz Force law and the right-hand rule to all four sides of the cross section shows that the magnetic field must point clockwise around the loop. $\vb{B}$ is drawn in red at the three example points below:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{"ch13_14 14_2b".png}
+\end{figure}
+\pagebreak
+
+\textbf{HW14-6} An electron is initially at rest. At time $t_1 = 0$ it is accelerated upward with an acceleration of $10^{18}$ m/s$^2$ (this large acceleration is possible because the electron has a very small mass). We make observations at location $A$, 15 meters from the electron.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{"ch13_14 14_6".png}
+\end{figure}
+\textbf{(a)} At time $t_2 = 1$ ns, what is the magnitude and direction of the electric field at location $A$ due to the electron?
+\begin{quote}
+At $t_1$, the electron sets up an electric field $E = \frac{1}{4\pi\varepsilon_0}\frac{e}{(15\text{ m})^2} = 6.4\times10^{-12}$ N/C pointing to the left. Since light travels at $3\times 10^8$ m/s, it would take 50 ns for an accelerated charge's field to change 15 m away. So, after 1 ns, the field at $A$ is still $6.4\times10^{-12}$ N/C to the left.
+\end{quote}
+
+\textbf{(b)} At what time $t_3$ does the electric field at location $A$ change?
+\begin{quote}
+As mentioned in part (a), the electric field doesn't change until $t_3 = 50$ ns.
+\end{quote}
+
+\textbf{(c)} What is the direction of the electric field at location $A$ at time $t_3$?
+\begin{quote}
+When the electric field changes, the instantaneous field points in the opposite direction to the acceleration times the charge; in this case it points up at $A$ (since the electron has a negative charge).
+\end{quote}
+
+\textbf{(d)} What is the magnitude of this electric field?
+\begin{quote}
+From page 625, the magnitude of the electric field is given by the following:
+\end{quote}
+\begin{equation*}
+\begin{aligned}
+\left|\vb{E}_{\text{radiative}}\right| &= \frac{1}{4\pi\varepsilon_0}\frac{|-q\vb{a}_\perp|}{c^2r} \\
+&= \frac{e}{4\pi\varepsilon_0c^2}\frac{10^{18}\text{ m/s}^2}{15\text{ m}} \\
+&= 1.07\times 10^{-9}\text{ N/C}
+\end{aligned}
+\end{equation*}
+
+\textbf{(e)} What is the direction of the \textit{magnetic} force on a positive charge at point $A$ at time $t_3$?
+\begin{quote}
+From page 620, the magnetic effect of electromagnetic radiation is known as "radiation pressure" because it always pushes charges in the direction of propagation, regardless of the sign of the charge. So, a positive charge at point $A$ would feel a magnetic force to the right.
+\end{quote}
+\end{document}

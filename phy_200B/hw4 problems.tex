@@ -1,0 +1,156 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Problem Set 4}
+\newcommand{\DueDate}   {February 7, 2018}
+\newcommand{\Course}    {PHY 200B}
+
+\begin{document}
+{\huge\bf\Title}
+
+Due \DueDate \hfill \Course
+
+% -----------------------------------------------------------------------------
+% Problem Set 4, due at the beginning of class on Wednesday February 7
+% 7.1, 7.4, 7.6, 7.10, 7.12, 7.14, 7.18, 7.23
+% -----------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------
+\noindent\begin{minipage}{\textwidth}
+\hrulefill
+
+\textbf{Problem 7.1.} Use the orthogonality properties of the spherical harmonics to prove the following identities for a function $\varphi(\vb{r})$ which satisfies Laplace's equation in and on an origin-centered spherical surface $S$ of radius $R$:
+\begin{enumerate}[(a)]
+    \item $\displaystyle{\int_S \dd S \varphi(\vb{r}) = 4\pi R^2 \varphi(0).}$
+    \item $\displaystyle{\int_S \dd S z\varphi(\vb{r}) = \frac{4\pi}{3}R^4 \pdv{\varphi}{z}\bigg\rvert_{\vb{r}=0}}$.
+\end{enumerate}
+
+\end{minipage}
+%------------------------------------------------------------------------------
+\vfill
+\noindent\begin{minipage}{\textwidth}
+\hrulefill
+
+\textbf{Problem 7.4.} The $z$--axis runs down the center of an infinitely long heating duct with a square cross section. For a real metal duct (not a perfect conductor), the electrostatic potential $\varphi(x, y)$ varies \textit{linearly} along the side walls of the duct. Suppose that the duct corners at $(\pm a, 0)$ are held at potential $+V$ and the duct corners at $(0,\pm a)$ are held at potential $-V$. Find the potential inside the duct beginning with the trial solution
+\[
+    \varphi(x,y) = A + Bx + Cy + Dx^2 + Ey^2 + Fxy.
+\]
+
+\end{minipage}
+%------------------------------------------------------------------------------
+\vfill
+\noindent\begin{minipage}{\textwidth}
+\hrulefill
+
+\textbf{Problem 7.6.} The parallel plates of a \textit{microchannel plate} electron multiplier are segmented into conducting strips of width $b$ so the potential can be fixed on the strips at staggered values. We model this using infinite-area plates, a finite portion of which is shown below. Find the potential $\varphi(x, y)$ between the plates and sketch representative field lines and equipotentials. Note the orientation of the $x$-- and $y$--axes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{"hw4 7_6".png}
+\end{figure}
+
+\end{minipage}
+%------------------------------------------------------------------------------
+\vfill
+\noindent\begin{minipage}{\textwidth}
+\hrulefill
+
+\textbf{Problem 7.10.} A spherical shell of radius $R$ is divided into three conducting segments by two very thin air gaps located at latitudes $\theta_0$ and $\pi - \theta_0$. The center segment is grounded. The upper and lower segments are maintained at potentials $V$ and $-V$, respectively. Find the angle $\theta_0$ such that the electric field inside the shell will be as nearly constant as possible near the center of the sphere.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{"hw4 7_10".png}
+\end{figure}
+
+\end{minipage}
+%------------------------------------------------------------------------------
+\vfill
+\noindent\begin{minipage}{\textwidth}
+\hrulefill
+
+\textbf{Problem 7.12.} A spherical conducting shell centered at the origin has radius $R_1$ and is maintained at potential $V_1$. A second spherical conducting shell maintained at potential $V_2$ has radius $R_2 > R_1$ but is centered at the point $s\vu{z}$ where $s \ll R_1$.
+\begin{enumerate}[(a)]
+    \item To lowest order in $s$, show that the charge density induced on the surface of the inner shell is
+    \[
+        \sigma(\theta) = \epsilon_0 \frac{R_1R_2(V_2-V_1)}{R_2-R_1}\left[\frac{1}{R_1^{\,2}}-\frac{3s}{R_2^{\,3}-R_1^{\,3}}\cos\theta\right].
+    \]
+    Hint: Show first that the boundary of the outer shell is $r_2 \approx R_2+s\cos\theta$.
+
+    \item To lowest order in $s$, show that the force exerted on the inner shell is
+    \[
+        \vb{F} = \int\dd S \frac{\sigma^2}{2\epsilon_0}\vu{n} = \vu{z} 2\pi R_1^{\,2}\int_0^\pi \dd\theta\sin\theta \frac{\sigma^2(\theta)}{2\epsilon_0}\cos\theta = - \frac{Q^2}{4\pi\epsilon_0}\frac{s\vu{z}}{R_2^{\,3}-R_1^{\,3}}.
+    \]
+
+    \item Integrate the force in (b) to find the capacitance of this structure to second order in $s$.
+\end{enumerate}
+
+\end{minipage}
+%------------------------------------------------------------------------------
+\vfill
+\noindent\begin{minipage}{\textwidth}
+\hrulefill
+
+\textbf{Problem 7.14.} A conducting sphere with radius $R$ and charge $Q$ sits at the origin of coordinates. The space outside the sphere above the $z=0$ plane has dielectric constant $\kappa_1$. The space outside the sphere below the $z = 0$ plane has dielectric constant $\kappa_2$.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{"hw4 7_14".png}
+\end{figure}
+
+\begin{enumerate}[(a)]
+    \item Find the potential everywhere outside the conductor.
+    \item Find the distributions of free charge and polarization charge wherever they may be.
+\end{enumerate}
+
+\end{minipage}
+%------------------------------------------------------------------------------
+\vfill
+\noindent\begin{minipage}{\textwidth}
+\hrulefill
+
+\textbf{Problem 7.18.} Two semi-infinite, hollow cylinders of radius $R$ are coaxial with the $z$--axis. Apart from an insulating ring of thickness $d \to 0$, the two cylinders abut one another at $z = 0$ and are held at potentials $V_L$ and $V_R$. Find the potential everywhere inside both cylinders. You will need the integrals
+\[
+    \lambda\int_0^1\dd s\, s J_0(\lambda s) = J_1(\lambda)\quad\quad\text{and}\quad\quad 2\int_0^1\dd s\, s J_0(x_ns)J_0(x_ms) = J_1^{\,2}(x_n)\delta_{nm}.
+\]
+The real numbers $x_m$ satisfy $J_0(x_m) = 0$.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.25]{"hw4 7_18".png}
+\end{figure}
+
+\end{minipage}
+%------------------------------------------------------------------------------
+\vfill
+\noindent\begin{minipage}{\textwidth}
+\hrulefill
+
+\textbf{Problem 7.23.}  The $x > 0$ half of a conducting plane at $z = 0$ is held at zero potential. The $x < 0$ half of the plane is held at potential $V$. A tiny gap at $x = 0$ prevents electrical contact between the two halves.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{"hw4 7_23".png}
+\end{figure}
+\begin{enumerate}[(a)]
+    \item Use a change-of-scale argument to conclude that the $z>0$ potential $\varphi(\rho,\phi)$ in plane polar coordinates cannot depend on the radial variable $\rho$.
+
+    \item Find the electrostatic potential in the $z > 0$ half-space.
+
+    \item Make a semi-quantitative sketch of the electric field lines and use words to describe the most important features.
+\end{enumerate}
+\end{minipage}
+
+\end{document}

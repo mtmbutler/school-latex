@@ -1,0 +1,58 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Problem Set 4}
+\newcommand{\DueDate}   {February 22, 2018}
+\newcommand{\Course}    {PHY 215B}
+
+\begin{document}
+{\huge\textbf{\Title}}
+
+Due \DueDate \hfill \Course
+
+\hrulefill
+
+\begin{enumerate}
+    %--------------------------------------------------------------------------
+    \item If $\vb{A}$ and $\vb{B}$ are two vectors that commute with $\vb*{\sigma}$, prove that
+    \[
+        (\vb*{\sigma}\vdot\vb{A})(\vb*{\sigma}\vdot\vb{B}) = \vb{A}\vdot\vb{B} + i\vb*{\sigma}\vdot(\vb{A}\cp\vb{B}),
+    \]
+    where $\vb*{\sigma}$ is the Pauli matrix.
+
+    %--------------------------------------------------------------------------
+    \item In two successive Stern-Gerlach experiments, the first one has the magnetic field pointing in the $\vu{z}$--direction. The beam of atoms of this first experiment is fed into the second experiment with the magnetic field oriented in the $\vu{x}$--direction. What is the state occupied by the beam of atoms as the output of the second experiment? What is the probability of the beam of atoms occupying the up-spinor state, the $2\cp 1$ column matrix with `1' at the top row, with respect to the $\vu{z}$--axis? (Hint: construct a unitary matrix.)
+
+    %--------------------------------------------------------------------------
+    \item Express a rotational operator about $\phi$ acting on spinors in terms of $S$, the spin operator, and the Pauli matrices. For the Pauli matrices, give an expression of the `rotation' operator in the $2\cp 2$ matrix form.
+
+    %--------------------------------------------------------------------------
+    \item Show that $\det(e^A) = e^{\tr(A)}$ for an Hermitian operator.
+
+    %--------------------------------------------------------------------------
+    \item Explain that $\ev{\sigma}{\chi'} = \ev{U^\dag\sigma U}{\chi}$ is consistent with the active point of view of rotations.
+\end{enumerate}
+
+Suggested readings:
+\begin{enumerate}[label={}]
+    \item Messiah, vol. 2, pages 508-518; 540-554; 643-646.
+    \item Schiff: pages 194-199; 203-210.
+\end{enumerate}
+
+\end{document}

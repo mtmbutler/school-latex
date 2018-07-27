@@ -1,0 +1,107 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Problem Set 2}
+\newcommand{\DueDate}   {January 24, 2018}
+\newcommand{\Course}    {PHY 200B}
+
+% Unless specifically instructed otherwise, for this and all subsequent problems sets you should not refer to solutions of the questions. This includes Internet searches for the problems, solution sets sent to you by friends at other universities, books that solve essentially identical problems, etc. Working on problems with other students in the class is fine; indeed, I encourage you to do so. HOWEVER, after your discussions and checks are complete, your final write-up should be entirely your own work.
+% Zangwill 4.12 Do the question as stated, but also find an expression for A, in terms of as few multipole moment components as possible.
+% Zangwill 4.13, 4.18, 4.22, 4.24, 5.3, 5.10, 5.12
+
+\begin{document}
+{\huge\textbf{\Title}}
+
+Due \DueDate \hfill \Course
+
+\hrulefill
+
+\begin{enumerate}
+    %--------------------------------------------------------------------------
+    \item [\textbf{1.}] Use Einstein sum notation to calculate $\nabla_{i1}\ldots\nabla_{in}(1/r)$ and get the Cartesian multipole expansion out to the hexadecapole term (potential falling off as $r^{-5}$). In other words, calculate the spatial expressions that multiply the multipole moments in (4.7) and continue the equation out to the next couple of terms. (If you have trouble at first, express the Cartesian coordinates as $x$, $y$, and $z$ for the early terms, and compare to see what the sum notation is doing. But don't turn that in.) Note that your final answers give Legendre polynomials. From this calculation it's easy to see that $P_n(x)$ has $[n/2]+1$ terms.
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{4.12}] \textbf{The Potential Far from Two Neutral Disks } The diagram shows two identical, charge-neutral, origin-centered disks. One disk lies in the $x$--$z$ plane. The other is tipped away from the first by an angle $\alpha$ around the $z$--axis. The charge density of each disk depends only on the radial distance from its center. Find the angle $\alpha$ at which the asymptotic electrostatic potential in the $x$--$y$ plane has the form $\varphi(x,y) = A/s^3$, where $A$ is a constant and $s=\sqrt{x^2+y^2}$. \textbf{Rena:} Do the question as stated, but also find an expression for A, in terms of as few multipole moment components as possible.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{"hw2 4_12".pdf}
+    \end{figure}
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{4.13}] \textbf{Interaction Energy of Adsorbed Molecules } Molecules adsorbed on the surface of a solid crystal surface at low temperature typically arrange themselves into a periodic arrangement, \textit{e.g.}, one molecule lies at the center of each $a\times a$ square of a two-dimensional checkerboard formed by the surface atoms of the crystal. For diatomic molecules which adsorb with their long axis parallel to the surface, the \textit{orientation} of each molecule is determined by the lowest-order electrostatic interaction between nearby molecules.
+    \begin{enumerate}[(a)]
+        \item The CO molecule has a small electric dipole moment $\vb{p}$. The sketch below shows a portion of the complete checkerboard where the arrangement of dipole moments is parameterized by an angle $\alpha$. Treat these as point dipoles and consider the interaction of each dipole with its eight nearest neighbors \textit{only}. Find the angle $\alpha$ that minimizes the total energy and show that the energy/dipole is
+        \[
+            U = \frac{1}{8\pi\epsilon_0}\frac{p^2}{a^3}\qty{\frac{1}{\sqrt{2}}-6}.
+        \]
+        \begin{figure}[H]
+        \centering
+        \includegraphics[scale=1]{"hw2 4_13".pdf}
+        \end{figure}
+
+        \item The $\text{N}_2$ molecule has a small quadrupole moment because covalent bonding builds up some negative (electron) charge in the bond region between the atomic nuclei. Use this fact and a \textit{qualitative} argument to help you make a sketch which illustrates the orientational order for a checkerboard of $\text{N}_2$ molecules.
+    \end{enumerate}
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{4.18}] \textbf{A Black Box of Charge } A charge distribution is contained entirely inside a black box. Measurements of the electrostatic potential outside the box reveal that all of the exterior multipole moments for $\ell = 1,2,\ldots$ are zero in a coordinate system with its origin at the center of the box. This does \textit{not} imply that the charge distribution is spherically symmetric. Prove this by constructing a counter-example.
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{4.22}] \textbf{The Potential outside a Charged Disk } The $z$--axis is the symmetry axis of a disk of radius $R$ which lies in the $x$--$y$ plane and carries a uniform charge per unit area $\sigma$. Let $Q$ be the total charge on the disk.
+    \begin{enumerate}[(a)]
+        \item Evaluate the exterior multipole moments and show that
+        \[
+            \varphi(r,\theta) = \frac{Q}{4\pi\epsilon_0r}\sum_{\ell=0}^\infty \pqty{\frac{R}{r}}^\ell \frac{2}{\ell+2}P_\ell(0)P_\ell(\cos\theta)\quad\quad r>R.
+        \]
+
+        \item Compute the potential at any point on the $z$--axis by elementary means and confirm that your answer agrees with part (a) when $z>R$. Note: $P_\ell(1)=1$.
+    \end{enumerate}
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{4.24}] \textbf{A Hexagon of Point Charges } Six point charges form an ideal hexagon in the $z=0$ plane as shown below. The absolute values of the charges are the same, but the signs of any two adjacent charges are opposite.
+    \begin{enumerate}[(a)]
+        \item What is the first non-zero electric multipole moment of this charge distribution? You need not compute its value.
+
+        \item The electrostatic potential far from this distribution varies as $\varphi(\vb{r})\propto r^{-N}$. What is $N$?
+        \begin{figure}[H]
+        \centering
+        \includegraphics[scale=1]{"hw2 4_24".pdf}
+        \end{figure}
+    \end{enumerate}
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{5.3}] \textbf{Concentric Cylindrical Shells } A capacitor is formed from three very long, concentric, conducting, cylindrical shells with radii $a<b<c$. Find the capacitance per unit length of this structure if a fine wire connects the inner and outer shells and $\lambda_b$ is the uniform charge per unit length on the middle cylinder.
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{5.10}] \textbf{Charge Induction by a Dipole } A point dipole $\vb{p}$ is placed at $\vb{r} = \vb{r_0}$ outside a grounded conducting sphere of radius $R$. Use Green's reciprocity (and a comparison system with zero volume charge density) to find the charge drawn up from ground onto the sphere.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{"hw2 5_10".pdf}
+    \end{figure}
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{5.12}] \textbf{Charge Sharing among Three Metal Balls } Four identical conducting balls are attached to insulating supports that sit on the floor as shown below. One ball has charge $Q$; its support is fixed in space. The other three balls are uncharged but their supports can be moved around. Describe a procedure (that involves only moving and/or bringing balls into contact) that will leave the $+Q$ ball with its full charge and give the three originally uncharged balls charges $q$, $-q/2$, and $-q/2$. You may assume that $q<Q$.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{"hw2 5_12".pdf}
+    \end{figure}
+
+\end{enumerate}
+\end{document}

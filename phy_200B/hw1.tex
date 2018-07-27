@@ -1,0 +1,532 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage{mathtools}
+\usepackage{empheq}
+
+%% Metadata
+\renewcommand{\Title}{Problem Set 1}
+\renewcommand{\Course}{PHY 200B}
+\renewcommand{\Date}{January 17, 2018}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+%------------------------------------------------------------------------------
+% Do Zangwill problems 2.2, 2.9 (see Comments section!), 3.5, 3.7, 3.12, 3.13, 3.17, 3.24.
+
+% If your book has 25 questions in Chapter 3, then do 3.18 and 3.25 rather than 3.17 and 3.24. The others are unchanged. 
+
+% For problem 3.12, see this picture that shows the geometry. Also Zangwill uses "opening angle" to mean half of the angle you get on bisecting the cone with a plane through its vertex. (The usual meaning is the full angle.)
+
+% For problem 3.25, answer two additional questions: part d, give a simple argument that for Thomson's problem as described in the chapter for N=8, rotating the bottom half of a cube with charges at its eight corners can reduce the potential energy compared to the undeformed cube; and part e, identify the hidden energy term (i.e., it doesn't appear explicitly in the equation) that makes overcharging possible.
+%------------------------------------------------------------------------------
+\hrulefill
+
+
+\textbf{Problem 2.2.} The electric and magnetic fields for time-independent distributions of charge and current which go to zero at infinity are
+\[
+\begin{aligned}
+	\vb{E}(\vb{r}) = \frac{1}{4\pi\epsilon _0}\int\dd[3]{r'}\rho(\vb{r'})\frac{\vb{r}-\vb{r'}}{\left|\vb{r}-\vb{r'}\right|^3} \quad\quad\quad \vb{B}(\vb{r}) = \frac{\mu _0}{4\pi}\int\dd[3]{r'}\vb{j}(\vb{r'})\times\frac{\vb{r}-\vb{r'}}{\left|\vb{r}-\vb{r'}\right|^3}
+\end{aligned}
+\]
+
+\begin{enumerate}[(a)]
+\item Calculate $\nabla\cdot\vb{E}$ and $\nabla\times\vb{E}$.
+\item Calculate $\nabla\cdot\vb{B}$ and $\nabla\times\vb{B}$. The curl calculation exploits the continuity equation for this situation.
+\end{enumerate}
+
+\textbf{Solution.} We can start with a shortcut from class:
+\[
+\begin{aligned}
+	\frac{\vb{r}-\vb{r'}}{\left|\vb{r}-\vb{r'}\right|^3} &= -\nabla \frac{1}{\left|\vb{r}-\vb{r'}\right|} \\
+	\nabla\cdot\vb{E} &= -\nabla\cdot\frac{1}{4\pi\epsilon _0}\int\dd[3]{r'} \rho(\vb{r'})\nabla \frac{1}{\left|\vb{r}-\vb{r'}\right|} \\
+	&= -\frac{1}{4\pi\epsilon _0}\int\dd[3]{r'}\rho(\vb{r'})\nabla ^2 \frac{1}{\left|\vb{r}-\vb{r'}\right|} \\
+	&= -\frac{1}{4\pi\epsilon _0}\int\dd[3]{r'}\rho(\vb{r'})(-4\pi\delta(\vb{r}-\vb{r'}))
+\end{aligned}
+\]
+
+\begin{equation}
+	\boxed{\nabla\cdot\vb{E} = \frac{\rho(\vb{r})}{\epsilon _0}}\tag{2.2a i}\label{eq:2.2a1}
+\end{equation}
+
+
+Using the same shortcut:
+\[
+\begin{aligned}
+	\nabla\times\vb{E} &= -\nabla\times\frac{1}{4\pi\epsilon _0}\int\dd[3]{r'}\rho(\vb{r'})\nabla \frac{1}{\left|\vb{r}-\vb{r'}\right|} \\
+	&= -\frac{1}{4\pi\epsilon _0}\int\dd[3]{r'}\rho(\vb{r'})\left(\nabla\times\nabla \frac{1}{\left|\vb{r}-\vb{r'}\right|}\right)
+\end{aligned}
+\]
+
+
+Since the curl of a gradient is always zero, the right side vanishes, and we're left with this:
+\begin{equation}
+	\boxed{\nabla\times\vb{E} = 0}\tag{2.2a ii}\label{eq:2.2a2}
+\end{equation}
+
+Now for part (b). Since $\vb{j}(\vb{r'})$ does not depend on $\vb{r}$, it anticommutes with $\nabla$ like a normal cross product, i.e. $\vb{j}(\vb{r'})\times\nabla = -\nabla\times\vb{j}(\vb{r'})$. Here's how it works:
+\[
+\begin{aligned}
+	\vb{j}(\vb{r'})\times\nabla f &=
+	\begin{vmatrix*}[c]
+	\vu{x} & \vu{y} & \vu{z} \\
+	j_{x'} & j_{y'} & j_{z'} \\
+	f_x & f_y & f_z
+	\end{vmatrix*}
+\end{aligned}
+\]
+
+So the $x$--component looks like this:
+\[
+\begin{aligned}
+	\begin{vmatrix*}[c]
+	j_{y'} & j_{z'} \\
+	f_y & f_z \\
+	\end{vmatrix*}
+	\vu{x} &= \left(j_{y'}f_z - j_{z'}f_y\right)\vu{x} \\
+	&= \left(\partial_z(j_{y'}f) - \partial_y(j_{z'}f)\right)\vu{x} \\
+	&=
+	\begin{vmatrix*}[c]
+	\partial_z & \partial_y \\
+	j_{z'}f & j_{y'}f \\
+	\end{vmatrix*} \\
+	&= -
+	\begin{vmatrix*}[c]
+	\partial_y & \partial_z \\
+	j_{y'}f & j_{z'}f \\
+	\end{vmatrix*} \\
+\end{aligned}
+\]
+
+
+By extension, we can write the entire cross product like this:
+\[
+\begin{aligned}
+	\vb{j}(\vb{r'})\times\nabla f &= -
+	\begin{vmatrix*}[c]
+	\vu{x} & \vu{y} & \vu{z} \\
+	\partial_x & \partial_y & \partial_z \\
+	j_{x'}f & j_{y'}f & j_{z'}f \\
+	\end{vmatrix*} 
+	&= -\nabla\times \vb{j}(\vb{r'})f
+\end{aligned}
+\]
+
+
+So, back to the magnetic field:
+\[
+\begin{aligned}
+	\nabla\cdot\vb{B} &= \nabla\cdot\frac{\mu _0}{4\pi}\int\dd[3]{r'}\nabla\times\frac{\vb{j}(\vb{r'})}{\left|\vb{r}-\vb{r'}\right|} \\
+	&= \frac{\mu _0}{4\pi}\int\dd[3]{r'}\nabla\cdot\nabla\times\frac{\vb{j}(\vb{r'})}{\left|\vb{r}-\vb{r'}\right|}
+\end{aligned}
+\]
+
+
+Since the divergence of a curl is always $0$, we have:
+\begin{equation}
+	\boxed{\nabla\cdot\vb{B} = 0}\tag{2.2b i}\label{eq:2.2b1}
+\end{equation}
+
+Now, for the curl, we'll start by expressing the curl of a curl as the gradient of a divergence minus the divergence of a gradient (the Laplacian), and separating into two integrals:
+\[
+\begin{aligned}
+	\nabla\times\vb{B} &= \frac{\mu _0}{4\pi}\int\dd[3]{r'}\left[\nabla\times\left(\nabla\times\frac{\vb{j}(\vb{r'})}{\left|\vb{r}-\vb{r'}\right|}\right)\right] \\
+	&= \frac{\mu _0}{4\pi}\int\dd[3]{r'}\left[\nabla\left(\nabla\cdot \frac{\vb{j}(\vb{r'})}{|\vb{r}-\vb{r'}|}\right) - \nabla ^2 \frac{\vb{j}(\vb{r'})}{|\vb{r}-\vb{r'}|}\right] \\
+	&= \frac{\mu _0}{4\pi}\int\dd[3]{r'}\nabla\left(\nabla\cdot \frac{\vb{j}(\vb{r'})}{|\vb{r}-\vb{r'}|}\right) - \frac{\mu _0}{4\pi}\int\dd[3]{r'}\nabla ^2 \frac{\vb{j}(\vb{r'})}{|\vb{r}-\vb{r'}|}
+\end{aligned}
+\]
+
+
+At this point, we can deal with the second integral by taking $\vb{j}(\vb{r'})$ out of the Laplacian (since it doesn't depend on $\vb{r}$). Then we're left with a familiar expression that we used in the calculation for $\nabla\cdot\vb{E}$:
+\[
+\begin{aligned}
+	- \frac{\mu _0}{4\pi}\int\dd[3]{r'}\nabla ^2 \frac{\vb{j}(\vb{r'})}{|\vb{r}-\vb{r'}|} &= \frac{\mu _0}{4\pi}\int\dd[3]{r'}\vb{j}(\vb{r'})\nabla ^2 \left(\frac{1}{|\vb{r}-\vb{r'}|}\right) \\
+	&= - \frac{\mu _0}{4\pi}\int\dd[3]{r'}\vb{j}(\vb{r'})\left(-4\pi\delta(\vb{r}-\vb{r'})\right) \\
+	&= \mu _0 \vb{j}(\vb{r})
+\end{aligned}
+\]
+
+Putting that result back in:
+\[
+\begin{aligned}
+	\nabla\times\vb{B} &= \mu _0 \vb{j}(\vb{r}) + \frac{\mu _0}{4\pi}\int\dd[3]{r'}\nabla\left(\nabla\cdot \frac{\vb{j}(\vb{r'})}{|\vb{r}-\vb{r'}|}\right)
+\end{aligned}
+\]
+
+
+Let's apply the quotient rule to the divergence expression inside the parentheses:
+\[
+\begin{aligned}
+	\nabla\times\vb{B} &= \mu _0 \vb{j}(\vb{r}) + \frac{\mu _0}{4\pi}\int\dd[3]{r'}\nabla\left(\frac{|\vb{r}-\vb{r'}|\nabla\cdot\vb{j}(\vb{r'}) - (\nabla|\vb{r}-\vb{r'}|)\cdot\vb{j}(\vb{r'})}{|\vb{r}-\vb{r'}|^2}\right)
+\end{aligned}
+\]
+
+
+Since $\vb{j}(\vb{r'})$ doesn't depend on $\vb{r}$, $\nabla\cdot\vb{j}(\vb{r'})$ is 0. This kills the first term of the numerator. Now, simplifying the inside gradient:
+\[
+\begin{aligned}
+	\nabla\times\vb{B} &= \mu _0 \vb{j}(\vb{r}) - \frac{\mu _0}{4\pi}\int\dd[3]{r'}\nabla\left(\frac{(\vb{r}-\vb{r'})}{|\vb{r}-\vb{r'}|^3}\cdot\vb{j}(\vb{r'})\right)
+\end{aligned}
+\]
+
+
+Using the product rule to find the gradient of the dot product in parentheses produces four terms, all of which go to zero. So we're just left with the result from the first integral:
+\begin{equation}
+	\boxed{\nabla\times\vb{B} = \mu_0\vb{j}(\vb{r})}\tag{2.2b ii}\label{eq:2.2b2}
+\end{equation}
+	
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 2.9.} If $\alpha$ is a real constant, the continuity equation is satisfied by the charge and current distributions
+\[
+\begin{aligned}
+	\rho (\vb{r},t) = \alpha t \quad\quad\quad \vb{j}(\vb{r},t) = -\frac{\alpha}{3}\vb{r}.
+\end{aligned}
+\]
+
+The given $\vb{j}$ represents current flowing in toward the origin of coordinates. But the given $\rho$ is translationally invariant, i.e., it does not distinguish any origin of coordinates. Resolve this apparent conflict.
+
+\textbf{Solution.} There isn't a conflict so much as there is an ambiguity. The given $\vb{j}$ will agree with the given $\rho$ for any origin. Put another way, there are infinitely many $\vb{j}$ associated with the given $\rho$.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.5.} Use Gauss' law to find the electric field when the charge density is:
+
+\begin{enumerate}[(a)]
+\item $\rho (x) = \rho _0 \exp\left\{-\kappa \sqrt{x^2}\right\}$. Express the answer in Cartesian coordinates.
+\item $\rho (x,y) = \rho _0 \exp\left\{-\kappa \sqrt{x^2 + y^2}\right\}$. Express the answer in cylindrical coordinates.
+\item $\rho (x,y,z) = \rho _0 \exp\left\{-\kappa \sqrt{x^2 + y^2 + z^2}\right\}$. Express the answer in spherical coordinates.
+\end{enumerate}
+
+\textbf{Solution.} In part (a), we have a charge density that doesn't depend on $y$ or $z$. Let's define a Gaussian surface as a pillbox whose large faces have area $A$ and are parallel and equidistant to the $y$--$z$ plane. Since $\rho (x)$ is symmetric over the $y$--$z$ plane, $\vb{E}$ should be as well, i.e. $E(x) = -E(-x)$. Also by symmetry, $\vb{E}$ should only have an $x$--component. So, applying Gauss's law:
+\[
+\begin{aligned}
+	\iint_S \vb{E}\cdot\vb{\dd{A}} &= \frac{Q_{\text{enc}}}{\epsilon _0} \\
+	2AE(x) &= \frac{1}{\epsilon _0}\iiint \rho _0 \exp\left\{-\kappa \sqrt{x^2}\right\}\dd[3]{r} \\
+	&= \frac{A\rho _0}{\epsilon _0}\int_{-x}^x\exp\left\{-\kappa \sqrt{(x')^2}\right\}\dd{x'} \\
+	&= \frac{A\rho _0}{\epsilon _0}\int_{-x}^0\exp\left\{\kappa x'\right\}\dd{x'} + \frac{A\rho _0}{\epsilon _0}\int_{0}^x\exp\left\{-\kappa x'\right\}\dd{x'}\\
+	&= \frac{A\rho _0}{\kappa\epsilon _0}\left[1 - \exp(-\kappa x) - \exp(-\kappa x) + 1\right] \\
+	E(x) &= \frac{\rho _0}{\kappa\epsilon _0}\left(1 - \exp(-\kappa x)\right)
+\end{aligned}
+\]
+
+\begin{empheq}[box=\fbox]{equation}
+	\vb{E} = 
+	\begin{cases} 
+      \dfrac{\rho _0}{\kappa\epsilon _0}\left(1 - \exp(-\kappa x)\right)\vu{\vb{x}} & x \geq 0 \\[1em]
+      -\dfrac{\rho _0}{\kappa\epsilon _0}\left(1 - \exp(\kappa x)\right)\vu{\vb{x}} & x \leq 0
+   \end{cases}\tag{3.5a}\label{eq:3.5a}
+\end{empheq}
+
+For part (b), let's choose a Gaussian cylinder of height $h$ and radius $s$ centered on the origin, so that $\vb{E}$ is of equal magnitude and pointing straight outward (in the $\vu{\vb{s}}$--direction) at every point on the round surface of the cylinder. Since there is no $z$--dependence in the charge density, there won't be in the field, either (so the field is zero on the caps of the cylinder). Gauss's law:
+\[
+\begin{aligned}
+	\iint_S \vb{E}\cdot\vb{\dd{A}} &= \frac{Q_{\text{enc}}}{\epsilon _0} \\
+	2\pi h sE(s) &= \frac{1}{\epsilon _0}\iiint \rho _0 \exp\left\{-\kappa s'\right\}s \dd{s'} \dd{\varphi} \dd{z} \\
+	&= \frac{2\pi h\rho _0}{\epsilon _0}\int_0^s s'e^{-\kappa s'}\dd{s'} \\
+	E(s) &= \frac{\rho _0}{s\epsilon _0}\left(\frac{1-e^{-\kappa s}(\kappa s + 1)}{\kappa ^2}\right)
+\end{aligned}
+\]
+
+\begin{empheq}[box=\fbox]{equation}
+	\vb{E} = \frac{\rho _0}{s\epsilon _0}\left(\frac{1-e^{-\kappa s}(\kappa s + 1)}{\kappa ^2}\right)\vu{\vb{s}}\tag{3.5b}\label{eq:3.5b}
+\end{empheq}
+
+For part (c), let's choose a Gaussian sphere of radius $r$, so the field is equal magnitude at all points on its surface. Gauss's law:
+\[
+\begin{aligned}
+	\iint_S \vb{E}\cdot\vb{\dd{A}} &= \frac{Q_{\text{enc}}}{\epsilon _0} \\
+	4\pi r^2 E(r) &= \frac{1}{\epsilon _0}\iiint \rho _0 \exp\left\{-\kappa r'\right\}(r')^2 \sin\theta \dd{r'} \dd{\varphi} \dd{\theta} \\
+	&= \frac{2\pi\rho_0}{\epsilon_0}\int_0^{\pi}\sin\theta\dd{\theta}\int_0^r (r')^2 e^{-\kappa r'}\dd{r'} \\
+	&= \frac{4\pi\rho_0}{\epsilon_0}\left(\frac{e^{-\kappa r}(-\kappa r(\kappa r + 2)-2)+2}{\kappa ^3}\right) \\
+	E(r) &= \frac{\rho_0}{r^2\epsilon_0}\left(\frac{e^{-\kappa r}(-\kappa r(\kappa r + 2)-2)+2}{\kappa ^3}\right)
+\end{aligned}
+\]
+
+\begin{empheq}[box=\fbox]{equation}
+	\vb{E} = \frac{\rho_0}{r^2\epsilon_0}\left(\frac{e^{-\kappa r}(-\kappa r(\kappa r + 2)-2)+2}{\kappa ^3}\right)\vu{\vb{r}}\tag{3.5c}\label{eq:3.5c}
+\end{empheq}
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.7.} The $z$-axis coincides with the symmetry axis of a flat disk of radius $a$ in the $x$--$y$ plane. The disk carries a uniform charge per unit area $\sigma < 0$. The rim of the disk carries an additional uniform charge per unit length $\lambda > 0$. Use a side (edge) view and sketch the electric field lines everywhere assuming that the total charge of the disk is positive. Your sketch must have enough detail to reveal any interesting topological features of the field line pattern.
+
+\textbf{Solution.} Far away from the disk, the field should look like that of a positive point charge at the origin. Near the rim, the field should look like that of a positive line charge. Near the surface of the disk, sufficiently far from the rim, the field should look like that of a negative plane charge (only a function of the distance from the plane).
+
+
+
+%------------------------------------------------------------------------------
+\newpage
+\textbf{Problem 3.12.} The figure below shows a circular hole of radius $b$ (white) bored through a spherical shell (gray) with radius $R$ and uniform charge per unit area $\sigma$.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+ 	\centering
+	\includegraphics[width=.6\linewidth]{"hw1 3_12a".png}
+	\captionof{figure}{Book image}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+ 	\centering
+	\includegraphics[width=.6\linewidth]{"hw1 3_12b".jpg}
+	\captionof{figure}{Provided image}
+\end{minipage}
+\end{figure}
+
+\begin{enumerate}[(a)]
+\item Show that $\vb{E}(P) = \left(\sigma/2\epsilon _0 \right)\left[1 - \sin \left(\theta _0/2\right)\right]\vu{\vb{r}}$, where $P$ is the point at the center of the hole and $\theta _0$ is the opening angle of a cone whose apex is at the center of the sphere and whose open end coincides with the edge of the hole. Perform the calculation by summing the vector electric fields produced at $P$ by all the other points of the shell.
+
+Note: Zangwill uses ''opening angle'' to mean half of the angle you get on bisecting the cone with a plane through its vertex. (The usual meaning is the full angle.)
+
+\item Use an entirely different argument to explain why $\vb{E}(P) \approx (\sigma/2\epsilon _0)\vu{\vb{r}}$ when $\theta _0 <\!\!< 1$.
+\end{enumerate}
+
+\textbf{Solution.} To sum up the field contributions of all of the charges, we'll have to integrate $\theta$ from $\theta_0$ to $\pi$, then rotate that arc all the way in the $\varphi$--direction. To find the integrand, we need to know the distance $\ell$ from an arbitrary point at $(R, \varphi, \theta)$ to $P$.
+
+Since both points are at radius $R$, the segment between them is the base of an isosceles triangle, with vertex angle $\varphi$. So, bisecting the vertex angle and forming a right triangle gives us:
+\[
+\begin{aligned}
+	\sin\left(\frac{\varphi}{2}\right) &= \frac{\ell}{2R} \\
+	\ell &= 2R\sin\left(\frac{\varphi}{2}\right)
+\end{aligned}
+\]
+
+
+Last, we want to pick out just the radial part, so we'll need to multiply by the cosine of the angle $\psi$ between each field contribution and $\vu{\vb{r}}$. From the geometry, we know that $R\sin\varphi = \ell\sin\psi$.
+\[
+\begin{aligned}
+	R\sin\varphi &= \ell\sin\psi \\
+	\sin\psi &= \frac{R}{\ell}\sin\varphi \\
+	&= \frac{R}{R\sin\left(\frac{\varphi}{2}\right)}\sin\varphi \\
+	\cos\psi &= \cos\left(\frac{\pi}{2} - \frac{\varphi}{2}\right)
+\end{aligned}
+\]
+
+
+Now, finding the field:
+\[
+\begin{aligned}
+	E &= \frac{1}{4\pi\epsilon_0}\int \frac{\dd q}{\left(2R\sin\left(\frac{\theta}{2}\right)\right) ^2}\cos\left(\frac{\pi}{2} - \frac{\theta}{2}\right) \\
+	&= \frac{1}{4\pi\epsilon_0} \iint \frac{\sigma(R^2 \sin\theta\dd{\theta}\dd{\varphi})}{\left(2R\sin\left(\frac{\theta}{2}\right)\right) ^2}\sin\left(\frac{\theta}{2}\right) \\
+	&= \frac{1}{4\pi\epsilon_0} \iint \frac{\sigma R^2\sin\theta\sin\left(\frac{\theta}{2}\right)}{4R^2 \sin^2\left(\frac{\theta}{2}\right)}\dd{\theta}\dd{\varphi} \\
+	&= \frac{\sigma}{16\pi\epsilon_0}\int_0^{2\pi}\dd{\varphi} \int_{\theta_0}^\pi \frac{\sin\theta}{\sin\left(\frac{\theta}{2}\right)}\dd{\theta} \\
+	&= \frac{\sigma}{8\epsilon_0}\left(4-4\sin\left(\frac{\theta_0}{2}\right)\right) \\
+	&= \frac{\sigma}{2\epsilon_0}\left(1-\sin\left(\frac{\theta_0}{2}\right)\right)
+\end{aligned}
+\]
+
+\begin{equation}
+	\boxed{\vb{E}(P) = \frac{\sigma}{2\epsilon_0}\left(1-\sin\left(\frac{\theta_0}{2}\right)\right)\vu{\vb{r}}}\tag{3.12a}\label{eq:3.12a}
+\end{equation}
+
+For part (b), when $\theta _0 <\!\!< 1$, it's as if the hole is just a point. From the shell theorem, we know that the field inside the shell is 0. We also know that, when crossing a plane charge perpendicularly (in the $\vu{\vb{r}}$--direction), there is a discontinuity in the field of magnitude $\sigma/\epsilon_0$. So, right on the point, the field would be the average of these two: 
+
+\begin{equation}
+	\boxed{\vb{E}(P) \approx (\sigma/2\epsilon _0)\vu{\vb{r}}}\tag{3.12b}\label{eq:3.12b}
+\end{equation}
+ 
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.13.} The figure below shows a cube filled uniformly with charge. Determine the ratio $\varphi _0/\varphi _1$ of the potential at the center of the cube to the potential at the corner of the cube. Hint: Think of the cube as formed from the superposition of eight smaller cubes.
+
+\begin{figure}[H]%~\ref{fig:}
+\centering
+\includegraphics[scale=0.2]{"hw1 3_13".png}
+\caption{Book image}
+\end{figure}
+
+\textbf{Solution.} Setting the origin at one corner of the large cube, we can find the potential at the far corner:
+\[
+\begin{aligned}
+	\varphi_1 = \varphi(s,s,s) = \frac{1}{4\pi\epsilon_0}\iiint_0^s \frac{\rho}{(x^2+y^2+z^2)^{1/2}}\dd{x}\dd{y}\dd{z}
+\end{aligned}
+\]
+
+We can use the same equation to find the potential at the center of the large cube by treating it as the corner of one of the eight smaller cubes. The only catch is, the calculation will not know about the other seven cubes. Since all eight cubes are identical, and we could have put the origin at any of the eight corners, all we have to do is multiply our result by eight to get the real potential at the center.
+\[
+\begin{aligned}
+	\varphi_0 &= 8\varphi\left(\frac{s}{2},\frac{s}{2},\frac{s}{2}\right) \\
+	&= 8\frac{1}{4\pi\epsilon_0}\iiint_0^{s/2} \frac{\rho}{(x^2+y^2+z^2)^{1/2}}\dd{x}\dd{y}\dd{z} \\
+	&= \frac{1}{4\pi\epsilon_0}\iiint_0^{s} \frac{\rho}{(\frac{x^2+y^2+z^2}{4})^{1/2}}\dd{x}\dd{y}\dd{z} \\
+	&= 2\frac{1}{4\pi\epsilon_0}\iiint_0^s \frac{\rho}{(x^2+y^2+z^2)^{1/2}}\dd{x}\dd{y}\dd{z} \\
+	&= 2\varphi_1
+\end{aligned}
+\]
+
+\begin{equation}
+	\boxed{\varphi _0/\varphi _1 = 2}\tag{3.13}\label{eq:3.13}
+\end{equation}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.17.} 
+\begin{enumerate}[(a)]
+\item Use the electrostatic total energy
+\[
+\begin{aligned}
+	U_E = \frac{1}{2}\int \dd[3]{r} \rho(\vb{r})\varphi (\vb{r})
+\end{aligned}
+\]
+
+ to find the interaction energy $V_E$ between two identical insulating spheres, each with radius $R$ and charge $Q$ distributed uniformly over their surfaces. The center-to-center separation between the spheres is $d > 2R$, but do not assume that $d >\!\! > R$.
+\item Produce a physical argument to explain the dependence of $V_E$ on $R$.
+\end{enumerate}
+
+\textbf{Solution.} Since the spheres aren't moving, all the energy in the system must be stored as interaction energy. That is to say, the interaction energy must be the sum of the electrostatic total energy of each sphere:
+\[
+\begin{aligned}
+	V_E &= \frac{1}{2}\int \dd[3]{r} \rho_1(\vb{r})\varphi_2 (\vb{r}) + \frac{1}{2}\int \dd[3]{r} \rho_2(\vb{r})\varphi_1 (\vb{r})
+\end{aligned}
+\]
+
+where $\rho_1$ is the charge density of sphere 1, and $\varphi_1$ is the potential due to sphere 1 (that acts on sphere 2). Since there's nothing to distinguish these two spheres, the two terms should be equal.
+\[
+\begin{aligned}
+	V_E &= \int \dd[3]{r} \rho_1(\vb{r})\varphi_2 (\vb{r})
+\end{aligned}
+\]
+
+
+Now, we just need to find expressions for $\rho_1$ and $\varphi_2$.
+\[
+\begin{aligned}
+	Q &= \iiint \rho_1\dd[3]{r} \\
+	Q &= \int_0^R \frac{Q}{4\pi R^2}r^2\delta(r-R)\dd{r}\int_0^\theta \sin\theta\dd{\theta} \int_0^{2\pi}\dd{\varphi} \\
+	\rho_1 &= \frac{Q}{4\pi R^2}\delta(r-R)
+\end{aligned}
+\]
+
+The potential due to the second sphere is a bit trickier, but since the spheres aren't overlapping, we can use the shell theorem to reduce it to the potential of a point charge. We just need the law of cosines to find the distance $\ell$ from the center of the second sphere to the point on the first sphere where we want to know the potential, as given by a particular $\theta$ (since the delta function in $\rho_1$ will kill off the potential at all the inside points):
+\[
+\begin{aligned}
+	\ell &= \left(R^2 + d^2 - 2Rd\cos\theta\right)^{1/2} \\
+	\varphi_2(\theta) &= \frac{Q}{4\pi\epsilon_0}\left(R^2 + d^2 - 2Rd\cos\theta\right)^{-1/2}
+\end{aligned}
+\]
+
+Plugging in:
+\[
+\begin{aligned}
+	V_E &= \int_0^R\int_0^\pi\int_0^{2\pi}\frac{Q}{4\pi R^2}\delta(r-R)\frac{Q}{4\pi\epsilon_0}\left(R^2 + d^2 - 2Rd\cos\theta\right)^{-1/2}r^2\sin\theta\dd{r}\dd{\theta}\dd{\varphi} \\
+	&= \frac{Q^2}{8\pi\epsilon_0}\int_0^\pi\left(R^2 + d^2 - 2Rd\cos\theta\right)^{-1/2}\sin\theta\dd{\theta}
+\end{aligned}
+\]
+
+
+Letting $u = \cos\theta$, so $\dd{u} = \sin\theta\dd{\theta}$:
+\[
+\begin{aligned}
+	V_E &= -\frac{Q^2}{8\pi\epsilon_0}\int_{-1}^1\left(R^2 + d^2 - 2Rdu\right)^{-1/2}\dd{u} \\
+	&= -\frac{Q^2}{8\pi\epsilon_0}\left[\frac{\left(R^2 + d^2 - 2Rdu\right)^{1/2}}{Rd}\right]_{-1}^1 \\
+	&= -\frac{Q^2}{8\pi\epsilon_0}\frac{1}{Rd}\left[\left(R^2 + d^2 - 2Rd\right)^{1/2} - \left(R^2 + d^2 + 2Rd\right)^{1/2}\right] \\
+	&= -\frac{Q^2}{8\pi\epsilon_0}\frac{1}{Rd}\left[(R-d) - (R+d)\right]
+\end{aligned}
+\]
+
+\begin{equation}
+	\boxed{V_E = \frac{Q^2}{4\pi\epsilon_0d}}\tag{3.17a}\label{eq:3.17a}
+\end{equation}
+
+We can answer part b with the shell theorem as well. Since both spheres look to each other like point charges, their potentials can't depend on their radii. This is consistent with our result for $V_E$, which doesn't depend on $R$.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.25.} A common biological environment consists of large macro-ions with charge $Q < 0$ floating in a solution of point-like micro-ions with charge $q > 0$. Experiments show that $N$ micro-ions adsorb onto the surface of each macro-ion. Model one macro-ion as a sphere with its charge uniformly distributed over its surface. As explained in the boxed discussion of “Thomson’s Problem” in the text, the minimum energy configuration of $N >\!\! > 1$ point charges on the surface of a sphere of radius $R$ has total energy
+\[
+\begin{aligned}
+	E(N) = \frac{q^2}{4\pi\epsilon _0 R}\frac{1}{2}\left[N^2 - N^{3/2}\right].
+\end{aligned}
+\]
+
+
+\begin{enumerate}[(a)]
+\item Derive the $N^2$ term in $E(N)$ by smearing out the micro-ion charge over the surface of the macro-ion.
+\item Give a qualitative argument for the $N^{3/2}$ dependence of the second term in $E(N)$ using the fact that the first term does not account for the fact that the charges try to avoid one another on the sphere’s surface.
+\item Find $N$ by minimizing the sum of $E(N)$ and the interaction energy between the micro-ions and the macro-ion. Show thereby that the micro-ions do not simply neutralize the charge of the macro-ion.
+\item Give a simple argument that, for Thomson's problem, as described in the chapter, for $N=8$, rotating the bottom half of a cube with charges at its eight corners can reduce the potential energy compared to the undeformed cube.
+\item Identify the hidden energy term (i.e., it doesn't appear explicitly in the equation) that makes overcharging possible.
+\end{enumerate}
+
+\textbf{Solution.} For part (a), we can use Zangwill's equation (3.80) and the shell theorem, recognizing that the field is inside the sphere zero and outside the sphere that of $N$ point charges:
+\[
+\begin{aligned}
+	U_E &= \frac{1}{2}\epsilon_0\int\dd[3]{r} |\vb{E}|^2 \\
+	&= \frac{1}{2}\epsilon_0 \int_0^{2\pi} \dd{\varphi} \int_0^\pi \sin\theta\dd{\theta} \int_R^{\infty} \left(\frac{Nq}{4\pi\epsilon_0}\right)^2 \frac{1}{r^2}\dd{r} \\
+	&= 2\pi\epsilon_0\frac{N^2 q^2}{16\pi^2{\epsilon_0}^2}\left[-\frac{1}{r}\right]_R^\infty \\
+	&= \frac{N^2 q^2}{8\pi\epsilon_0}\frac{1}{R}
+\end{aligned}
+\]
+
+\begin{equation}
+	\boxed{U_E = \frac{q^2}{4\pi\epsilon_0 R}\frac{1}{2}\left[N^2\right]}\tag{3.25a}\label{eq:3.25a}
+\end{equation}
+	
+For part (b), we can divide up the total area of the sphere for each point charge:
+\[
+\begin{aligned}
+	A_N &= \frac{4\pi R^2}{N}
+\end{aligned}
+\]
+
+
+The characteristic distance (to be used in approximating the potential) for each micro--ion, then, is $\sqrt{A_N}$. So:
+\[
+\begin{aligned}
+	U &\propto N\left(\frac{q^2}{4\pi\epsilon_0\sqrt{A_N}}\right) \\
+	&\propto N\left(\frac{q^2}{4\pi\epsilon_0\sqrt{(4\pi R^2)/N}}\right)
+\end{aligned}
+\]
+
+\begin{equation}
+	\boxed{U \propto N^{3/2}\left(\frac{q^2}{8\pi^{3/2}\epsilon_0 R}\right)}\tag{3.25b}\label{eq:3.25b}
+\end{equation}
+
+This gives us the qualitative $N^{3/2}$ dependence of the adjustment to the energy due to charges spreading out from each other.
+
+For part (c), we just add the Coulomb potential of the $N$ micro--ions to $E(N)$ and take the derivative with respect to $N$ to find the minimum:
+\[
+\begin{aligned}
+	E &= \frac{-Nq|Q|}{4\pi\epsilon_0R} + \frac{q^2}{8\pi\epsilon_0R}\left[N^2 - N^{3/2}\right] \\
+	&= \frac{q}{8\pi\epsilon_0 R}\left[-2N|Q| + qN^2 - qN^{3/2}\right] \\
+	\dv{E}{N} &= \frac{q}{8\pi\epsilon_0 R}\left[-2|Q| + 2qN - \frac{3}{2}qN^{1/2}\right] \\
+	0 &= N - \frac{3}{4}N^{1/2} - \frac{|Q|}{q}
+\end{aligned}
+\]
+
+\begin{equation}
+	\boxed{N = \frac{|Q|}{q} + \frac{3}{32}\left(\sqrt{64\frac{|Q|}{q} + 9}\right) + \frac{9}{32}}\tag{3.25c}\label{eq:3.25c}
+\end{equation}
+
+So, since $N$ is greater than just $|Q|/q$, there are more micro--ions in the minimum-energy configuration than needed to neutralize the charge, and the macro--ion is overcharged.
+
+In the scenario described in part (d), we can see that rotating the bottom half doesn't affect the interaction energy between just the bottom four charges on the bottom half, nor the top four charges. So, let's take a look at the differences in potential energy for one of the top charges due to the bottom four charges, using just the distances. In the original cube configuration, with side length 1:
+\[
+\begin{aligned}
+	V &\propto \frac{1}{1} + 2\frac{1}{\sqrt{2}} + \frac{1}{\sqrt{3}} \\
+	&\propto 2.99
+\end{aligned}
+\]
+
+
+Now, by rotating the bottom half:
+\[
+\begin{aligned}
+	V &\propto 2\frac{1}{\sqrt{2-1/\sqrt{2}}} + 2\frac{1}{\sqrt{2+1/\sqrt{2}}} \\
+	&\propto 2.97
+\end{aligned}
+\]
+
+
+So, we can see that the twisted parallelipiped gives a slightly smaller potential energy at each corner due to the charges at the other corners.
+
+Now, for part (e). The equation we used to find the interaction energy in part (a) is the one that always comes out curiously positive. This is because it implicitly includes the energy it takes to create the charged macro-ion, which doesn't appear explicitly in the expression, but makes overcharging possible.
+\end{document}

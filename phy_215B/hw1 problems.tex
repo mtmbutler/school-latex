@@ -1,0 +1,82 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Problem Set 1}
+\newcommand{\DueDate}   {January 25, 2018}
+\newcommand{\Course}    {PHY 215B}
+
+\begin{document}
+{\huge\bf\Title}
+
+Due \DueDate \hfill \Course
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 1.} If operators $A$ and $B$ do not commute, show that
+\begin{equation*}
+    e^{A+B} = e^Ae^Be^{(-1/2)[A,B]},
+\end{equation*}
+where $[A,B]$ is a commutator. Discuss this result in your own terms.
+ 
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 2.} Show that if $A$ and $B$ are Hermitian operators, then all of the following operators are Hermitian:
+\begin{enumerate}[(a)]
+    \item $A+B$
+    \item $AB+BA$
+    \item $i(AB-BA)$
+    \item $A^nB^m + B^mA^n$, where $m$ and $n$ are integers
+    \item $(AB)^\dagger = B^\dagger A^\dagger$
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.} Show that $AA^\dagger$ is Hermitian even if $A$ is not.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 4.} Given a truncated harmonic oscillator centered at the origin:
+\begin{equation*}
+    H = 
+    \begin{cases} 
+        \dfrac{p^2}{2m} + \dfrac{kx^2}{2} & |x| \leq a, \\[1em]
+        \dfrac{p^2}{2m} & a \leq |x| \leq \ell, \,\, a < \ell,
+    \end{cases}
+\end{equation*}
+and a wave function of the form:
+\begin{equation*}
+    \Psi = b_1\exp\left(\frac{i\pi x}{\ell}\right) + b_2\exp\left(\frac{2i\pi x}{\ell}\right) + b_3\exp\left(\frac{3i\pi x}{\ell}\right),
+\end{equation*}
+
+set up a $3\times 3$ matrix of $H$ using the functions given in $\Psi$. $b_i$ are not normalization constants. If the integrations are too hard, you should just set up the matrix correctly. If $\Psi$ is expanded onto three lowest energy basis functions of the un-truncated harmonic oscillator, set up the matrix for the transformation between the two sets of functions. Is the matrix unitary? If it is not, form a unitary matrix.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 5.} For the one-dimensional harmonic oscillator problem, show that:
+\begin{enumerate}[(i)]
+     \item its energy is positive definite.
+     \item the difference between neighboring states is $\hbar\sqrt{k/m}$ using Heisenberg's approach of quantum mechanics.
+ \end{enumerate} 
+
+\end{document}

@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Metadata
+\renewcommand{\Title}{HW 4-8 (pg 156)}
+\renewcommand{\Course}{PHYS 411}
+\renewcommand{\Date}{October 22, 2016}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\textbf{Problem.} A uranium-238 nucleus contains 92 protons and 146 neutrons and has the shape of a sphere of radius $R$. Due to the continual motions of the protons and neutrons, the nucleus can on the average be considered to have a uniform charge density:
+\[
+    \rho = \frac{92e}{\left(\frac{4\pi}{3}R^3\right)} \frac{\text{C}}{\text{m}^3}
+\]
+\begin{enumerate}[(a)]
+    \item What is the electric field just outside the nucleus?
+    \item What is the electric field at a radius $r$ from the center, \textit{inside the nucleus} ($r<R$)? (Hint: Draw a diagram, and think about what you know about the electric field of uniform spherical \textit{shells} of charge.)
+\end{enumerate}
+
+\textbf{Solution.}
+\begin{enumerate}[(a)]
+    \item Just outside the nucleus, at $r = R$, the field is the same as it would be under the influence of a point particle at the center of the nucleus, because the nucleus is a uniform spherical distribution of charge in this model. So, we can simply use the formula for the electric field of a point charge (defining $\vu{r}$ as the unit vector pointing away from the center of the nucleus):
+    \begin{equation}
+    \vb{E}_R = \frac{k(92e)}{R^2}\vu{r}
+    \end{equation}
+    
+    \item For this part, we can model the nucleus as a continuous set of concentric shells of increasing radius. So, at any radius $r < R$, a test location is outside a smaller sphere of radius $r$, and inside every shell with radius between $r$ and $R$. From the shell model in the text, we know that those outer shells will have no net contribution to the electric field. The inside sphere can be modeled as a point charge in the center of the nucleus, just as in part (a).
+
+    How much charge does that point charge have? Well, since the whole nucleus has a uniform charge density, we can determine the charge from the volume of the smaller sphere. Let $q$ be the charge of the smaller sphere:
+    \begin{equation}
+    \begin{aligned}
+        \frac{q}{\left(\dfrac{4\pi}{3}r^3\right)} &= \frac{92e}{\left(\dfrac{4\pi}{3}R^3\right)} \\
+        q &= 92e\left(\frac{r}{R}\right)^3
+    \end{aligned}
+    \end{equation}
+    Now we can determine the field caused by the inner sphere:
+    \begin{equation}
+    \begin{aligned}
+        \vb{E}_R = \frac{kq}{r^2}\vu{r} &= \frac{k\left(92e\left(r/R\right)^3\right)}{r^2}\vu{r} \\
+        \vb{E}_R &= \frac{k(92e)r}{R^3}\vu{r}
+    \end{aligned}
+    \end{equation}
+    Now we can see that, inside a sphere with uniform charge distribution, the strength of the electric field inside the sphere varies linearly with the distance from the center. Also, because our two results share a boundary, we can check whether they're consistent with each other by evaluating equation (3) at r = R. We then see that it simplifies to equation (1), just as expected.
+\end{enumerate}
+\end{document}

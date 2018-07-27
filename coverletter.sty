@@ -1,0 +1,53 @@
+%% Formatting
+\usepackage[letterpaper,margin=1.5in,headheight=23pt]{geometry}    % page setup
+\usepackage[USenglish]{babel}       % proper hyphenation
+\usepackage[T1]{fontenc}            % validates output font
+\usepackage[utf8]{inputenc}         % validates input characters
+\usepackage[final,babel]{microtype} % fewer badboxes
+\usepackage{parskip}                % removes paragraph indentations
+\usepackage{fancyhdr}               % headers and footers
+\usepackage{lastpage}               % gets n for 'page x of n'
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage{titlesec}               % subsection spacing
+
+%% Fonts
+\usepackage{palatino}               % serif
+\usepackage[libertine]{newtxmath}   % math
+\usepackage{berasans}               % sans-serif
+\usepackage{inconsolata}            % monospace
+\usepackage[font={small,it},justification=centering]{caption}   % captions
+
+%% Content
+\usepackage{amsmath}                % math
+\usepackage{physics}                % physics
+\usepackage{siunitx}                % SI units
+\usepackage{graphicx}               % include graphics
+\usepackage{booktabs}               % tables
+\usepackage{float}                  % [H] option for floats
+
+%% Headers and footers
+\pagestyle{fancy}
+\lhead{}
+\chead{{\huge\Name}\\[-0.7\baselineskip]}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0pt}
+
+%% Metadata
+\newcommand{\Name}{}
+\newcommand{\AddressOne}{}
+\newcommand{\AddressTwo}{}
+\newcommand{\Phone}{}
+\newcommand{\Email}{}
+\newcommand{\contactInfo}{{\noindent\\[-3\baselineskip]\AddressOne\hfill\Email\\\AddressTwo\hfill\Phone}}
+
+\newcommand{\Date}{}
+\newcommand{\ContactName}{}
+\newcommand{\ContactTitle}{}
+\newcommand{\ContactCompany}{}
+\newcommand{\ContactAddressOne}{}
+\newcommand{\ContactAddressTwo}{}
+\newcommand{\ContactHeader}{Date: \Date\par \ContactName\\\ContactTitle\\\ContactCompany\\\ContactAddressOne\\\ContactAddressTwo}

@@ -1,0 +1,149 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Homework 2}
+\newcommand{\DueDate}   {February 2, 2018}
+\newcommand{\Course}    {PHY 204B}
+
+\begin{document}
+{\huge\bf\Title}
+
+Due \DueDate \hfill \Course
+
+%------------------------------------------------------------------------------
+% Arfken Ed 7, Problems 19.2.16, 19.2.17, 11.2.3, 11.2.6, 11.2.7,
+% 11.2.11, 11.3.1, 11.3.3, 11.3.6
+
+% Due by Friday, February 2, 5PM.
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.2.16.} Confirm the delta function nature of your Fourier series of exercise 19.2.15 by showing that for any $f(x)$ that is finite in the interval $[-\pi, \pi]$ and continuous at $x=0$,
+\begin{equation*}
+    \int_{-\pi}^\pi f(x) \left[\text{Fourier expansion of $\delta_\infty (x)$}\right] \dd x = f(0).
+\end{equation*}
+
+Solution for exercise 19.2.15 from solution manual:
+\begin{equation*}
+    \delta_n(x) = \frac{1}{2\pi} + \frac{2n}{\pi}\sum_{m=1}^\infty \frac{\sin(m/2n)}{m}\cos mx
+\end{equation*}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.2.17.}
+\begin{enumerate}[(a)]
+    \item Show that the Dirac delta function $\delta(x-a)$, expanded in a Fourier sine series in the half-interval $(0,L)\,\,(0<a<L)$ is given by
+    \begin{equation*}
+    \delta(x-a) = \frac{2}{L}\sum_{n=1}^\infty \sin\left(\frac{n\pi a}{L}\right)\sin\left(\frac{n\pi x}{L}\right).
+    \end{equation*}
+    Note that this series actually describes $-\delta(x+a) + \delta(x-a)$ in the interval $(-L,L)$.
+
+    \item By integrating both sides of the preceding equation from 0 to $x$, show that the cosine expansion of the square wave
+    \begin{equation*}
+    f(x) = 
+    \begin{cases} 
+        0, &0\leq x < a \\
+        1, &a<x<L,
+    \end{cases}
+    \end{equation*}
+    is
+    \begin{equation*}
+    f(x) = \frac{2}{\pi}\sum_{n=1}^\infty \frac{1}{n}\sin\left(\frac{n\pi a}{L}\right) - \frac{2}{\pi}\sum_{n=1}^\infty \frac{1}{n}\sin\left(\frac{n\pi a}{L}\right)\cos\left(\frac{n\pi x}{L}\right)
+    \end{equation*}
+    for $0\leq x < L$.
+
+    \item Show that the term $\displaystyle{\frac{2}{\pi}\sum_{n=1}^\infty \frac{1}{n}\sin\left(\frac{n\pi a}{L}\right)}$ is the average of $f(x)$ on $(0,L)$.
+\end{enumerate}
+%------------------------------------------------------------------------------
+\hrulefill
+ 
+\textbf{Problem 11.2.3.} Find the analytic function
+\begin{equation*}
+    w(z) = u(x,y) + iv(x,y)
+\end{equation*}
+\begin{enumerate}[(a)]
+    \item if $u(x,y) = x^3-3xy^2$
+    \item if $v(x,y) = e^{-y}\sin x$
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\hrulefill
+ 
+\textbf{Problem 11.2.6.} Show that given the Cauchy--Riemann equations, the derivative $f'(z)$ has the same value for $\dd z = a\dd x + ib\dd y$ (with neither $a$ nor $b$ zero) as it has for $\dd z = \dd x$.
+
+%------------------------------------------------------------------------------
+\vfill
+\hrulefill
+
+\textbf{Problem 11.2.7.} Using $f\left(re^{i\theta}\right) = R(r,\theta)e^{i\Theta(r,\theta)}$, in which $R(r,\theta)$ and $\Theta(r,\theta)$ are differentiable real functions of $r$ and $\theta$, show that the Cauchy--Riemann conditions in polar coordinates become
+\begin{enumerate}[(a)]
+    \item $\displaystyle{\pdv{R}{r} = \frac{R}{r}\pdv{\Theta}{\theta}}$
+    \item $\displaystyle{\frac{1}{r}\pdv{R}{\theta} = -R\pdv{\Theta}{r}}$
+\end{enumerate}
+\textit{Hint.} Set up the derivative first with $\delta z$ radial and then with $\delta z$ tangential.
+
+%------------------------------------------------------------------------------
+\vfill
+\hrulefill
+
+\textbf{Problem 11.2.11.} Two--dimensional irrotational fluid flow is conveniently described by a complex potential $f(z) = u(x,v) + iv(x,y)$. We label the real part, $u(x,y)$, the velocity potential, and the imaginary part, $v(x,y)$, the stream function. The fluid velocity $\mathbf{V}$ is given by $\mathbf{V} = \nabla u$. If $f(z)$ is analytic:
+
+\begin{enumerate}[(a)]
+    \item Show that $\dd f/\dd z = V_x - iV_y$.
+    \item Show that $\nabla\cdot\mathbf{V} = 0$ (no sources or sinks).
+    \item Show that $\nabla\times\mathbf{V} = 0$ (irrotational, nonturbulent flow).
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\vfill
+\hrulefill
+
+\textbf{Problem 11.3.1.} Show that $\displaystyle{\int_{z_1}^{z_2}f(z)\dd z = -\int_{z_2}^{z_1}f(z)\dd z}$.
+
+%------------------------------------------------------------------------------
+\vfill
+\hrulefill
+
+\textbf{Problem 11.3.3.} Show that the integral
+\begin{equation*}
+\int_{3+4i}^{4-3i}\left(4z^2 - 3iz\right)\dd z
+\end{equation*}
+has the same value on the two paths:
+\begin{enumerate}[(a)]
+    \item the straight line connecting the integration limits
+    \item an arc on the circle $|z| = 5$
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\newpage
+\hrulefill
+
+\textbf{Problem 11.3.6.} Verify that
+\begin{equation*}
+    \int_0^{1+i} z^*\dd z
+\end{equation*}
+depends on the path by evaluating the integral for the two paths shown in Fig. 11.7. Recall that $f(z) = z^*$ is not an analytic function of $z$ and that Cauchy's integral theorem therefore does not apply.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{"hw2 11_7".png}
+\caption{Fig. 11.7 from book.}
+\end{figure}
+\end{document}

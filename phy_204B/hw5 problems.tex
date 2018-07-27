@@ -1,0 +1,106 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Homework 5}
+\newcommand{\DueDate}   {February 23, 2018}
+\newcommand{\Course}    {PHY 204B}
+
+% Arfken Ed 7 Problems 11.8.8, 11.8.10, 11.8.12, 11.8.14, 11.8.22, 11.8.24, 11.8.27, 11.9.4, due by Friday February 23, 5PM.
+
+\begin{document}
+{\huge\textbf{\Title}}
+
+Due \DueDate \hfill \Course
+
+\hrulefill
+
+\begin{enumerate}
+    %--------------------------------------------------------------------------
+    \item [\textbf{11.8.8}] Evaluate $\displaystyle\int\limits_{-\infty}^\infty \frac{\cos bx - \cos ax}{x^2}\dd{x},\quad a>b>0$.
+
+    \hfill \textit{ANS. } $\pi(a-b).$
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{11.8.10}] Show that $\displaystyle\int\limits_0^\infty \frac{x\sin x}{x^2 + 1}\dd{x} = \frac{\pi}{2e}$.
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{11.8.12}] Show that $(a>0)$:
+    \begin{enumerate}[(a)]
+        \item $\displaystyle\int\limits_{-\infty}^{\infty}\frac{\cos x}{x^2+a^2}\dd{x} = \frac{\pi}{a}e^{-a}$.
+
+        How is the right side modified if $\cos x$ is replaced by $\cos kx$?
+
+        \item $\displaystyle\int\limits_{-\infty}^{\infty}\frac{x\sin x}{x^2+a^2}\dd{x} = \pi e^{-a}$.
+
+        How is the right side modified if $\sin x$ is replaced by $\sin kx$?
+    \end{enumerate}
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{11.8.14}] In the quantum theory of atomic collisions, we encounter the integral
+    \[
+        I = \int\limits_{-\infty}^\infty \frac{\sin t}{t}e^{ipt}\dd{t},
+    \]
+    in which $p$ is real. Show that
+    \[
+    \begin{aligned}
+        I &= 0, &|p|>1\phantom{.} \\
+        I &= \pi, &|p|<1.
+    \end{aligned}
+    \]
+    What happens if $p=\pm 1$?
+
+    %--------------------------------------------------------------------------
+    \newpage
+    \item [\textbf{11.8.22}] Show that
+    \[
+        \int\limits_0^\infty \frac{\dd{x}}{1+x^n} = \frac{\pi/n}{\sin\pqty{\pi/n}}.
+    \]
+    \textit{Hint.} Try the contour shown in Fig. 11.30, with $\theta=2\pi/n$.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{"hw5 11_30".pdf}
+    \end{figure}
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{11.8.24}] Show that
+    \[
+        \int\limits_0^\infty \frac{x^{-a}}{x+1}\dd{x} = \frac{\pi}{\sin a\pi},
+    \]
+    where $0<a<1$.
+
+    \textit{Hint.} You have a branch point and you will need a cut line. Try the contour shown in Fig. 11.26.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{"hw5 11_26".pdf}
+    \end{figure}
+
+    %--------------------------------------------------------------------------
+    \newpage
+    \item [\textbf{11.8.27}] Show that $\displaystyle\int\limits_0^1 \frac{1}{\pqty{x^2-x^3}^{1/3}}\dd{x} = \frac{2\pi}{\sqrt{3}}$.
+
+    \textit{Hint.} Try the contour shown in Fig. 11.31.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{"hw5 11_31".pdf}
+    \end{figure}
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{11.9.4}] Evaluate $\displaystyle\sum_{n=1}^\infty \frac{1}{n(n+2)}$.
+\end{enumerate}
+\end{document}

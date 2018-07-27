@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage{nicefrac}
+
+%% Metadata
+\renewcommand{\Title}{Work in Forced, Damped Oscillator}
+\renewcommand{\Course}{PHYS 401}
+\renewcommand{\Date}{Unknown Date}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\section{Problem Statement}
+For each of the three forces involved in an externally forced damped oscillator (friction, external forcing and spring force), compute the work done in one forcing cycle. In particular, show that the work done by the external force is equal and opposite to the work done by friction, while the spring force does no work.
+
+\section{Solution}
+The three forces are as follows:
+\begin{enumerate}
+\item External force: $F_e = F_0\cos(\omega t)$
+\item Friction force: $F_f = -b\dot{x} \equiv -2\beta m\dot{x}$
+\item Spring force: $F_s = -kx$
+\end{enumerate}
+
+Also, since we're interested in summing work over an interval of time, we can change the integration variable like so:
+\begin{equation*}
+\begin{aligned}
+\text{Work done by } F &= \int F\dd x \\
+&= \int F\frac{\dd x}{\dd t}\dd t \\
+&= \int F\dot{x}\dd t
+\end{aligned}
+\end{equation*}
+
+Now, the obvious limits of integration are 0 and $T \equiv \nicefrac{2\pi}{\omega}$, representing one period (the interval we're interested in). Substituting $\dot{x} = -D\omega\sin(\omega t -\delta)$ (something we already know about the externally forced, damped harmonic oscillator):
+\begin{equation}
+\text{Work done by } F = \int_0^T -FD\omega\sin(\omega t-\delta)\dd t
+\end{equation}
+
+Now we can evaluate this equation for each force involved.
+
+\subsection{Work Done by the External Force}
+\begin{equation*}
+\begin{aligned}
+\text{Work done by } F_e &= \int_0^T -(F_0\cos(\omega t))D\omega\sin(\omega t-\delta)\dd t \\
+&= -F_0D\omega\int_0^T \cos(\omega t)[\sin(\omega t)\cos(-\delta) + \cos(\omega t)\sin(-\delta)]\dd t \\
+&= -F_0D\omega\left[\cos\delta\int_0^T\cos(\omega t)\sin(\omega t)\dd t - \sin\delta\int_0^T\cos^2(\omega t) \dd t \right]
+\end{aligned}
+\end{equation*}
+
+Now we can use a $u$-substitution on the left integral and a power-reduction identity on the right integral.
+\begin{equation*}
+\begin{aligned}
+\text{Work done by } F_e &= -F_0D\omega\left[\cos\delta\Bigg[\frac{1}{2\omega}\sin^2(\omega t)\Bigg]_0^T - \frac{\sin\delta}{2}\int_0^T 1 + \cos(2\omega t) \dd t\right] \\
+&= -F_0D\omega\left[\cos\delta[0 - 0] - \frac{\sin\delta}{2}\Bigg[t + \frac{1}{2\omega}\sin(2\omega t)\Bigg]_0^T\right] \\
+&= \frac{1}{2}F_0D\omega\sin\delta[T] \\
+&= \frac{1}{2}F_0D\omega\sin\delta\left[\frac{2\pi}{\omega}\right] \\
+&= F_0D\pi\sin\delta
+\end{aligned}
+\end{equation*}
+
+These definitions are given by the textbook on page 118:
+\begin{equation}
+D = \frac{\nicefrac{F_0}{m}}{\sqrt{({\omega_0}^2-\omega^2)^2 + 4\omega^2\beta^2}}
+\end{equation}
+\begin{equation}
+\sin\delta = \frac{2\omega\beta}{\sqrt{({\omega_0}^2-\omega^2)^2 + 4\omega^2\beta^2}}
+\end{equation}
+
+So, we can rewrite $(\sin\delta)$ in terms of $D$:
+\begin{equation*}
+\begin{aligned}
+\sin\delta &= 2\omega\beta\left(D\frac{m}{F_0}\right) \\
+&= \frac{2\omega\beta Dm}{F_0}
+\end{aligned}
+\end{equation*}
+
+So our final result for the work is:
+\begin{equation*}
+\begin{aligned}
+\text{Work done by } F_e &= F_0D\pi\sin\delta \\
+&= F_0D\pi\left(\frac{2\omega\beta Dm}{F_0}\right) \\
+&= 2\pi\beta m\omega D^2
+\end{aligned}
+\end{equation*}
+
+\subsection{Work Done by the Friction Force}
+\begin{equation*}
+\begin{aligned}
+\text{Work done by } F_f &= \int_0^T -(-2\beta m \dot{x})D\omega\sin(\omega t-\delta)\dd t \\
+&= -2\beta m\int_0^T (D\omega\sin(\omega t-\delta))^2\dd t \\
+&= -2\beta mD^2\omega^2\int_0^T \sin^2(\omega t - \delta) \dd t \\
+&= -\beta mD^2\omega^2\int_0^T 1 - \cos(2\omega t - 2\delta) \dd t \\
+&= -\beta mD^2\omega^2\Bigg[t - \frac{1}{2\omega}\sin(2\omega t - 2\delta)\Bigg]_0^T \\
+&= -\beta mD^2\omega^2[T] \\
+&= -\beta mD^2\omega^2\left[\frac{2\pi}{\omega}\right] \\
+&= -2\pi\beta m\omega D^2
+\end{aligned}
+\end{equation*}
+
+\subsection{Work Done by the Spring Force}
+
+\begin{equation*}
+\begin{aligned}
+\text{Work done by } F_s &= \int_0^T -(-kx)D\omega\sin(\omega t-\delta)\dd t \\
+&= k\int_0^T (D\cos(\omega t - \delta)(D\omega\sin(\omega t-\delta)\dd t \\
+&= kD^2\int_0^T \omega\cos(\omega t - \delta)\sin(\omega t - \delta) \dd t \\
+&= kD^2\int_0^T \sin(\omega t - \delta)(\omega\cos(\omega t - \delta)\dd t) \\
+&= kD^2\,\Bigg[\frac{1}{2}\sin^2(\omega t - \delta)\Bigg]_0^T \\
+&= kD^2[0] \\
+&= 0
+\end{aligned}
+\end{equation*}
+
+\subsection{Summary}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc}
+		\toprule
+		\textbf{Force} & \textbf{Work Done Per Cycle} \\
+		\midrule
+		External & $\phantom{-}2\pi\beta m\omega D^2$ \\
+		Friction & $-2\pi\beta m\omega D^2$ \\
+		Spring & 0 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Results}
+\end{table}
+
+We have now shown that the external force does equal and opposite work to the friction force, and the spring force does no work, as required.
+
+\end{document}

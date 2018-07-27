@@ -1,0 +1,229 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage{nicefrac}
+\newcommand{\ol}[1]{\overline{#1}\,} % Overline with spacing
+
+%% Metadata
+\renewcommand{\Title}{Project Set 1}
+\renewcommand{\Course}{PHYS 361}
+\renewcommand{\Date}{January 27, 2017}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\section{Project A: Measuring the Planck Constant}
+
+\subsection{Explanation of Millikan's Experiment}
+
+To examine the photoelectric effect (where light shone on a clean surface of a single element would kick electrons off), Millikan shone monochromatic light of a known frequency $f$ at a clean, metal surface. Then, when electrons were kicked off by the light, he brought them to rest with a known stopping potential $V_0$. Einstein theorized that the energy of a photon of a certain frequency was given by $E = hf$, where $h$ is the Planck constant. Using conservation of energy, Millikan deduced that, if Einstein were right (which Millikan doubted), the energy of the electron must be the same as the energy of the photon that knocked it loose (minus an extra term $P$ that represented the energy used to pull the electron away from its nucleus):
+\begin{equation}
+\frac{1}{2}mv^2 = hf - P
+\end{equation}
+
+Since the electrons were brought to a stop by the electric field, the stopping potential times the charge of the electron $e$ would be equal to the maximum kinetic energy of the electron, so the left-hand side of the equation could be replaced:
+\begin{equation}
+\begin{aligned}
+V_0e &= hf - P \\
+V_0 &= \frac{h}{e}f - \frac{P}{e}
+\end{aligned}
+\end{equation}
+
+Given a data set of the form $(f,V_0)$, and a value for $e$ (also measured by Millikan) we could use a linear fit to determine Planck's constant (from the slope of the line of best fit).
+
+\subsection{Using a Linear Fit to Find the Planck Constant for Various Data}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc|ccc|cc}
+		\toprule
+		\multicolumn{2}{c|}{Sodium} & \multicolumn{3}{c|}{Lithium} & \multicolumn{2}{c}{Copper} \\
+		$f$ (Hz) & $V_0$ (V) & $\lambda$ (nm) & $f$ (Hz) & $V_0$ (V) & $f$ (Hz) & $V_0$ (V) \\
+		\midrule
+		5.5E+14	& 0.50	& 546.1	& 5.49E+14 & 0.46	& 7.3E+14	& 0.44 \\
+		6.9E+14	& 1.06	& 433.9	& 6.91E+14 & 1.03	& 8.7E+14	& 1.06 \\
+		7.7E+14	& 1.37	& 404.7	& 7.41E+14 & 1.21	& 9.5E+14	& 1.44 \\
+		8.2E+14	& 1.69	& 365.0	& 8.22E+14 & 1.59	& 10.0E+14	& 1.75 \\
+		9.8E+14	& 2.43	& 312.6	& 9.60E+14 & 2.13	& 11.6E+14	& 2.43 \\
+				& 		& 253.5 & 1.18E+15 & 3.03	& 			& 	   \\
+		\bottomrule
+	\end{tabular}
+	\caption{Data from Millikan's photoelectric effect experiment (note: original \\wavelength data for lithium had to be converted to frequency using $f = \nicefrac{c}{\lambda}$)}
+\end{table}
+
+In class, we determined that, for a line of best fit with form $V_0 = af + b$, the parameters would have the following values:
+\begin{equation}
+\begin{aligned}
+a &= \frac{\ol{f}\ol{V_0} - \ol{fV_0}}{\ol{f}^2 - \ol{f^2}} \\
+b &= \ol{V_0} - \ol{f}a
+\end{aligned}
+\end{equation}
+
+Using Excel, we can determine what each data set says $h$ should be, by calculating $a$ and multiplying it by the known charge of an electron ($1.6 \times 10^{-19} C $).
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cccc}
+		\toprule
+		& Sodium & Lithium & Copper \\
+		\midrule
+		$a$ & 4.52E-15 & 4.07E-15 & 4.68E-15 \\
+		$h$ & 7.22E-34 & 6.51E-34 & 7.49E-34 \\
+		\bottomrule
+\end{tabular}
+\caption{Values calculated in Excel, using the expressions above}
+\end{table}
+
+\subsection{Approximating a Best Single Value for the Planck Constant}
+
+Averaging the three values for $h$ in the table above yields this result:
+\begin{equation}
+h = 7.07 \times 10^{-34}\;\text{J}\cdot\text{s}
+\end{equation}
+
+Since the range of our values is about $10^{-34}$, our mean could go about $0.5\times 10^{-34}$ in either direction, so I would expect the uncertainty to be about that much. Since these are only three values of many possible different experiments, I used the standard deviation of a sample to find the uncertainty to be $0.51\times 10^{-34}$ $-$ pretty close to my guess!
+\begin{equation}
+h = (7.07 \pm 0.51)\times 10^{-34}\;\text{J}\cdot\text{s}
+\end{equation}
+
+\section{Project B: Landing a Sensor on a Moon}
+
+\textbf{As part of an upcoming rendezvous, a sensor will be ejected from a satellite and fall under the influence of Miranda’s gravity. The sensor will transmit position vs. time data that will be used to determine the acceleration caused by the moon’s gravity.}
+
+\subsection{Justification of a Quadratic Model}
+
+As the sensor falls, it will be subject to Miranda's gravity. We can neglect air resistance, as Miranda is probably too small to capture more than a negligible amount of gas. Letting the initial elevation $c$ of the probe be small relative to Miranda's radius, the acceleration due to gravity will be very nearly constant throughout the fall, so we can just call it $a$. Lastly, assuming the satellite will drop the sensor on a flyby mission, the sensor will probably have some initial downward velocity $b$. Given our assumptions, an equation of the form $y(t) = at^2 + bt + c$ appropriately describes the position of the sensor over time.
+
+\subsection{Deriving a System of Equations for a Least-Squares Quadratic Fit}
+
+To find the best quadratic fit for a set of points $(x_i, y_i)$, we must minimize the following function:
+\begin{equation}
+F(x_i, y_i, a, b, c) = \sum_i^n(y_i-ax_i^2-bx_i-c)^2
+\end{equation}
+
+We can calculate the partial derivatives of $F$ with respect to each of the parameters and set each to zero to minimize $F$. This produces a system of three equations:
+\begin{equation*}
+\begin{aligned}
+(\Sigma x_i^4)a + (\Sigma x_i^3)b + (\Sigma x_i^2)c &= \Sigma x_i^2y_i \\
+(\Sigma x_i^3)a + (\Sigma x_i^2)b + (\Sigma x_i)c &= \Sigma x_iy_i \\
+(\Sigma x_i^2)a + (\Sigma x_i)b + (n)c &= \Sigma y_i
+\end{aligned}
+\end{equation*}
+
+\subsection{Solving the System for the Parameters}
+We can divide each equation through by $n$ to clean up the notation, then create an augmented matrix and solve it with row operations:
+\begin{equation*}
+\begin{aligned}
+\begin{array}{r@{}}
+r_1 \\
+r_2 \\
+r_3
+\end{array}
+&\left(
+\begin{array}{@{}ccc|c@{}}
+\overline{x^4} & \overline{x^3} & \overline{x^2} & \overline{x^2y} \\
+\overline{x^3} & \overline{x^2} & \overline{x} & \overline{xy} \\
+\overline{x^2} & \overline{x} & 1 & \overline{y}
+\end{array}
+\right) \\
+\begin{array}{r@{}}
+r_1 \\
+\overline{x^4}r_2 - \overline{x^3}r_1 \\
+\overline{x^4}r_3 - \overline{x^2}r_1
+\end{array}
+&\left(
+\begin{array}{@{}ccc|c@{}}
+\ol{x^4} & \ol{x^3} & \ol{x^2} & \ol{x^2y} \\
+0 & \ol{x^2}\ol{x^4} - (\ol{x^3})^2 & \ol{x}\ol{x^4} - \ol{x^3}\ol{x^2} & \ol{xy}\ol{x^4} - \ol{x^2y}\ol{x^3} \\
+0 & \ol{x}\ol{x^4} - \ol{x^3}\ol{x^2} & \ol{x^4} - (\ol{x^2})^2 & \ol{x^4}\ol{y} - \ol{x^2y}\ol{x^2}
+\end{array}
+\right)
+\end{aligned}
+\end{equation*}
+
+One more row operation (which I don't have the horizontal real estate to display) yields a result for $c$:
+\begin{equation}
+c = \frac{(\ol{x^2}\ol{x^4} - (\ol{x^3})^2)(\ol{x^4}\ol{y} - \ol{x^2y}\ol{x^2}) - (\ol{x}\ol{x^4} - \ol{x^3}\ol{x^2})(\ol{xy}\ol{x^4} - \ol{x^2y}\ol{x^3})}{(\ol{x^2}\ol{x^4} - (\ol{x^3})^2)(\ol{x^4} - (\ol{x^2})^2) - (\ol{x}\ol{x^4} - \ol{x^3}\ol{x^2})^2}
+\end{equation}
+
+In the interest of clarity, and because it doesn't affect usability, we can express $b$ in terms of $c$ and $a$ in terms of both $b$ and $c$:
+
+\begin{equation}
+b = \frac{\ol{xy}\ol{x^4} - \ol{x^2y}\ol{x^3} - (\ol{x}\ol{x^4} - \ol{x^3}\ol{x^2})c}{\ol{x^2}\ol{x^4} - (\ol{x^3})^2}
+\end{equation}
+\begin{equation}
+a = \frac{\ol{x^2y} - \ol{x^3}b - \ol{x^2}c}{\ol{x^4}}
+\end{equation}
+
+\subsection{Using the General Result to Fit Real Data}
+
+The sensor is tested on Earth and produces the following data:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc}
+		\toprule
+		\textbf{Time (s)} & \textbf{Elevation (m)} \\
+		\midrule
+		0.0 & 1.67203 \\
+		0.1 & 1.79792 \\
+		0.2 & 2.37791 \\
+		0.3 & 2.66408 \\
+		0.4 & 2.11245 \\
+		0.5 & 2.43969 \\
+		0.6 & 1.88843 \\
+		0.7 & 1.59447 \\
+		0.8 & 1.79340 \\
+		0.9 & 1.07810 \\
+		1.0 & 0.21066 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Sensor data from Earth test}
+\end{table}
+
+Using spreadsheet software like Excel, we can calculate the various values we need to determine the parameters (note that I've replaced $x$ in the above expressions with $t$ to fit our particular scenario):
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc}
+		\toprule
+		\textbf{Variable} & \textbf{Value} \\
+		\midrule
+		$\ol{t}$ & 0.500\\
+		$\ol{t^2}$ & 0.350\\
+		$\ol{t^3}$ & 0.275\\
+		$\ol{t^4}$ & 0.230\\
+		$\ol{ty}$ & 0.762\\
+		$\ol{t^2y}$ & 0.454\\
+		$\ol{y}$ & 1.784\\
+		\midrule
+		$a$ & -5.202\\
+		$b$ & 3.901\\
+		$c$ & 1.654\\
+		\bottomrule
+	\end{tabular}
+	\caption{Values calculated in Excel, using the expressions found in section 2.3}
+\end{table}
+
+Now, using the above values for the parameters, we can plot the fit function $y = at^2 + bt + c$ against a scatterplot of the data:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{"project1 fig1".pdf}
+\caption{Parabola and data plotted in Python's matplotlib}
+\end{figure}
+
+So, we can see that the parabola fits the data nicely. We can also see that, although the sensor was tested on Earth, it only experienced a gravitational acceleration of about $-5.2\; \nicefrac{\text{m}}{\text{s}^2}$, so it must have been tested in some artificial context, or the sensor is not working very well.
+
+\subsection{Comparison with a LoggerPro Curve Fit}
+
+My results for the parameters agree exactly with LoggerPro's autofit function.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{"project1 fig2".png}
+\caption{Autofit curve in LoggerPro}
+\end{figure}
+
+\end{document}

@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage{nicefrac}
+
+%% Metadata
+\renewcommand{\Title}{Problem 3-18}
+\renewcommand{\Course}{PHYS 401}
+\renewcommand{\Date}{February 9, 2017}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\section{Problem Statement}
+\textbf{3-18} (p.140) Show that, if a driven oscillator is only lightly damped and driven near resonance, the $Q$ of the system is approximately
+\begin{equation}
+Q \approx 2\pi \times \left(\frac{\text{Total energy}}{\text{Energy loss during one period}}\right)
+\end{equation}\label{Statement}
+
+\section{Solution}
+First, addressing the left-hand side: since the oscillator is lightly damped, we have $Q \equiv \nicefrac{\omega}{2\beta}$. Since the oscillator is near resonance, we can say $\omega_0 = \omega_R = \omega$. Now we'll see if we can show that the right-hand side is equivalent under this assumption. To begin, we know the position function of the driven oscillator, and can find the velocity function by differentiating:
+\begin{equation*}
+\begin{aligned}
+x(t) &= D\cos(\omega t-\delta) \\
+\dot{x}(t) &= -D\omega\sin(\omega t-\delta)
+\end{aligned}
+\end{equation*}
+
+Using these, we can derive an expression for the total energy of the system (noting also that $k = m{\omega}^2$).
+\begin{equation*}
+\begin{aligned}
+\text{Total energy} &= \frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2 \\
+&= \frac{1}{2}m\dot{x}^2 + \frac{1}{2}m{\omega}^2 x^2 \\
+&= \frac{1}{2}m(-D\omega\sin(\omega t-\delta))^2 + \frac{1}{2}m{\omega}^2 (D\cos(\omega t-\delta))^2 \\
+&= \frac{1}{2}mD^2\omega^2(\sin^2(\omega t-\delta)+\cos^2(\omega t-\delta)) \\
+&= \frac{1}{2}mD^2\omega^2
+\end{aligned}
+\end{equation*}
+
+The energy loss during one period ($T = \nicefrac{2\pi}{\omega}$) is equivalent to the negative work done by the resistive force, $F_r = -2m\beta\dot{x}$:
+\begin{equation*}
+\begin{aligned}
+\text{Energy loss during one period} &= -\int -2m\beta\dot{x}\dd x \\
+&= 2m\beta\int_0^T\dot{x}\frac{\dd x}{\dd t}\dd t \\
+&= 2m\beta\int_0^T\dot{x}^2\dd t \\
+\end{aligned}
+\end{equation*}
+
+Now that we've changed the variable of integration, we can go ahead and substitute our expression for $\dot{x}(t)$.
+\begin{equation*}
+\begin{aligned}
+\text{Energy loss during one period} &= 2m\beta\int_0^T(-D\omega\sin(\omega t-\delta))^2\dd t \\
+&= 2m\beta D^2\omega^2\int_0^T\sin^2(\omega t-\delta)\dd t \\
+&= m\beta D^2\omega^2\int_0^T 1 - \cos(2\omega t-2\delta)\dd t \\
+&= m\beta D^2\omega^2\Bigg[t - \frac{1}{2\omega}\sin(2\omega t-2\delta)\Bigg]_0^T \\
+&= m\beta D^2\omega^2T \\
+&= 2\pi m\beta D^2\omega
+\end{aligned}
+\end{equation*}
+
+So, the right-hand side of the problem statement is as follows.
+
+\begin{equation*}
+\begin{aligned}
+\text{RHS} = 2\pi \times \left(\frac{\text{Total energy}}{\text{Energy loss during one period}}\right) &= 2\pi\left(\frac{(\nicefrac{1}{2})mD^2\omega^2}{2\pi m\beta D^2\omega}\right) \\
+&= \frac{2\pi}{2\pi}\frac{1}{2}\frac{m}{m}\frac{1}{\beta}\frac{D^2}{D^2}\frac{\omega^2}{\omega} \\
+&= \frac{\omega}{2\beta} = \text{LHS}
+\end{aligned}
+\end{equation*}
+
+\end{document}

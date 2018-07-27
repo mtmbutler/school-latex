@@ -1,0 +1,130 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Problem Set 6}
+\newcommand{\DueDate}   {March 5, 2018}
+\newcommand{\Course}    {PHY 200B}
+
+% Problem Set 6
+% Physics 200B
+% Due at start of class, Monday March 5, 2018
+% Zangwill 9.5
+% Zangwill 9.17 Add part c: Explain the importance of this result for actual measurements. Bear in mind that experimentalists often want to extract intrinsic quantities such as resistivity.
+% Zangwill 9.23 and 9.24
+% Zangwill 10.6 Add part c: Repeat the derivation a third way, using only Ampe`re’s law and symmetry.
+% Zangwill 10.8 Add part d: Give at least two examples of situations that use planar coils. You are welcome to use any internet resources you like on this one.
+% Zangwill 10.20 and 10.24
+
+\begin{document}
+{\huge\textbf{\Title}}
+
+Due \DueDate \hfill \Course
+
+\hrulefill
+
+\begin{enumerate}[align=parleft,labelsep=20pt]
+    %--------------------------------------------------------------------------
+    \item [\textbf{9.5 }] \textbf{Membrane Boundary Conditions } A thin membrane with conductivity $\sigma'$ and thickness $\delta$ separates two regions with conductivity $\sigma$.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{"hw6 9_5".pdf}
+    \end{figure}
+    Assume uniform current flow in the $z$-direction in the figure above. When $\delta$ is small, it makes sense to seek ``across-the-membrane'' matching conditions for the electrostatic potential $\varphi(z)$ defined entirely in terms of quantities defined outside the membrane. Find the potential in all three regions of the figure and prove that suitable matching conditions are
+    \begin{gather*}
+        \varphi(z=\delta^+) - \varphi(z=0^-) = \delta \frac{\sigma}{\sigma'} \eval{\dv{\varphi}{z}}_{z=0^-} \\
+        \eval{\dv{\varphi}{z}}_{z=\delta^+} - \eval{\dv{\varphi}{z}}_{z=0^-} = 0.
+    \end{gather*}
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{9.17 }] \textbf{van der Pauw's Formula } The diagram below shows an ohmic film with conductivity $\sigma$, thickness $d$, infinite length, and semi-infinite width. A total current $I$ enters the film at the point $A$ through a line contact (modeled as a half-cylinder with negligible radius) and exits the film similarly at the point $B$. The potential difference $V_D - V_C$ between the contact at $C$ and the contact at $D$ determines the resistance $R_{AB,\,CD}$. The contact separations are $a$, $b$, and $c$, as indicated. 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{"hw6 9_17".pdf}
+    \end{figure}
+    \begin{enumerate}[(a), align=parleft,labelsep=20pt]
+        \item Show that the electrostatic potential produced at point $C$ by the current injected at point $A$ is
+        \[
+            \varphi_{AC} = -\frac{I}{\pi d\sigma}\ln(a+b).
+        \]
+
+        \item Prove that
+        \[
+            \exp\pqty{-\pi d\sigma R_{AB,\,CD}} + \exp\pqty{-\pi d\sigma R_{BC,\,DA}} = 1.
+        \]
+    \end{enumerate}
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{9.23 }] \textbf{The Resistance of a Shell } A spherical shell with radius $a$ has conductivity $\sigma$ in the angular range $\alpha_1 < \theta < \pi - \alpha_2$. Otherwise, the shell is perfectly conducting and a potential difference $V$ is maintained between $\theta = 0$ and $\theta = \pi$.
+    \begin{enumerate}[(a), align=parleft,labelsep=20pt]
+        \item Solve Laplace's equation to find the potential, surface current density, and resistance of the shell between $\theta = 0$ and $\theta = \pi$.
+
+        \item Divide the shell into many thin rings. Find the resistance of each and combine them to find the resistance and confirm the answer derived in part (a).
+    \end{enumerate}
+    Hint: The substitution $y = \ln\!\bqty{\tan\pqty{\theta /2}}$ will be useful.
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{9.24 }] \textbf{The Resistance of the Atmosphere } The conductivity of the Earth's atmosphere increases with height due to ionization by solar radiation. At a height of about $H=50\,\si{\km}$, the atmosphere can be considered practically an ideal conductor. Experiment shows that height dependence of the conductivity of the atmosphere can be approximated by
+    \[
+        \sigma(r) = \sigma_0 + A\pqty{r-r_0}^2,
+    \]
+    where $r_0 = 6.4\times 10^6\,\si{\m}$ is the radius of the Earth and $r$ is the distance from the center of the Earth to the observation point. The conductivity at the surface of the Earth is $\sigma_0 = 3\times 10^{-14}\,\text{S/m}$ and the constant $A = 0.5\times 10^{-20}\,\text{S/m}^3$. Experiment also shows that an electric field $E_0 \approx -100\,\si{\V/\m}$ exists near the Earth's surface and is directed downward. Estimate the resistance of the atmosphere.
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{10.6 }] \textbf{Two Approaches to the Field of a Current Sheet }
+    \begin{enumerate}[(a), align=parleft,labelsep=20pt]
+        \item Use the Biot-Savart law to find $\vb{B}(\vb{r})$ everywhere for a current sheet at $x=0$ with $\vb{K} = K\vu{z}$.
+
+        \item Check your answer to part (a) by superposing the magnetic field from an infinite number of straight current-carrying wires.
+    \end{enumerate}
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{10.8 }] \textbf{The Magnetic Field of Planar Circuits }
+    \begin{enumerate}[(a), align=parleft,labelsep=20pt]
+        \item Let $I$ be the current carried by a wire bent into a planar loop. Place the origin of coordinates at an observation point $P$ in the plane of the loop. Show that the magnitude of the magnetic field at the point $P$ is
+        \[
+            B(P) = \frac{\mu_0 I}{4\pi}\int_0^{2\pi} \frac{\dd{\phi}}{r(\phi)},
+        \]
+        where $r(\phi)$ is the distance from the origin of coordinates at $P$ to the point on the loop located at an angle $\phi$ from the positive $x$-axis.
+
+        \item Show that the magnetic field at the center of a current-carrying wire bent into an ellipse with major and minor axes $2a$ and $2b$ is proportional to a complete elliptic integral of the second kind. Show that you get easily understandable answers when $a=b$ and when $a\to\infty$ with $b$ fixed.
+
+        \item An infinitesimally thin wire is wound in the form of a planar coil which can be modeled using an effective surface current density $\textstyle\vb{K} = K\vu*{\phi}$. Find the magnetic field at a point $P$ on the symmetry axis of the coil. Express your answer in terms of the angle $\alpha$ subtended by the coil at $P$.
+    \end{enumerate}
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{10.20 }] \textbf{Magnetic Potentials } The magnetic scalar potential in a volume $V$ is $\psi(x,y,z) = (C/2)\ln(x^2+y^2)$. Find a vector potential $\vb{A} = A_x\vu{x} + A_y\vu{y}$ which produces the same magnetic field.
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{10.24 }] \textbf{Lamb's Formula } A quantum particle with charge $q$, mass $m$, and momentum $\vb{p}$ in a magnetic field $\vb{B}(\vb{r}) = \curl{\vb{A}(\vb{r})}$ has velocity $\vb*{v}(\vb{r}) = \vb{p}/m - (q/m)\vb{A}(\vb{r})$. This means that a charge distribution $\rho(\vb{r})$ generates a ``diamagnetic current'' $\vb{j}(\vb{r}) = -(q/m)\rho(\vb{r})\vb{A}(\vb{r})$ when it is placed in a magnetic field.
+    \begin{enumerate}[(a), align=parleft,labelsep=20pt]
+        \item Show that $\vb{A}(\vb{r}) = \frac{1}{2}\mathcal{B}\cp\vb{r}$ is a legitimate vector potential for a uniform magnetic field $\mathcal{B}$.
+
+        \item Let $\rho(\vb{r}) = \rho(r)$ be the spherically symmetric charge distribution associated with the electrons of an atom. Expose the atom to a uniform magnetic field $\mathcal{B}$ and show that the ensuing diamagnetic current induces a vector potential
+        \[
+            \vb{A_\text{ind}}(\vb{r}) = \frac{\mu_0}{4\pi}\frac{e\mathcal{B}\cp\vb{r}}{6m}\bqty{\frac{1}{r^3}\int\limits_{r'<r}\dd[3]{r'}\rho(r')r'^2 + \int\limits_{r'>r}\dd[3]{r'}\frac{\rho(r')}{r'}}.
+        \]
+
+        \item Expand $\vb{A_\text{ind}}$ for small values of $r$ and show that the diamagnetic field at the atomic nucleus can be written in terms of $\varphi(0)$, the electrosstatic potential at the nucleus produced by $\rho(r)$:
+        \[
+            \vb{B_\text{ind}}(0) = \frac{e\varphi(0)}{3mc^2}\mathcal{B}.
+        \]
+        This formula was obtained by Willis Lamb in 1941. He had been asked by I.I. Rabi to determine whether $\vb{B_\text{ind}}(0)$ could be ignored when nuclear magnetic moments were extracted from molecular beam data.
+    \end{enumerate}
+\end{enumerate}
+\end{document}

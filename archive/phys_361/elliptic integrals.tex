@@ -1,0 +1,252 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage{nicefrac}
+\usepackage{mathtools}  %Aboxed
+\newcommand{\dsq}{\mathrm{d}^2\!}
+\newcommand{\pd}{\mathop{\partial}\!\!} % Differential partials
+\newcommand{\Lagr}{\mathop{\mathcal{L}}}
+
+%% Metadata
+\renewcommand{\Title}{3.5 and 3.6 Problems}
+\renewcommand{\Course}{PHYS 361}
+\renewcommand{\Date}{February 20, 2017}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\section*{Elliptic Integral Problems}
+\textbf{Problem 1.} Derive the equation of motion of the pendulum shown in Figure 3.15.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{"elliptic integrals 3_15".png}
+\end{figure}
+\textbf{Solution.} Let the gravitational potential energy of the mass be 0 when $\theta = \nicefrac{\pi}{2}$ (i.e. the mass is lifted all the way up to the ceiling). Then, the distance from the mass to the ceiling is equal to $\ell\cos\theta$, and the potential energy must be $V = -mg\ell\cos\theta$.
+
+Now, the Lagrangian of the pendulum (in polar coordinates) is given by:
+\begin{equation}
+\begin{aligned}
+\Lagr &= \frac{1}{2}m\dot{r}^2+ \frac{1}{2}m(r\dot{\theta})^2 + mg\ell\cos\theta
+\end{aligned}
+\end{equation}
+
+Notice, though, that $r$ is always fixed at $\ell$ in this context. This also means that $\dot{r} = 0$. So, we can rewrite the Lagrangian in even simpler form, involving only $\theta$.
+\begin{equation*}
+\begin{aligned}
+\Lagr &= \frac{1}{2}m(\ell\dot{\theta})^2 + mg\ell\cos\theta \\
+\frac{\dd}{\dd t}\frac{\pd\mathcal{L}}{\pd\dot{\theta}} &= \frac{\pd\mathcal{L}}{\pd\theta} \\
+\frac{\dd}{\dd t}\left(m\ell ^2\dot{\theta}\right) &= -mg\ell\sin\theta \\
+\Aboxed{\ddot{\theta} &= -\frac{g}{\ell}\sin\theta}
+\end{aligned}
+\end{equation*}
+%\\[1\baselineskip]
+
+\textbf{Problem 2.} Show that energy is conserved in the system of problem 1.
+
+\textbf{Solution.} McQuarrie's hint was to use the following substitution:
+\begin{equation*}
+\begin{aligned}
+\frac{\dd}{\dd t}\left(\frac{\dd\theta}{\dd t}\right)^2 &= 2\frac{\dd\theta}{\dd t}\frac{\dsq\theta}{\dd t^2} \\
+\frac{\dsq\theta}{\dd t^2} &= \frac{1}{2}\frac{\dd}{\dd\theta}\left(\frac{\dd\theta}{\dd t}\right)^2
+\end{aligned}
+\end{equation*}
+
+Applying this substitution to our solution from Problem 1:
+\begin{equation*}
+\begin{aligned}
+\frac{1}{2}\frac{\dd}{\dd\theta}\left(\frac{\dd\theta}{\dd t}\right)^2 &= -\frac{g}{\ell}\sin\theta \\
+\frac{1}{2}\dd\left(\dot{\theta}\right)^2 &= -\frac{g}{\ell}\sin\theta\dd\theta \\
+\frac{1}{2}\int_{\dot{\theta}_0^2}^{\dot{\theta}_f^2}\dd\left(\dot{\theta}\right)^ 2&= \frac{g}{\ell}\int_{\theta_0}^{\theta_f}-\sin\theta\dd\theta \\
+\frac{1}{2}\left(\dot{\theta}_f^2-\dot{\theta}_0^2\right) &= \frac{g}{\ell}\Bigg[\cos\theta\Bigg]_{\theta_0}^{\theta_f} \\
+\frac{1}{2}m\ell ^2\left(\dot{\theta}_f^2-\dot{\theta}_0^2\right) &= mg\ell\left(\cos\theta_f - \cos\theta_0\right) \\
+\frac{1}{2}m\left(\ell\dot\theta_f\right)^2 - \frac{1}{2}m\left(\ell\dot\theta_0\right)^2 &= mg\ell\cos\theta_f - mg\ell\cos\theta_0 \\
+\Aboxed{\Delta\! T &= -\Delta\! V}
+\end{aligned}
+\end{equation*}
+
+So energy is conserved.
+
+\textbf{Problem 3.} Let $\theta$ be restricted to small angles in Equation 4 and show that the motion is cosinusoidal with a period $T = 2\pi\left(\nicefrac{\ell}{g}\right)^{\nicefrac{1}{2}}$.
+
+\textbf{Solution.} Equation 4 lends itself nicely to the elliptic integral form, but we can address that in problem 4. Let's instead look at the equivalent form, the solution from Problem 1:
+\begin{equation*}
+\begin{aligned}
+\ddot{\theta} &= -\frac{g}{\ell}\sin\theta
+\end{aligned}
+\end{equation*}
+
+If $\theta$ is small, then $\sin\theta\approx\theta$:
+\begin{equation*}
+\begin{aligned}
+\ddot{\theta} &= -\frac{g}{\ell}\theta \\
+\ddot{\theta} + \frac{g}{\ell}\theta &= 0
+\end{aligned}
+\end{equation*}
+
+This is a simple homogeneous, linear differential equation. For simplicity, let's define $\omega = (\nicefrac{g}{\ell})^{\nicefrac{1}{2}}$. We can also calculate the first time derivative, so we can substitute our initial conditions later:
+\begin{equation*}
+\begin{aligned}
+\theta (t) &= c_1\sin\omega t + c_2\cos\omega t \\
+\dot{\theta}(t) &= c_1\omega\cos\omega t - c_2\omega\sin\omega t
+\end{aligned}
+\end{equation*}
+
+Now, we require that $\theta (0) = \theta_0$:
+\begin{equation*}
+\begin{aligned}
+\theta_0 = \theta (0) &= c_1\sin\omega (0) + c_2\cos\omega (0)
+&= c_2
+\end{aligned}
+\end{equation*}
+
+We also require that $\dot\theta (0) = 0$, so that the pendulum never exceeds its starting angle (without external help):
+\begin{equation*}
+\begin{aligned}
+0 = \dot\theta (0) &= c_1\omega\cos\omega (0) - c_2\omega\sin\omega (0) \\
+&= c_1
+\end{aligned}
+\end{equation*}
+
+So our particular solution is the following cosinusoidal function:
+\begin{equation}
+\begin{aligned}
+\Aboxed{\theta (t) = \theta_0\cos\omega t}
+\end{aligned}
+\end{equation}
+
+Now, if $T$ is the period of this function, then we know $\omega T = 2\pi$, or $T = \nicefrac{2\pi}{\omega}$. Substituting our definition for $\omega$, we have this final result.
+\begin{equation*}
+\begin{aligned}
+\Aboxed{T = 2\pi\sqrt{\frac{\ell}{g}}}
+\end{aligned}
+\end{equation*}
+
+\textbf{Problem 4.} Derive Equation 6.
+\[
+T = 4\sqrt{\frac{\ell}{g}}\int_{0}^{\pi/2}\frac{\dd u}{\sqrt{1-k^2\sin^2 u}} \tag{Eq. 6, pg. 138} \label{eq:6}
+\]
+
+\textbf{Solution.} We can start with equation 5:
+\[
+T = \sqrt{\frac{8\ell}{g}}\int_{0}^{\theta_0}\frac{\dd\theta}{\sqrt{\cos\theta-\cos\theta_0}} \tag{Eq. 5, pg. 138} \label{eq:5}
+\]
+
+As McQuarrie suggests, we can use the identity $\cos\theta = 1-2\sin^2(\nicefrac{\theta}{2})$ and rewrite equation 5:
+\begin{equation*}
+\begin{aligned}
+T = \sqrt{\frac{4\ell}{g}}\int_{0}^{\theta_0}\frac{\dd\theta}{\sqrt{\sin^2\left(\nicefrac{\theta_0}{2}\right)-\sin^2\left(\nicefrac{\theta}{2}\right)}}
+\end{aligned}
+\end{equation*}
+
+Now for the clever substitution:
+\begin{equation*}
+\begin{aligned}
+\quad\quad\quad\quad\sin u &= \frac{1}{k}\sin\left(\frac{\theta}{2}\right), \quad k = \sin\left(\frac{\theta_0}{2}\right) \\
+\cos u \frac{\dd u}{\dd\theta} &= \frac{1}{2k}\cos\left(\frac{\theta}{2}\right) \\
+\dd\theta &= \frac{2k\cos u}{\cos\left(\nicefrac{\theta}{2}\right)}\dd u \\
+&= \frac{2k\cos u}{\sqrt{1-k^2\sin^2 u}}\dd u
+\end{aligned}
+\end{equation*}
+
+Finally, substituting our results:
+\begin{equation*}
+\begin{aligned}
+T &= \sqrt{\frac{4\ell}{g}}\int_{0}^{\pi/2}\frac{1}{\sqrt{k^2-k^2\sin^2u}}\frac{2k\cos u}{\sqrt{1-k^2\sin^2 u}}\dd u \\
+&= 2\sqrt{\frac{4\ell}{g}}\int_{0}^{\pi/2}\frac{k\cos u}{k\sqrt{1-\sin^2u}}\frac{\dd u}{\sqrt{1-k^2\sin^2 u}} \\
+&= 4\sqrt{\frac{\ell}{g}}\int_{0}^{\pi/2}\frac{k\cos u}{k\cos u}\frac{\dd u}{\sqrt{1-k^2\sin^2 u}} \\
+\Aboxed{&= 4\sqrt{\frac{\ell}{g}}\int_{0}^{\pi/2}\frac{\dd u}{\sqrt{1-k^2\sin^2 u}}}
+\end{aligned}
+\end{equation*}
+
+\textbf{Problem 5.} Show that $K(0) = \nicefrac{\pi}{2}$, $E(0) = \nicefrac{\pi}{2}$, $K(1) = \infty$, and $E(1) = 1$.
+
+\textbf{Solution.}
+\begin{equation*}
+\begin{aligned}
+K(0) &= \int_{0}^{\pi/2}\frac{\dd\theta}{\sqrt{1 - (0)^2\sin^2\theta}} = \int_{0}^{\pi/2}\dd\theta = \frac{\pi}{2} \\
+E(0) &= \int_{0}^{\pi/2}\sqrt{1 - (0)^2\sin^2\theta}\dd\theta = \int_{0}^{\pi/2}\dd\theta = \frac{\pi}{2} \\
+K(1) &= \int_{0}^{\pi/2}\frac{\dd\theta}{\sqrt{1-\sin^2\theta}} \\
+&= \int_{0}^{\pi/2}\frac{\dd\theta}{\cos\theta} \\
+&= \int_{0}^{\pi/2}\sec\theta\dd\theta \\
+&= \Bigg[\ln|\sec\theta+\tan\theta|\Bigg]_0^{\pi/2} \\
+&= \Bigg[\ln\left|\frac{1+\sin\theta}{\cos\theta}\right|\Bigg]_0^{\pi/2} \\
+&= \lim_{b\to{\pi/2}}\left(\ln\left|\frac{1+\sin b}{\cos b}\right|\right) - \lim_{d\to 0}\left(\ln\left|\frac{1+\sin d}{\cos d}\right|\right) \\
+&= \infty - (-\infty) \\
+&= \infty \\
+E(1) &= \int_{0}^{\pi/2}\sqrt{1-\sin^2\theta}\dd\theta \\
+&= \int_{0}^{\pi/2}\cos\theta\dd\theta \\
+&= \Bigg[\sin\theta\Bigg]_0^{\pi/2} \\
+&= 1
+\end{aligned}
+\end{equation*}
+
+\textbf{Problem 7.} Use Example 2 to calculate the circumference of the ellipse whose equation is $\dfrac{x^2}{4} + \dfrac{y^2}{16} = 1$.
+
+\textbf{Solution.} This ellipse can be described with parametric equations:
+\begin{equation*}
+\begin{aligned}
+x &= 2\cos\theta \\
+y &= 4\sin\theta
+\end{aligned}
+\end{equation*}
+
+Using example 2, the circumference $\ell$ of the ellipse is given by:
+\begin{equation*}
+\begin{aligned}
+\ell &= \int_{0}^{2\pi}\sqrt{(2\sin\theta)^2 + (4\cos\theta)^2}\dd\theta \\
+&= \int_{0}^{2\pi}\sqrt{4\sin^2\theta + 16\cos^2\theta}\dd\theta \\
+&= \int_{0}^{2\pi}\sqrt{16 - 12\sin^2\theta}\dd\theta \\
+&= 4\int_{0}^{2\pi}\sqrt{1 - \frac{3}{4}\sin^2\theta}\dd\theta \\
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+&= 16\int_{0}^{\pi/2}\sqrt{1 - \left(\frac{\sqrt{3}}{2}\right)^2\sin^2\theta}\dd\theta \\
+&= 16E\left(\frac{\sqrt{3}}{2}\right) \\
+&\approx 19.377
+\end{aligned}
+\end{equation*}
+
+\textbf{Extra Problem.} Explain, in your own words, the difference between an \textit{incomplete} and a \textit{complete} elliptic interval.
+
+\textbf{Response.} In the context of a pendulum, a \textit{complete} elliptic interval takes $u$ from 0 to $\nicefrac{\pi}{2}$, meaning $\theta$ goes all the way back to its starting position $\theta_0$ (completing one full swing). An incomplete elliptic interval would represent any fraction of that full swing. In the context of an ellipse, a complete elliptic interval represents the entire circumference of an ellipse, whereas an incomplete one represents some subtended arc.
+
+\section*{Dirac Delta Function Problems}
+\textbf{Problem 2.} Show that $x\delta '(x) = -\delta (x)$.
+
+\textbf{Solution.} We know from page 148 that $x\delta(x) = 0$, and we can differentiate both sides with respect to $x$:
+\begin{equation*}
+\begin{aligned}
+x\delta(x) &= 0 \\
+\frac{\dd}{\dd x}[x\delta(x)] = \delta(x) + x\delta '(x) &= 0 \\
+\Aboxed{x\delta '(x) &= -\delta (x)}
+\end{aligned}
+\end{equation*}
+
+\textbf{Problem 3.} Show that $\delta (ax) = a^{-1}\delta (x)$.
+
+\textbf{Solution.} Let $u = ax$, so that $\dd u = a\dd x$. Now, taking the left-hand side under an integral:
+\begin{equation*}
+\begin{aligned}
+\int f(x)\delta(ax)\dd x &= \int f\left(\frac{u}{a}\right)\delta(u)\frac{1}{a}\dd u \\
+&= \frac{1}{a}f(0)
+\end{aligned}
+\end{equation*}
+
+Now the right:
+\begin{equation*}
+\begin{aligned}
+\int f(x)\left(a^{-1}\delta(x)\right)\dd x &= \frac{1}{a}\int f(x)\delta(x)\dd x \\
+&= \frac{1}{a}f(0)
+\end{aligned}
+\end{equation*}
+
+Since we arrive at the same result no matter which integrand we use, we can say that the two expressions are equal.
+\begin{equation*}
+\begin{aligned}
+\Aboxed{\delta (ax) = a^{-1}\delta (x)}
+\end{aligned}
+\end{equation*}
+\end{document}

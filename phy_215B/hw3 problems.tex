@@ -1,0 +1,51 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Problem Set 3}
+\newcommand{\DueDate}   {February 8, 2018}
+\newcommand{\Course}    {PHY 215B}
+
+\begin{document}
+{\huge\bf\Title}
+
+Due \DueDate \hfill \Course
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 1.} Considering
+\[
+    N\left(\dfrac{xz}{r^2}\right)f\vb(r),
+\]
+where $N$ is a normalization constant, apply the rotation of $C_{4z}$ for the square. Please note that the state is one of the $Y_{2m}$'s in rectangular coordinates. Derive the \textit{simplest} (the \textit{least dimension}) unitary matrix acting on this function and its partner (states which are coupled by the symmetry operators of the group of the square).
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 2.} Show that the dipole operator $(q/c)\vb{A}_x p_x$ (where $q$ is the charge of a particle, $\vb{A}_x$ is a constant vector potential along $x$, and $p_x$ is the $x$--component of the momentum operator) transforms like the $x$--component of an $\ell = 1$ wave function of a hydrogen atom under the symmetry operators of the square. This is the justification that the components of a dipole operator can be classified as one of the irreducible representations of a group as the $\ell = 1$ states.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.} Construct the character table for the group of the square. (It has 8 operators and 5 classes.) Identify which irreducible representation of the state given in Problem 1 belongs to. Work out the selection rule or rules for the optical transition or transitions from the state given in Problem 1 and the electric field of the light given in Problem 2.
+
+\vfill
+Suggested readings: Tinkham 4.5, 4.9 
+
+\end{document}

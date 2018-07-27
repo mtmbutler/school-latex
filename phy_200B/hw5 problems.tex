@@ -1,0 +1,119 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Problem Set 5}
+\newcommand{\DueDate}   {February 16, 2018}
+\newcommand{\Course}    {PHY 200B}
+
+\begin{document}
+{\huge\textbf{\Title}}
+
+Due \DueDate \hfill \Course
+
+\hrulefill
+
+% Zangwill 8.2 Also state the range for alpha and explain why your answer makes sense when alpha approaches the extremes of its range.
+% Zangwill 8.4, 8.7
+% Zangwill 8.10 Feel free to use integral tables, Mathematica, or other integration aids on this one. Zangwill 8.16, 8.18, 8.24
+
+% Comment from Rena: HW5, problem 8.4: There's another difference among versions. The PDF asks for a potential for z>c, which doesn't make much sense as the variables are defined. The 2017 printing correctly asks for the potential for z>b.
+
+\begin{enumerate}
+    \item [\textbf{8.2}] \textbf{Point Charge near a Corner } Two semi-infinite and grounded conducting planes meet at a right angle as seen edge-on in the diagram. Find the charge induced on each plane when a point charge $Q$ is introduced as shown.
+
+    \textbf{Rena:} Also state the range for $\alpha$ and explain why your answer makes sense when $\alpha$ approaches the extremes of its range.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{"hw5 8_2".pdf}
+    \end{figure}
+
+    \item [\textbf{8.4}] \textbf{A Dielectric Slab Intervenes } An infinite slab with dielectric constant $\kappa = \epsilon/\epsilon_0$ lies between $z=a$ and $z=b=a+c$. A point charge $q$ sits at the origin of coordinates. Let $\beta = (\kappa -1)/(\kappa +1)$ and use solutions of Laplace's equation in cylindrical coordinates to show that
+    \[
+        \varphi(z>b) = \frac{q\pqty{1-\beta^2}}{4\pi\epsilon_0}\int\limits_0^\infty \dd{k} \frac{J_0(\kappa\rho)\exp(-kz)}{1-\beta^2\exp(-2kc)} = \frac{q\pqty{1-\beta^2}}{4\pi\epsilon_0}\sum_{n=0}^\infty \frac{\beta^{2n}}{\sqrt{(z+2nc)^2+\rho^2}}.
+    \]
+    Note: The rightmost formula is a sum over image potentials, but it is much more tedious to use images from the start.
+
+    \item [\textbf{8.7}] \textbf{Images in Spheres I } A point charge $q$ is placed at a distance $2R$ from the center of an isolated, conducting sphere of radius $R$. The force on $q$ is observed to be zero at this position. Now move the charge to a distance $3R$ from the center of the sphere. Show that the force on $q$ at its new position is repulsive with magnitude
+    \[
+        F = \frac{1}{4\pi\epsilon_0}\frac{173}{5184}\frac{q^2}{R^2}.
+    \]
+    Hint: A spherical equipotential surface remains an equipotential surface if an image point charge is placed at its center.
+
+    \item [\textbf{8.10}] \textbf{Force between a Line Charge and a Conducting Cylinder } Let $b$ the perpendicular distance between an infinite line with uniform charge per unit length $\lambda$ and the center of an infinite conducting cylinder with radius $R = b/2$.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{"hw5 8_10".pdf}
+    \end{figure}
+    \begin{enumerate}[(a)]
+        \item Show that the charge density induced on the surface of the cylinder is
+        \[
+            \sigma(\phi) = -\frac{\lambda}{2\pi R}\pqty{\frac{3}{5-4\cos\phi}}.
+        \]
+
+        \item Find the force per unit length on the cylinder by an appropriate integration over $\sigma(\phi)$.
+
+        \item Confirm your answer to (b) by computing the force per unit length on the cylinder by another method.
+    \end{enumerate}
+    Hint: Let the single image line inside the sphere fix the potential of the cylinder.
+
+    \textbf{Rena:} Feel free to use integral tables, Mathematica, or other integration aids on this one.
+
+    \item [\textbf{8.16}] \textbf{The Charge Induced by Induced Charge } Maintain the plane $z=0$ at potential $V$ and introduce a grounded conductor somewhere into the space $z>0$. Use the ``magic rule'' for the Dirichlet Green function to find the charge density $\sigma(x,y)$ induced on the $z=0$ plane by the charge $\sigma_0(\vb{r})$ induced on the surface $S_0$ of the grounded conductor.
+
+    \item [\textbf{8.18}] \textbf{Free-Space Green Function in Polar Coordinates } The free-space Green function in two dimensions (potential of a line charge) is $G_0^{(2)}(\vb{r},\vb{r'}) = -\ln \abs{\vb{r}-\vb{r'}}/2\pi\epsilon_0$. Use the method of direct integration to reduce the two-dimensional equation $\epsilon_0\laplacian{G}(\vb{r},\vb{r'}) = -\delta\pqty{\vb{r}-\vb{r'}}$ to a one-dimensional equation and establish the alternative representation
+    \[
+        G_0^{(2)}(\vb{r},\vb{r'}) = -\frac{1}{2\pi\epsilon_0}\ln\rho_> + \frac{1}{2\pi\epsilon_0}\sum_{m=1}^\infty \frac{1}{m} \frac{\rho_<^{\,m}}{\rho_>^{\,m}}\cos m\pqty{\phi - \phi'}.
+    \]
+
+    \item [\textbf{8.24}] \textbf{Electrostatics of a Cosmic String } A \textit{cosmic string} is a one-dimensional object with an extraordinarily large linear mass density ($\mu \sim 10^{22}\,\si{\kg/\m}$) which (in some theories) formed during the initial cool-down of the Universe after the Big Bang. In two-dimensional (2D) general relativity, such an object distorts flat space-time into an extremely shallow cone with the cosmic string at its apex. Alternatively, one can regard flat 2D space as shown below: undistorted but with a tiny wedge-shaped region removed from the physical domain. The usual angular range $0\leq\phi < 2\pi$ is thus reduced to $0\leq\phi < 2\pi /p$ where $p^{-1} = 1 - 4G\mu/c^2$, $G$ is Newton's gravitational constant, and $c$ is the speed of light. The two edges of the wedge are indistinguishable so any physical quantity $f(\phi)$ satisfies $f(0) = f(2\pi /p)$.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{"hw5 8_24".pdf}
+    \end{figure}
+    \begin{enumerate}[(a)]
+        \item Begin with no string. Show that the free-space Green function in 2D is
+        \[
+            G_0(\vb*{\rho},\vb*{\rho'}) = -\frac{1}{2\pi\epsilon_0}\ln\abs{\vb*{\rho}-\vb*{\rho'}}.
+        \]
+
+        \item Now add the string so $p \neq 1$. To find the modified free-space Green function $G_0^p(\vb*{\rho},\vb*{\rho'})$, a representation of the delta function is required which exhibits the proper angular behavior. Show that a suitable form is
+        \[
+            \delta\pqty{\phi-\phi'} = \frac{p}{2\pi}\sum_{m=-\infty}^\infty e^{imp\pqty{\phi-\phi'}}.
+        \]
+
+        \item Exploit the ansatz
+        \[
+            G_0^p\pqty{\rho,\phi,\rho',\phi'} = \frac{p}{2\pi}\sum_{m=-\infty}^\infty e^{imp\pqty{\phi-\phi'}}G_m\pqty{\rho,\rho'}
+        \]
+        to show that
+        \[
+            G_0^p\pqty{\rho,\phi,\rho',\phi'} = \frac{1}{2\pi}\sum_{m=1}^\infty \cos\bqty{mp\pqty{\phi-\phi'}}\frac{1}{m}\pqty{\frac{\rho_<}{\rho_>}}^{mp} - \frac{p}{2\pi}\ln\rho_> .
+        \]
+
+        \item Perform the indicated sum and find a closed-form expression for $G_0^p$. Check that $G_0^1\pqty{\vb*{\rho},\vb*{\rho'}}$ correctly reproduces your answer in part (a).
+
+        \item Show that a cosmic string at the origin and a line charge $q$ at $\vb*{\rho}$ are attracted with a force
+        \[
+            \vb{F} = (p-1)\frac{q^2\vu*{\rho}}{4\pi\epsilon_0\rho}.
+        \]
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

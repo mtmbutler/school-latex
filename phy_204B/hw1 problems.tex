@@ -1,0 +1,187 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Homework 1}
+\newcommand{\DueDate}   {January 22, 2018}
+\newcommand{\Course}    {PHY 204B}
+
+\begin{document}
+{\huge\bf\Title}
+
+Due \DueDate \hfill \Course
+
+% -----------------------------------------------------------------------------
+% Arfken Ed 7, Problems 9.5.2, 9.6.2, 9.7.3, 19.1.2, 19.1.11, 19.1.14,
+% 19.2.6, 19.2.9, 19.2.13, 19.3.2
+% -----------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 9.5.2.} If $\Psi$ is a solution of Laplace's equation, $\nabla^2\Psi = 0$, show that $\partial\Psi/\partial z$ is also a solution.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 9.6.2.} Solve the wave equation, Eq. (9.89), subject to the indicated conditions. Determine $\psi(x,t)$ given that at $t=0$, $\psi_0(x) = \delta(x)$ (Dirac delta function) and the initial time derivative of $\psi$ is zero.
+\begin{equation}
+    \frac{1}{c^2}\pdv[2]{\psi}{t} = \pdv[2]{\psi}{x}\tag{9.89}\label{eq:9.89}
+\end{equation}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 9.7.3.} Solve the PDE
+\begin{equation*}
+\begin{aligned}
+    \pdv{\psi}{t} = a^2\pdv[2]{\psi}{x},
+\end{aligned}
+\end{equation*}
+to obtain $\psi(x,t)$ for a rod of infinite extent (in both the $+x$ and $-x$ directions), with a heat pulse at time $t = 0$ that corresponds to $\psi_0(x) = A\delta(x)$.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.1.2.} In the analysis of a complex waveform (ocean tides, earthquakes, musical tones, etc.), it might be more convenient to have the Fourier series written as
+\begin{equation*}
+\begin{aligned}
+    f(x)= \frac{a_0}{2} + \sum_{n=1}^\infty \alpha_n\cos(nx-\theta_n).
+\end{aligned}
+\end{equation*}
+Show that this is equivalent to Eq. (19.1) with
+\begin{equation*}
+\begin{aligned}
+    a_n &= \alpha_n\cos\theta_n,&\alpha_n^2 = a_n^2 + b_n^2, \\
+    b_n &= \alpha_n\sin\theta_n,&\tan\theta_n = b_n/a_n.
+\end{aligned}
+\end{equation*}
+\textit{Note.} The coefficients $\alpha_n^2$ as a function of $n$ define what is called the \textbf{power spectrum}.
+The importance of $\alpha_n^2$ lies in their invariance under a shift in the phase $\theta_n$.
+\begin{equation}
+    f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n\cos nx + \sum_{n=1}^\infty b_n \sin nx. \tag{19.1}\label{eq:19.1}
+\end{equation}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.1.11.} Verify that $\delta(\varphi_1-\varphi_2) = \frac{1}{2\pi}\sum_{m=-\infty}^\infty e^{im(\varphi_1-\varphi_2)}$ is a Dirac delta function by showing that it satisfies the definition,
+\begin{equation*}
+\begin{aligned}
+    \int_{-\pi}^\pi f(\varphi_1)\frac{1}{2\pi}\sum_{m=-\infty}^\infty e^{im(\varphi_1-\varphi_2)}\dd\varphi_1 = f(\varphi_2)
+\end{aligned}
+\end{equation*}
+\textit{Hint.} Represent $f(\varphi_1)$ by an exponential Fourier series.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.1.14.} Given
+\begin{equation*}
+\begin{aligned}
+    \varphi_1(x) &\equiv \sum_{n=1}^\infty \frac{\sin nx}{n} =
+    \begin{cases} 
+      -\dfrac{1}{2}(\pi+x), &-\pi \leq x< 0, \\[1em]
+      \phantom{-}\dfrac{1}{2}(\pi-x), &\phantom{-}0 <x\leq\pi,
+   \end{cases}
+\end{aligned}
+\end{equation*}
+show by integrating that
+\begin{equation*}
+\begin{aligned}
+    \varphi_2(x) &\equiv \sum_{n=1}^\infty \frac{\cos nx}{n^2} =
+    \begin{cases} 
+      \dfrac{1}{4}(\pi+x)^2-\dfrac{\pi^2}{12}, &-\pi \leq x \leq 0, \\[1em]
+      \dfrac{1}{4}(\pi-x)^2-\dfrac{\pi^2}{12}, &\phantom{-}0\leq x\leq\pi.
+   \end{cases}
+\end{aligned}
+\end{equation*}
+    
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.2.6.} Develop the Fourier series representation of
+\begin{equation*}
+\begin{aligned}
+    f(t) &= 
+    \begin{cases} 
+        0, &-\pi\leq\omega t\leq0, \\[1em]
+        \sin\omega t, &\phantom{-}0\leq\omega t\leq\pi.
+    \end{cases}
+\end{aligned}
+\end{equation*}
+This is the output of a simple half-wave rectifier. It is also an approximation of the solar thermal effect that produces "tides" in the atmosphere.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.2.9.} A triangular wave (Fig. 19.4) is represented by
+\begin{equation*}
+\begin{aligned}
+    f(x) &=
+    \begin{cases} 
+        \phantom{-}x, &\phantom{-}0<x<\pi \\[1em]
+        -x, &-\pi<x<0.
+    \end{cases}
+\end{aligned}
+\end{equation*}
+Represent $f(x)$ by a Fourier series.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.2.13.} 
+\begin{enumerate}[(a)]
+    \item Find the Fourier series representation of
+    \begin{equation*}
+    \begin{aligned}
+        f(x) =
+        \begin{cases}
+            0, &-\pi<x\leq 0 \\[1em]
+            x, &\phantom{-}0\leq x<\pi.
+        \end{cases}
+    \end{aligned}
+    \end{equation*}
+
+    \item From the Fourier expansion show that
+    \begin{equation*}
+    \begin{aligned}
+        \frac{\pi^2}{8} = 1 + \frac{1}{3^2} + \frac{1}{5^2} + \ldots .
+    \end{aligned}
+    \end{equation*}
+        
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.3.2.} Determine the partial sum, $s_n$, of the series in Eq. (19.33) by using
+\begin{equation*}
+\begin{aligned}
+    \text{(a)}\quad \frac{\sin mx}{m} = \int_0^x \cos my\dd y,\quad\quad\text{(b)}\quad \sum_{p=1}^n \cos(2p-1)y = \frac{\sin 2ny}{2\sin y}.
+\end{aligned}
+\end{equation*}
+Do you agree with the result given in Eq. (19.40)?
+\begin{equation}
+    f(x) = \frac{2h}{\pi}\left(\frac{\sin x}{1} + \frac{\sin 3x}{3} + \frac{\sin 5x}{5} + \ldots\right) \tag{19.33}\label{eq:19.33}
+\end{equation}
+\begin{equation}
+    \int_\pi^\infty \frac{\sin\xi}{\xi}\dd\xi = -\mathop{\text{si}}{(\pi)} \tag{19.40}\label{eq:19.40}
+\end{equation}
+
+\end{document}

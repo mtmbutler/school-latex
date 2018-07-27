@@ -1,0 +1,150 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Problem Set 1}
+\newcommand{\DueDate}   {January 17, 2018}
+\newcommand{\Course}    {PHY 200B}
+
+\begin{document}
+{\huge\bf\Title}
+
+Due \DueDate \hfill \Course
+
+%------------------------------------------------------------------------------
+% Do Zangwill problems 2.2, 2.9 (see Comments section!), 3.5, 3.7, 3.12, 3.13, 3.17, 3.24.
+
+% If your book has 25 questions in Chapter 3, then do 3.18 and 3.25 rather than 3.17 and 3.24. The others are unchanged. 
+
+% For problem 3.12, see this picture that shows the geometry. Also Zangwill uses "opening angle" to mean half of the angle you get on bisecting the cone with a plane through its vertex. (The usual meaning is the full angle.)
+
+% For problem 3.25, answer two additional questions: part d, give a simple argument that for Thomson's problem as described in the chapter for N=8, rotating the bottom half of a cube with charges at its eight corners can reduce the potential energy compared to the undeformed cube; and part e, identify the hidden energy term (i.e., it doesn't appear explicitly in the equation) that makes overcharging possible.
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 2.2.} The electric and magnetic fields for time-independent distributions of charge and current which go to zero at infinity are
+\begin{equation*}
+\begin{aligned}
+	\vb{E}(\vb{r}) = \frac{1}{4\pi\epsilon _0}\int\dd[3]{r} '\rho(\vb{r'})\frac{\vb{r}-\vb{r'}}{\left|\vb{r}-\vb{r'}\right|^3} \quad\quad\quad \vb{B}(\vb{r}) = \frac{\mu _0}{4\pi}\int\dd[3]{r} '\vb{j}(\vb{r'})\times\frac{\vb{r}-\vb{r'}}{\left|\vb{r}-\vb{r'}\right|^3}
+\end{aligned}
+\end{equation*}
+\begin{enumerate}[(a)]
+\item Calculate $\nabla\cdot\vb{E}$ and $\nabla\times\vb{E}$.
+\item Calculate $\nabla\cdot\vb{B}$ and $\nabla\times\vb{B}$. The curl calculation exploits the continuity equation for this situation.
+\end{enumerate}	
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 2.9.} If $\alpha$ is a real constant, the continuity equation is satisfied by the charge and current distributions
+\begin{equation*}
+\begin{aligned}
+	\rho (\vb{r},t) = \alpha t \quad\quad\quad \vb{j}(\vb{r},t) = -\frac{\alpha}{3}\vb{r}.
+\end{aligned}
+\end{equation*}
+The given $\vb{j}$ represents current flowing in toward the origin of coordinates. But the given $\rho$ is translationally invariant, i.e., it does not distinguish any origin of coordinates. Resolve this apparent conflict.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.5.} Use Gauss' law to find the electric field when the charge density is:
+
+\begin{enumerate}[(a)]
+\item $\rho (x) = \rho _0 \exp\left\{-\kappa \sqrt{x^2}\right\}$. Express the answer in Cartesian coordinates.
+\item $\rho (x,y) = \rho _0 \exp\left\{-\kappa \sqrt{x^2 + y^2}\right\}$. Express the answer in cylindrical coordinates.
+\item $\rho (x,y,z) = \rho _0 \exp\left\{-\kappa \sqrt{x^2 + y^2 + z^2}\right\}$. Express the answer in spherical coordinates.
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.7.} The $z$-axis coincides with the symmetry axis of a flat disk of radius $a$ in the $x$--$y$ plane. The disk carries a uniform charge per unit area $\sigma < 0$. The rim of the disk carries an additional uniform charge per unit length $\lambda > 0$. Use a side (edge) view and sketch the electric field lines everywhere assuming that the total charge of the disk is positive. Your sketch must have enough detail to reveal any interesting topological features of the field line pattern.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.12.} The figure below shows a circular hole of radius $b$ (white) bored through a spherical shell (gray) with radius $R$ and uniform charge per unit area $\sigma$.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+ 	\centering
+	\includegraphics[width=.6\linewidth]{"hw1 3_12a".png}
+	\caption{figure}{Book image}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+ 	\centering
+	\includegraphics[width=.6\linewidth]{"hw1 3_12b".jpg}
+	\caption{figure}{Provided image}
+\end{minipage}
+\end{figure}
+
+\begin{enumerate}[(a)]
+\item Show that $\vb{E}(P) = \left(\sigma/2\epsilon _0 \right)\left[1 - \sin \left(\theta _0/2\right)\right]\hat{\vb{r}}$, where $P$ is the point at the center of the hole and $\theta _0$ is the opening angle of a cone whose apex is at the center of the sphere and whose open end coincides with the edge of the hole. Perform the calculation by summing the vector electric fields produced at $P$ by all the other points of the shell.
+
+Note: Zangwill uses "opening angle" to mean half of the angle you get on bisecting the cone with a plane through its vertex. (The usual meaning is the full angle.)
+
+\item Use an entirely different argument to explain why $\vb{E}(P) \approx (\sigma/2\epsilon _0)\hat{\vb{r}}$ when $\theta _0 <\!\!< 1$.
+\end{enumerate}
+ 
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.13.} The figure below shows a cube filled uniformly with charge. Determine the ratio $\varphi _0/\varphi _1$ of the potential at the center of the cube to the potential at the corner of the cube. Hint: Think of the cube as formed from the superposition of eight smaller cubes.
+
+\begin{figure}[H]%~\ref{fig:}
+\centering
+\includegraphics[scale=0.2]{"hw1 3_13".png}
+\caption{Book image}
+\end{figure}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.18.} A model hyrdrogen atom is composed of a point nucleus with charge $+|e|$ and an electron charge distribution
+\begin{equation*}
+	\rho\_(\vb{r}) = -\frac{|e|}{\pi a^2 r}\exp\left(-\frac{2r}{a}\right).
+\end{equation*}
+
+Show that the ionization energy (the energy to remove the electronic charge and disperse it to infinity) of this atom is
+\begin{equation*}
+	I = \frac{3}{8}\frac{e^2}{\pi\epsilon_0a}.
+\end{equation*}
+
+Hint: ignore the (divergent) self--energy of the point--like nucleus.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.25.} A common biological environment consists of large macro-ions with charge $Q < 0$ floating in a solution of point-like micro-ions with charge $q > 0$. Experiments show that $N$ micro-ions adsorb onto the surface of each macro-ion. Model one macro-ion as a sphere with its charge uniformly distributed over its surface. As explained in the boxed discussion of “Thomson’s Problem” in the text, the minimum energy configuration of $N >\!\! > 1$ point charges on the surface of a sphere of radius $R$ has total energy
+\begin{equation*}
+\begin{aligned}
+	E(N) = \frac{q^2}{4\pi\epsilon _0 R}\frac{1}{2}\left[N^2 - N^{3/2}\right].
+\end{aligned}
+\end{equation*}
+
+\begin{enumerate}[(a)]
+\item Derive the $N^2$ term in $E(N)$ by smearing out the micro-ion charge over the surface of the macro-ion.
+\item Give a qualitative argument for the $N^{3/2}$ dependence of the second term in $E(N)$ using the fact that the first term does not account for the fact that the charges try to avoid one another on the sphere’s surface.
+\item Find $N$ by minimizing the sum of $E(N)$ and the interaction energy between the micro-ions and the macro-ion. Show thereby that the micro-ions do not simply neutralize the charge of the macro-ion.
+\item Give a simple argument that, for Thomson's problem, as described in the chapter, for $N=8$, rotating the bottom half of a cube with charges at its eight corners can reduce the potential energy compared to the undeformed cube.
+\item Identify the hidden energy term (i.e., it doesn't appear explicitly in the equation) that makes overcharging possible.
+\end{enumerate}
+
+
+\end{document}

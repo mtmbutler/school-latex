@@ -1,0 +1,151 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+% \usepackage{}
+
+%% Metadata
+\renewcommand{\Title}{Rocket Problem}
+\renewcommand{\Course}{PHYS 350}
+\renewcommand{\Date}{December 10, 2016}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\section{Introduction}
+
+Consider a rocket taking off perpendicular to the Earth's surface, ascending vertically from sea level. To simplify the calculations, we can neglect air resistance, assume that the force of gravity is constant ($F_g = -mg$) and that the rocket burns fuel at a constant rate $\alpha$.
+
+In this assignment, we can solve for a nondimensionalized velocity function $v_n(t_n)$ and plot the result for various values of initial mass, exhaust speed and fuel burn rate. We can also compare the result to a real-world scenario by considering the first stage of a Saturn V Rocket.
+
+\section{Solution}
+
+\subsection{Setting Up an Equation}
+Newton's second law can be written as the following:
+\begin{equation}\label{2ndlaw}
+\sum \vb{F}_{\text{ext}} = \frac{\dd\vb{p}}{\dd{t}}
+\end{equation}
+
+In our case, where we have motion in only one direction and the only external force is gravity, we can rewrite equation (\ref{2ndlaw}) like this:
+\begin{equation*}
+\begin{aligned}
+\frac{\dd{p}}{\dd{t}} &= -mg \\
+\dd{p} &= -mg\dd{t}
+\end{aligned}
+\end{equation*}
+
+Now, $\dd{p}$ here represents the slight change in momentum over a small interval $\dd{t}$, so we can express it as $\dd{p} = p(t+\dd{t}) - p(t)$. At time $t$, $p = mv$ by definition. A moment later, the mass of the rocket has decreased and the velocity has increased. However, we can't neglect the bit of fuel (with mass $\dd{m}$) that the rocket has ejected---its momentum must be considered as well. While the bit of fuel was aboard the rocket, its velocity was $v$. But, if it was ejected at a speed $u$ in the opposite direction, then its new velocity is $(v-u)$. So, the equation becomes this:
+\begin{equation*}
+\begin{aligned}
+-mg\dd{t} &= \dd{p} \\
+&= p(t+\dd{t}) - p(t) \\
+&= (m - \dd{m})(v + \dd{v}) + (\dd{m})(v - u) - mv \\
+&= mv + m\dd{v} - v\dd{m} - \dd{m}\dd{v} + v\dd{m} - u\dd{m} - mv \\
+&= m\dd{v} - u\dd{m} \\
+m\dd{v} &= u\dd{m} - mg\dd{t} \\
+\dd{v} &= u\frac{\dd{m}}{m} - g\dd{t}
+\end{aligned}
+\end{equation*}
+
+Note that, in the above, $\dd{m}$ represents the positive mass of the bit of fuel, not the mass lost by the rocket. If we integrated the equation, it would be unclear what it meant---the sum of $\dd{m}$ would be the mass of fuel left behind, but the sum of $\dd{v}$ would represent the change in velocity of the rocket. To make sure that we're only talking about the rocket's mass and velocity, we should negate the $\dd{m}$ term (so that $m$ and $\dd{m}$ refer to the same object). We also haven't yet used our assumption that the rate of fuel consumption is constant:
+\begin{equation*}
+\begin{aligned}
+\frac{\dd{m}}{\dd{t}} &= -\alpha
+\end{aligned}
+\end{equation*}
+\begin{equation}\label{dm}
+\dd{m} = -\alpha\dd{t}
+\end{equation}
+\begin{equation}\label{m}
+m = m_0 - \alpha t
+\end{equation}
+
+Substituting (\ref{dm}) and (\ref{m}) into our slightly adjusted equation:
+\begin{equation}
+\begin{aligned}
+\dd{v} &= u\frac{(-\dd{m})}{m} - g\dd{t} \\
+&= -u\frac{-\alpha \dd{t}}{m_0-\alpha t} -g\dd{t}
+\end{aligned}
+\end{equation}
+
+Now we have a nice, integrable equation involving only velocity and time.
+
+\subsection{Integrating to a Solution}
+
+Now that we have an equation for the rocket's motion, we can integrate it using boundary conditions. Letting the initial velocity be 0, we have the following:
+\begin{equation*}
+\begin{aligned}
+\int_0^v\dd{v'}&= -u\int_0^t\frac{-\alpha \dd{t'}}{m_0-\alpha t'} -g\int_0^t\dd{t'} \\
+v &= -u\;\Bigg[\ln (m_0 - \alpha t')\Bigg]_0^t - gt \\
+&= -u\;\Bigg[\ln (m_0 - \alpha t) - \ln m_0\Bigg] - gt \\
+&= -u\ln \left(\frac{m_0 - \alpha t}{m_0}\right) - gt
+\end{aligned}
+\end{equation*}
+
+In fully simplified form:
+\begin{equation}\label{dimensional}
+v(t) = -u\ln\left(1 - \frac{\alpha}{m_0}t\right)-gt
+\end{equation}
+
+Now, we can nondimensionalize the equation by defining a characteristic time $\tau \equiv m_0/\alpha$ and a characteristic velocity $\tilde{v} \equiv u$ such that $v_n = v/\tilde{v}$ and $t_n = t/\tau$:
+\begin{equation*}
+\frac{v}{u} = -\ln\left(1 - \frac{t}{\tau}\right)- \frac{m_0g}{\alpha u}\frac{t}{\tau}
+\end{equation*}
+
+We can also define a constant $\beta \equiv m_0 g/\alpha u$, which is the ratio of initial weight to thrust, and we're left with this final equation:
+\begin{equation}\label{nondimensional}
+v_n(t_n) = -\ln (1-t_n) - \beta t_n
+\end{equation}
+
+\section{Analysis}
+
+In this section, we can assume that 90\% of our rocket's initial mass is fuel. Substituting that into equation (\ref{m}) shows that we'll run out of fuel at time $t_f = 9m_0/10\alpha$ (or $t_{nf} = 0.9$), and our equation is invalid after that point.
+
+\subsection[Plots for Varying Values of Beta Between 0 and 1]{Plots for Varying Values of $\beta \in [0,1]$}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{"rocket fig1".pdf}
+	\caption{$v_n$ vs. $t_n$ for different values of $\beta$.}\label{Fig:VariableBetaPlot}
+\end{figure}
+
+These results makes good intuitive sense---the lighter the rocket is relative to the thrust, the faster it can go. However, we also see that there are some diminishing returns as $\beta$ gets quite small.
+
+\subsection[What If Beta is Greater than One?]{What If $\beta > 1$?}
+
+If $\beta > 1$, it seems that the rocket shouldn't go anywhere, because the net force (before including the normal force of the launch platform) would be in the downward direction. Here's another plot, given that $\beta = 2$:
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{"rocket fig2".pdf}
+	\caption{$v_n$ vs. $t_n$ for $\beta = 2$.}\label{Fig:BigBetaPlot}
+\end{figure}
+
+So our prediction wasn't quite right---the rocket doesn't get anywhere until it's burned 80\% of its mass away, but after that it takes off just fine. Of course, this isn't a very efficient design, since eight-ninths of your fuel will be wasted on the launchpad, but it does work to an extent.
+
+\subsection{Calculating the Top Speed}
+
+Instead of fixing the ratio of initial fuel mass to initial total mass to 90\%, we can give it an arbitrary value $m_b/m_0$. Using the dimensional equation (\ref{dimensional}) and time $t_f = m_b/\alpha$, we have the following:
+\begin{equation*}
+v(t_f) = -u\ln\left(1 - \frac{\alpha}{m_0}\left(\frac{m_b}{\alpha}\right)\right)-g\left(\frac{m_b}{\alpha}\right)
+\end{equation*}
+\begin{equation}
+v_{max} = -u\ln\left(1 - \frac{m_b}{m_0}\right) - \frac{m_b g}{\alpha}
+\end{equation}
+
+Now, considering the real-world example of the Saturn V rocket near sea level, where $g = 9.81$ $\text{m/s}^2,\, m_0 = 2,290,000$ $\text{kg},\, m_b = 2,160,000$ $\text{kg}$, $u = 4130$ $\text{m/s}$, and $\alpha = 13,091$ $kg/s$. So, $v_{max}$ is given by the following:
+\begin{equation}
+\begin{aligned}
+v_{max} &= -(4,130)\ln\left(1 - \frac{2,160,000}{2,290,000}\right) - \frac{(2,160,000)(9.81)}{(13,091)} \\
+&= 10,230\;\;\text{m/s}
+\end{aligned}
+\end{equation}
+
+The actual max speed of the Saturn V is 2,756 m/s, about 73\% lower than the above value. This is almost certainly due to air resistance, which would have a big impact on such a large object moving at such a high speed through the atmosphere.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{"rocket fig3".png}
+	\caption{Information on the Saturn V rocket from Wikipedia.}\label{Fig:SaturnVInfo}
+\end{figure}
+\end{document}

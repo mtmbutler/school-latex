@@ -1,0 +1,183 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage{nicefrac}
+\usepackage[hidelinks, pdfpagelabels]{hyperref}
+\usepackage[version=4]{mhchem}
+
+%% Metadata
+\renewcommand{\Title}{Synthesis and Conductance of Some Ionic Substances}
+\renewcommand{\Course}{CHEM 238L}
+\renewcommand{\Date}{December 14, 2016}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\newgeometry{left=1in,right=1in,top=1in,bottom=1in} % Define new margins
+\fancyhfoffset[O]{0pt}  % Recalculate footer width
+
+\hypersetup{pageanchor=false}   % Disables the invisible numbering of title page to prevent errors in log parsing
+\begin{titlepage}
+\vspace*{\fill}
+\begin{center}
+\begin{Large}
+    \textbf{\Title}\\[0.5cm]
+\end{Large}
+\begin{large}
+    \Author\\[0.4cm]
+\end{large}
+\begin{table}[H]
+\centering
+\begin{tabular}{r l}
+%Experiment dates: & 26 Oct 2016 \\
+%& 2 Nov 2016 \\ % Date the experiment was performed
+\midrule
+\textbf{Partners} & Lynn Fey \\ % Partner names
+& Kendra Vlieger \\
+& Maya Whalen \\
+\textbf{Date} & \Date \\
+\textbf{Course} & \Course \\
+\midrule
+%Instructor: & Mr. Lakshmi Roy % Instructor/supervisor
+\end{tabular}
+\end{table}
+\end{center}
+
+\textbf{Abstract. } In this experiment, we synthesized two transition metal coordination complexes, \ce{[Co(NH3)4CO3]NO3} and \ce{[Co(NH3)5Cl]Cl2}. We then measured their specific conductances using a Vernier conductance probe, and compared the results to theoretical values deduced from the number of ions in each complex. While the error was large (possibly due to a hastily executed concentration stage), the values still seem to agree with theory.
+\vspace*{\fill}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+\pagenumbering{arabic}
+
+\section{Introduction}
+
+\subsection{Theory}
+\begin{small}
+\textit{Note: All information sourced from lab manual or the University of North Florida document that our lab manual seems to be based on (at} \url{unf.edu/~michael.lufaso/chem3610L/inorganic_lab_exp_2.pdf}\textit{).}
+\end{small}
+
+This experiment was done over two lab periods. In the first, we synthesized \ce{[Co(NH3)4CO3]NO3} (Carbonatotetraamminecobalt(III) Nitrate). In the second, we synthesized \ce{[Co(NH3)5Cl]Cl2} (Chloropentaamminecobalt(III) Chloride). Both of these substances are  \textit{transition metal coordination complexes}, which means that their structure is characterized by a central atom (in this case, cobalt, a transition metal) surrounded by an array of bound molecules or ions called \textit{ligands}.
+
+Since the complexes are ionic, they can conduct electricity when dissolved in water. Water on its own does not conduct electricity well, because it has no mobile charge carriers (like electrons in metal conductors). However, when an ionic compound is dissolved in water, an electric field can generate a current with the charged ions. We are interested in how well these transition metal coordination complexes conduct electricity, which can be quantified as the \textit{specific conductance} ($L$) of the complex.
+
+Conductance can't be measured directly---it is defined as the inverse of \textit{resistance} ($R$), measured as the voltage drop $V$ across a circuit element divided by the current $I$ passed through it. This is described by Ohm's Law:
+\begin{equation}\label{Ohm's Law}
+R = \frac{V}{I}
+\end{equation}
+
+Since resistance depends on the circuit configuration as well as the substance, it's useful to define the specific resistance $\rho$ of a substance, or the resistance of the substance in a known circuit configuration. By convention, the standard configuration is a cell with two 1 cm$^2$ electrodes separated by 1 cm, filled with a solution of the substance in question. If you know $\rho$ for a solution, you can calculate the situational resistance $R$ of the solution under different, nonstandard circumstances with a correcting factor $k$:
+\begin{equation}\label{Situational Resistance}
+R = k\rho
+\end{equation}
+
+$k$ in this context depends only on the specific configuration of a cell, not on the solution. So once you know $k$ for a cell, you can use it to determine $\rho$ for any solution, after measuring $R$. Now, just as conductance is the inverse of resistance, specific conductance ($L$, the quantity we're most interested in for this experiment) is the inverse of specific resistance:
+\[L = \frac{1}{\rho}\]
+
+So we can rewrite equation (\ref{Situational Resistance}):
+\begin{equation}\label{Specific Conductance}
+L = \frac{k}{R}
+\end{equation}
+
+So, after measuring the resistance of a known substance (i.e. a 0.02 molar \ce{KCl} solution), we can calculate $k$ for our particular apparatus using equation (\ref{Situational Resistance}). Then, we can measure the resistance of the ionic substance in question in the same apparatus and calculate its specific conductance using equation (\ref{Specific Conductance}). Then, since we are interested in comparing two different substances with potentially different volumes, concentrations, etc., we should really compare the \textit{molar} conductance $\Lambda_M$, given by the following equation:
+\begin{equation}\label{Lambda_M}
+\begin{aligned}
+\Lambda_M &= \frac{1000}{M}L \\
+&= \frac{1000k}{MR}
+\end{aligned}
+\end{equation}
+
+Fortunately, in our case, the measuring device is a Vernier conductivity probe, which will take care of the complications for us and directly output the value for $L$, so we can use the first line of equation (\ref{Lambda_M}) right away. Once we calculate $\Lambda_M$, we can find the number of ions in the measured substance using this table reproduced from the lab manual:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        Number of Ions & $\Lambda_M$($\nicefrac{\text{cm}^3}{\Omega\cdot\text{mol}}$) \\
+        \midrule
+        2 & \phantom{2}96 - 150 \\
+        3 & 225 - 273 \\
+        4 & 380 - 435 \\
+        5 & 540 - 560 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Theoretical values for $\Lambda_M$ for different numbers of ions in a substance.}
+\end{table}
+
+\subsection{Synthesis}
+The reaction we'll be using to synthesize our first coordination complex involves the following unbalanceable equation from the lab manual:
+
+\begin{equation}
+\ce{Co(NO3)2 + NH3(aq) + (NH4)2CO3 + H2O2 -> [Co(NH3)4CO3]NO3 + NH4NO3 + H2O}
+\end{equation}
+
+The equation is unbalanceable for the following reasons: The first term of the left-hand side mandates that the ratio of \ce(Co) to \ce{NO3} be 1:2. Since \ce{NO3} is in the first two terms of the right-hand side, this implies that those terms must have the same coefficient. However, the third term on the left-hand side mandates that the ratio of \ce{NH4} to \ce{CO3} be 2:1, which implies that the first two terms of the right-hand side must have different coefficients (as one contains \ce{NH4} and the other \ce{CO3}). This is a contradiction, meaning it can't be balanced in its current form. However, the vital parts are all here - the equation could be accounted for by recognizing all the different byproducts of the reaction, which are unimportant for our purposes.
+
+Synthesizing the second coordination complex involves three reactions:
+\begin{equation}
+\begin{aligned}
+\ce{[Co(NH3)4CO3)]+ + 2HCl &-> [Co(NH3)4(OH2)Cl]^{+2} + CO2(g) + Cl-}\\
+\ce{[Co(NH3)4(OH2)Cl]^{+2} + NH3(aq) &-> [Co(NH3)5(OH2)]^{+3} + Cl-}\\
+\ce{[Co(NH3)5(OH2)]^{+3} + 3HCl &-> [Co(NH3)5Cl]Cl2(s) + H2O + 3H+}
+\end{aligned}
+\end{equation}
+
+\subsection{Educational Value}
+This experiment has several uses in the instruction of inorganic chemistry. First, coordination complexes are common in the chemistry world, and appear in many different contexts. Second, the procedure is fairly simple to execute and produces an interesting, colorful result. Last, the experiment introduces students to conductivity, an important property of chemicals and a good example of an indirectly measurable quantity.
+
+\section{Procedure}
+
+\subsection{Day 1: Synthesis of Carbonatotetraamminecobalt(III) Nitrate}
+
+To begin, 10.3 grams of \ce{(NH4)2CO3} were dissolved in 30 mL of distilled water. Then, 30 mL \ce{NH4OH} were added. At the same time, 7.5 grams of \ce{Co(OH2)6(NO3)2} were dissolved in 30 mL of distilled water, to which was then slowly added 4 mL of \ce{H2O2}. While the second solution was stirred, the first solution was poured into it.
+
+The resultant fluid was poured into a 150 mL beaker and placed on a hot plate, slowly concentrating to about 80 mL by boiling. During concentration, 2.52 grams of \ce{(NH4)2CO3} were gradually added. After concentration, the solution was vacuum filtered in a B\"{u}chner funnel. The filtrate was cooled in an ice bath for about ten minutes, then poured through the vacuum filter apparatus again to filter out the crystals that formed. While still in the funnel, the crystals were washed with less than 5 mL each of cold distilled water and ethanol, then weighed as the yield.
+
+\subsection{Day 2: Synthesis of Chloropentaamminecobalt(III) Chloride}
+
+\begin{small}
+Note: This day's synthesis required the result of the previous day, but since the Day 1 yield was unusually low, all the recommended values were halved.
+\end{small}
+
+First, 2.5 grams of Day 1's result were dissolved in 25 mL of distilled water, and \ce{CO2} gas was expelled after about 3 mL of HCl were added. Then, concentrated aqueous \ce{NH3} was added until the solution had a neutral pH, then an excess 2.5 mL were added to make the solution slightly basic. Then the solution was heated for 20 minutes.
+
+After letting the solution cool briefly, 35 mL \ce{HCl} were added, and the solution was reheated for 20 more minutes. After heating, the solution was allowed to cool to room temperature before being decanted from the crystals. Using the vacuum filter apparatus, the crystals were washed with less than 5 mL each of cold distilled water and ethanol. Again, the resulting crystals were weighed as the yield.
+
+\subsection{Measuring Conductance}
+
+At the end of Day 2, the conductance of the Day 1 result \textit{prepared by the instructor} as well as our Day 2 result were measured using the apparatus shown below:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{"formal report fig 1".png}
+\caption{The Vernier conductance probe used in the experiment.}
+\end{figure}
+
+For comparison's sake, the conductance of three other solutions (\ce{NaCl}, \ce{MgCl2}, and \ce{Na2SO4}) was also measured with the probe.
+
+\section{Results and Calculations}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccccc}
+        \toprule
+        Chemical & $\Lambda_M$($\nicefrac{\text{cm}^3}{\Omega\cdot\text{mol}}$) & \# of Ions & FW ($\nicefrac{\text{g}}{\text{mol}}$) & Mass in Solution (mg) & Volume (mL) \\
+        \midrule
+        \ce{NaCl} & 131 & 2 & \phantom{1}58.5 & \phantom{1}58.5 & 1.0 \\
+        \ce{MgCl2} & 212 & 3 & \phantom{1}94.3 & \phantom{1}94.3 & 1.0 \\
+        \ce{Na2SO4} & 275 & 3 & 142.0 & 142.0 & 1.0 \\
+        \ce{[Co(NH3)4CO3]NO3} & 156 & 2 & 249.0 & 125.0 & 0.5 \\
+        \ce{[Co(NH3)5Cl]Cl2} & 179 & 3 & 250.0 & 125.0 & 0.5 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Specific conductance and corresponding number of ions for five different solutions, given their concentrations}
+\end{table}
+
+$\Lambda_M$ was taken directly from the Vernier probe, and the number of ions for each solution was inferred from Table 1 on page 2. While the margin for error is large for the two synthesized substances (our values for $\Lambda_M$ are outside the ranges provided on Table 1), the rounded measurements for $\Lambda_M$ do imply the correct number of ions (which can be theoretically deduced from their formulas---i.e., \ce{[Co(NH3)5Cl]Cl2} clearly has one cation and two anions, or three ions total).
+
+\section{Conclusions and Discussion}
+
+While our results aren't ideal, they do align with theory to the extent that we can rule out a systematic error. I speculate that the source of the error in our experiment was the concentration phase on Day 1. The procedure we followed suggested we concentrate to 50 mL without boiling, but we didn't have enough time to do that so we concentrated the solution less and \textit{did} boil it. This makes it almost certain that we lost a significant amount of product to the air, and that our final product was more diluted than it ought to have been. This error didn't appear in the Day 1 conductance measurement because that solution was made with product prepared by the instructor. Clearly the error did appear in the Day 2 conductance measurement, as the measured specific conductance is much lower than would be expected for a 3-ion solution (which follows from a solution that is more diluted).
+
+Ultimately, the experiment was successful in demonstrating the concept of conductance, though there was a large error in the result. The experiment would have likely produced a value closer to agreement with theory if the concentration stage were done properly, as suggested in the original procedure.
+
+\end{document}

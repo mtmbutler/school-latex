@@ -1,0 +1,196 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage{mathtools}  % Starred matrix environments
+
+%% Metadata
+\renewcommand{\Title}{Coriolis Force Problem}
+\renewcommand{\Course}{PHYS 350}
+\renewcommand{\Date}{November 17, 2016}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\section{Introduction}
+
+Consider a marble at latitude $\lambda$ rolling on a smooth surface with speed $v_0$, in a direction $\beta$ clockwise from due north. There is no friction force.
+
+In a coordinate system where the $x$--axis points due East and the $y$--axis points due North, set up the problem to get equations of motion for the marble, assuming that the marble does not travel far enough for its coordinates to change.
+
+Solve for $x(t)$, $y(t)$ and $z(t)$ and plot in Matlab.
+
+\section{Solution}
+
+In the marble's local, non-inertial coordinate system, there are four forces acting on the marble: the gravitational pull of the Earth, the normal force due to the smooth surface, and the centrifugal and Coriolis forces due to the Earth's rotation. The first three forces act only in the $z$--direction, but we've already constrained the marble to not move that way. In other words, no matter what gravity and rotation do  to push or pull the marble from the Earth's center, the normal force will cancel those effects out. So, to discover the marble's motion, we need only solve for the Coriolis force and consider the $x$-- and $y$--components of the resulting acceleration. The Coriolis force is given by the following:
+\begin{equation}
+\vb{F}_{\text{Coriolis}} = -2m(\vb*{\omega}\times \vb{v})
+\end{equation}
+
+In the inertial frame of the Earth's rotation, $\vb*{\omega}_I$ points solely in the $z$-direction. Since we're interested in the marble's motion in its own reference frame, we must find the transformed local vector $\vb*{\omega}_L$. We can define the $x$-axis of both coordinate systems to be in the same direction (normal to the plane containing the marble and the north pole), so the transformation is simply a two-dimensional (clockwise in the $yz$-plane) rotation by $\phi$, the complement to $\lambda$:
+
+\begin{equation*}
+\vb*{\omega}_L = \textbf{A}\vb*{\omega}_I
+= 
+\begin{pmatrix*}[c]
+1 & 0 & \phantom{-}0 \\
+0 & \cos\phi & -\sin\phi \\
+0 & \sin\phi & \phantom{-}\cos\phi
+\end{pmatrix*}
+\begin{pmatrix*}[c]
+0 \\
+0 \\
+\omega \\
+\end{pmatrix*}
+=
+\begin{pmatrix*}[c]
+0 \\
+-\omega\sin\phi \\
+\phantom{-}\omega\cos\phi \\
+\end{pmatrix*}
+\end{equation*}
+
+Now, because we were given the co-latitude $\lambda$, we can rewrite $\vb*{\omega}_L$ as the following:
+\begin{equation*}
+\vb*{\omega}_L =
+\begin{pmatrix*}[c]
+0 \\
+\omega\cos\lambda \\
+\omega\sin\lambda
+\end{pmatrix*}
+\end{equation*}
+
+So, the Coriolis force is given by:
+\begin{equation*}
+\begin{aligned}
+\vb{F}_{\text{Coriolis}} &= -2m(\vb*{\omega}\times \vb{v}) \\
+&= -2m
+\begin{vmatrix*}[c]
+\vu{x} & \vu{y} & \vu{z} \\
+0 & \omega\cos\lambda & \omega\sin\lambda \\
+v_x & v_y & 0
+\end{vmatrix*} \\
+&=
+(2\omega v_y \sin\lambda)\vu{x} + (-2\omega v_x \sin\lambda)\vu{y} + (2\omega v_x \cos\lambda)\vu{z}
+\end{aligned}
+\end{equation*}
+
+Since the $z$-component will be canceled by the normal force, we're left with the following net acceleration:
+\begin{equation*}
+\begin{aligned}
+\vb{a} &= (2\omega v_y \sin\lambda)\vu{x} - (2\omega v_x \sin\lambda)\vu{y}
+\end{aligned}
+\end{equation*}
+
+We can break the acceleration up into components and express them in terms of velocity, giving us a simple system of differential equations.
+\begin{equation}\label{vxdot}
+\dot{v}_x = (2\omega\sin\lambda)v_y
+\end{equation}
+\begin{equation}\label{vydot}
+\dot{v}_y = -(2\omega\sin\lambda)v_x
+\end{equation}
+
+By differentiating (\ref{vxdot}) and substituting (\ref{vydot}), we can find $v_x$ as a function of time:
+\begin{equation*}
+\begin{aligned}
+\ddot{v}_x &= (2\omega\sin\lambda)\dot{v}_y \\
+&= -(4\omega^2\sin^2\lambda)v_x
+\end{aligned}
+\end{equation*}
+
+Now we have a linear differential equation whose characteristic polynomial has imaginary roots:
+\begin{equation*}
+\begin{gathered}
+\ddot{v}_x + (4\omega^2\sin^2\lambda)v_x = 0 \\
+v_x = c_1\sin((2\omega\sin\lambda)t) + c_2\cos((2\omega\sin\lambda)t)
+\end{gathered}
+\end{equation*}
+
+Now substituting back into (\ref{vydot}):
+\begin{equation*}
+\dot{v}_y = -(2\omega\sin\lambda)(c_1\sin((2\omega\sin\lambda)t) + c_2\cos((2\omega\sin\lambda)t))
+\end{equation*}
+
+When we integrate up to $v_y$, the constant of integration must be $0$ because $v_y$ is a linear multiple of $\dot{v}_x$, which has no constant term:
+\begin{equation*}
+v_y = c_1\cos((2\omega\sin\lambda)t) - c_2\sin((2\omega\sin\lambda)t))
+\end{equation*}
+
+Now, applying the initial condition that $\vb{v}_0 = \langle v_0\sin\beta, v_0\cos\beta, 0\rangle$ to solve for the constants of integration, we get the following results:
+\begin{equation}
+\begin{gathered}
+v_x = v_0\cos\beta\sin((2\omega\sin\lambda)t) + v_0\sin\beta\cos((2\omega\sin\lambda)t) \\
+v_y = v_0\cos\beta\cos((2\omega\sin\lambda)t) - v_0\sin\beta\sin((2\omega\sin\lambda)t)
+\end{gathered}
+\end{equation}
+
+If we center the local coordinate system on the marble's initial position, such that $x_0 = y_0 = z_0 = 0$, and integrate the above functions, we arrive at the following:
+
+\begin{equation}
+\begin{gathered}
+x(t) = \frac{v_0\cos\beta}{2\omega\sin\lambda} - \frac{v_0\cos\beta}{2\omega\sin\lambda}\cos((2\omega\sin\lambda)t) + \frac{v_0\sin\beta}{2\omega\sin\lambda}\sin((2\omega\sin\lambda)t) \\
+y(t) = -\frac{v_0\sin\beta}{2\omega\sin\lambda} + \frac{v_0\cos\beta}{2\omega\sin\lambda}\sin((2\omega\sin\lambda)t) + \frac{v_0\sin\beta}{2\omega\sin\lambda}\cos((2\omega\sin\lambda)t) \\
+\end{gathered}
+\end{equation}
+
+We can nondimensionalize our results with the following definitions of characteristic time $\tau$ and characteristic length $\ell$:
+\begin{equation}
+\begin{gathered}
+\tau = \frac{1}{2\omega\sin\lambda} \\
+\ell = v_0\tau
+\end{gathered}
+\end{equation}
+
+Letting $y_n = \frac{y}{\ell}$, $x_n = \frac{x}{\ell}$, and $t_n = \frac{t}{\tau}$, we have the following:
+\begin{equation*}
+\begin{gathered}
+x_n = \cos\beta - \cos\beta\cos t_n + \sin\beta\sin t_n \\
+y_n = -\sin\beta + \cos\beta\sin t_n + \sin\beta\cos t_n \\
+\end{gathered}
+\end{equation*}
+
+We can use angle addition trig formulas to simplify even further:
+\begin{equation}
+\begin{gathered}
+x_n = \cos\beta - \cos(t_n + \beta) \\
+y_n = -\sin\beta + \sin(t_n + \beta) \\
+\end{gathered}
+\end{equation}
+
+Including the trivial solution for $z_n$, we have this position function for the marble's path:
+\begin{equation}
+\vb{r}_n =
+\begin{pmatrix}
+ \phantom{-}\cos\beta - \cos(t_n + \beta) \\
+ -\sin\beta + \sin(t_n + \beta) \\
+ 0
+ \end{pmatrix}
+\end{equation}
+
+\section{Visualization}
+
+We can visualize the above solutions by plotting $x_n$ and $y_n$ separately vs. $t_n$:
+\begin{figure}[H]
+	\centering
+    \includegraphics[scale=0.44]{"coriolis time".pdf}
+    \caption{$x_n$ and $y_n$ vs. $t_n$\\for $\beta = \frac{\pi}{2}$}\label{Fig:timePlot}
+\end{figure}
+
+This is somewhat hard to interpret. The best visualization is a parametric plot showing $y_n$ vs. $x_n$ for various initial values of $\beta$ (the angle of the initial velocity relative to local $y$-direction):
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.44]{"coriolis parametric".pdf}
+    \caption{$x_n$ and $y_n$ vs. $t_n$\\for $\beta = \frac{\pi}{2}$}\label{Fig:parametricPlot}
+\end{figure}
+
+Now we can clearly see that the Coriolis force causes the marble to swerve to the right, no matter the direction of its initial velocity. For the sake of comparison, here is a photograph of Hurricane Irene in the northern hemisphere:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{"coriolis hurricane".jpg}
+	\caption{Hurricane Irene approaching Florida. Note the similarity of the shape to the \\parametric  curve plot above - hurricanes are largely caused by the Coriolis force!}\label{Fig:hurricane}
+\end{figure}
+
+\end{document}

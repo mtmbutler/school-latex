@@ -1,0 +1,664 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage{nicefrac}   % nicefrac
+\usepackage{mathtools}  % Aboxed
+\usepackage{bbding}     % checkmark
+
+%% Metadata
+\renewcommand{\Title}{Homework 5}
+\renewcommand{\Course}{PHY 204A}
+\renewcommand{\Date}{November 5, 2017}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\textbf{Problem 7.5.6.} Obtain two series solutions of the confluent hypergeometric equation
+\begin{equation*}
+\begin{aligned}
+	xy'' + (c-x)y' - ay = 0.
+\end{aligned}
+\end{equation*}
+Test your solutions for convergence.
+
+\textbf{Solution.} Expressing $y$ as a power series and calculating the first and second derivatives:
+\begin{equation*}
+\begin{aligned}
+	y &= x^s(a_0 + a_1 x + a_2 x^2 + \dots ) \\
+	  &= \sum_{j=0}^\infty a_j x^{s+j} \\
+	y' &= \sum_{j=0}^\infty a_j(s+j)  x^{s+j-1}\\
+	y'' &= \sum_{j=0}^\infty a_j(s+j)(s+j-1) x^{s+j-2}
+\end{aligned}
+\end{equation*}
+Substituting into the original differential equation:
+\begin{equation*}
+\begin{aligned}
+	0 &= x\sum_{j=0}^\infty a_j(s+j)(s+j-1) x^{s+j-2} + (c-x)\sum_{j=0}^\infty a_j(s+j)  x^{s+j-1} - a\sum_{j=0}^\infty a_j x^{s+j} \\
+	&= \sum_{j=0}^\infty a_j(s+j)(s+j-1) x^{s+j-1} + \sum_{j=0}^\infty c a_j(s+j)  x^{s+j-1} - \sum_{j=0}^\infty a_j(s+j)  x^{s+j} - a\sum_{j=0}^\infty a_j x^{s+j} \\
+	&= \sum_{j=0}^\infty a_j(c+s+j-1)(s+j)x^{s+j-1} - \sum_{j=0}^\infty a_j(a+s+j)x^{s+j} 
+\end{aligned}
+\end{equation*}
+Now, when $j=0$, the $x^{s-1}$ term only exists in the first sum, so its coefficient must be 0:
+\begin{equation*}
+\begin{aligned}
+	a_0(c+s-1)s = 0
+\end{aligned}
+\end{equation*}
+This indicial equation tells us that $s$ must be $0$ or $1-c$, as $a_0$ is by definition the coefficient of the first nonzero term. Considering first the case where $s=0$, we have:
+\begin{equation*}
+\begin{aligned}
+	0 &= \sum_{j=1}^\infty a_j(c+j-1)jx^{j-1} - \sum_{j=0}^\infty a_j(a+j)x^{j} \\
+	&= \sum_{j=0}^\infty a_{j+1}(c+j)(j+1)x^{j} - \sum_{j=0}^\infty a_j(a+j)x^{j} \\
+	&= \sum_{j=0}^\infty \left[a_{j+1}(c+j)(j+1)-a_j(a+j)\right]x^j
+\end{aligned}
+\end{equation*}
+So each coefficient must vanish individually, giving us a recurrence relation:
+\begin{equation*}
+\begin{aligned}
+	a_{j+1}(c+j)&(j+1)-a_j(a+j)=0 \\
+	a_{j+1} &= \frac{a+j}{(c+j)(j+1)}a_j
+\end{aligned}
+\end{equation*}
+Finding the first few terms:
+\begin{equation*}
+\begin{aligned}
+	a_1 &= \frac{a}{c}a_0 \\
+	a_2 &= \frac{a+1}{2(c+1)}a_1 = \frac{a(a+1)}{2c(c+1)}a_0 \\
+	a_3 &= \frac{a+2}{3(c+2)}a_2 = \frac{a(a+1)(a+2)}{6c(c+1)(c+2)}a_0 \\
+	a_j &= \frac{(a+j-1)!(c-1)!}{j!(c+j-1)!(a-1)!}a_0
+\end{aligned}
+\end{equation*}
+So our first solution is:
+\begin{equation*}
+\begin{aligned}
+	\boxed{y = a_0\sum_{j=0}^\infty \frac{(a+j-1)!(c-1)!}{(c+j-1)!(a-1)!} \frac{x^{j}}{j!}}
+\end{aligned}
+\end{equation*}
+Now the case where $s=1-c$:\\
+\begin{equation*}
+\begin{aligned}
+	0 &= \sum_{j=1}^\infty a_j jx^{j-c} - \sum_{j=0}^\infty a_j(1+a+j-c)x^{1+j-c} \\
+	&= \sum_{j=0}^\infty a_{j+1} (j+1)x^{1+j-c} - \sum_{j=0}^\infty a_j(1+a+j-c)x^{1+j-c} \\
+	&= \sum_{j=0}^\infty \left[a_{j+1}(j+1)-a_j(1+a+j-c)\right]x^{1+j-c}
+\end{aligned}
+\end{equation*}
+Finding the recurrence relation:
+\begin{equation*}
+\begin{aligned}
+	a_{j+1}(j+1)&-a_j(1+a+j-c) = 0 \\
+	a_{j+1} &= \frac{j+1+a-c}{j+1}a_j
+\end{aligned}
+\end{equation*}
+Finding an explicit expression by inspection:
+\begin{equation*}
+\begin{aligned}
+	a_1 &= (1+a-c)a_0 \\
+	a_2 &= \frac{2+a-c}{2}a_1 = \frac{(2+a-c)(1+a-c)}{2\cdot 1}a_0 \\
+	a_3 &= \frac{3+a-c}{3}a_2 = \frac{(3+a-c)(2+a-c)(1+a-c)}{3\cdot 2\cdot 1}a_0 \\
+	a_j &= \frac{(j+a-c)!}{j!(a-c)!}a_0
+\end{aligned}
+\end{equation*}
+So our second solution is:
+\begin{equation*}
+\begin{aligned}
+	\boxed{y = a_0\sum_{j=0}^\infty \frac{(j+a-c)!}{(a-c)!} \frac{x^{j}}{j!}}
+\end{aligned}
+\end{equation*}
+We can use the ratio test to test the convergence of both solutions, letting $b_j$ be the full $j^{\text{th}}$ term of a series. For the first solution:
+\begin{equation*}
+\begin{aligned}
+	L_1 = \lim_{j\to\infty}\frac{b_{j+1}}{b_j} &= \lim_{j\to\infty}\left(\frac{(a+j)!(c-1)!}{(c+j)!(a-1)!} \frac{x^{j+1}}{(j+1)!} \cdot \frac{(c+j-1)!(a-1)!}{(a+j-1)!(c-1)!} \frac{j!}{x^{j}}\right) \\
+	&= \lim_{j\to\infty}\left(\frac{a+j}{c+j}\frac{x}{j+1}\right) \\
+	&= \lim_{j\to\infty}\left(\frac{\nicefrac{a}{j}+1}{\nicefrac{c}{j}+1}\frac{x}{j+1}\right) \\
+	&= 0
+\end{aligned}
+\end{equation*}
+So the first solution converges for all $x$, provided that it is defined, so we require that $a$ and $c$ are integers greater than or equal to $1$. Now testing the second solution:
+\begin{equation*}
+\begin{aligned}
+	L_2 = \lim_{j\to\infty}\frac{b_{j+1}}{b_j} &= \lim_{j\to\infty}\left(\frac{(j+1+a-c)!}{(a-c)!} \frac{x^{j+1}}{(j+1)!} \cdot \frac{(a-c)!}{(j+a-c)!} \frac{j!}{x^{j}}\right) \\
+	&= \lim_{j\to\infty}\left((j+1+a-c)\frac{x}{j+1}\right) \\
+	&= \lim_{j\to\infty}\left(\left(1+\frac{a-c}{j+1}\right)x\right) \\
+	&= x + \lim_{j\to\infty}\left(\frac{a-c}{j+1}x\right) \\
+	&= x
+\end{aligned}
+\end{equation*}
+So the second solution only converges for $x \in (-1,1)$, and for integers $a$ and $c$ that satisfy $a-c \geq 0$.
+
+\begin{center}
+\line(1,0){300}
+\end{center}
+%---------------------------------------------------------------------
+\textbf{Problem 7.5.10.} If the parameter $b^2$ in Eq. (7.53) is equal to 2, Eq. (7.53) becomes
+\begin{equation*}
+\begin{aligned}
+	y'' + \frac{1}{x^2}y'-\frac{2}{x^2}y = 0.
+\end{aligned}
+\end{equation*}
+From the indicial equation and the recurrence relation, \textbf{derive} a solution $y = 1 + 2x + 2x^2$. Verify that this is indeed a solution by substituting back into the differential equation.
+
+\textbf{Solution.} Expressing $y$ as a power series and calculating the first and second derivatives:
+\begin{equation*}
+\begin{aligned}
+	y &= x^s(a_0 + a_1 x + a_2 x^2 + \dots ) \\
+	  &= \sum_{j=0}^\infty a_j x^{s+j} \\
+	y' &= \sum_{j=0}^\infty a_j(s+j)  x^{s+j-1}\\
+	y'' &= \sum_{j=0}^\infty a_j(s+j)(s+j-1) x^{s+j-2}
+\end{aligned}
+\end{equation*}
+Substituting into the original differential equation:
+\begin{equation*}
+\begin{aligned}
+	0 &= \sum_{j=0}^\infty a_j(s+j)(s+j-1) x^{s+j-2} + \frac{1}{x^2}\sum_{j=0}^\infty a_j(s+j)  x^{s+j-1} -\frac{2}{x^2}\sum_{j=0}^\infty a_j x^{s+j} \\
+	&= \sum_{j=0}^\infty a_j(s+j)(s+j-1) x^{s+j-2} + \sum_{j=0}^\infty a_j(s+j)  x^{s+j-3} -\sum_{j=0}^\infty 2a_j x^{s+j-2} \\
+	&= a_0 sx^{s-3} + \sum_{j=0}^\infty a_j\left((s+j)(s+j-1)-2\right)x^{s+j-2} + \sum_{j=1}^\infty a_j(s+j)  x^{s+j-3} \\
+	&= a_0 sx^{s-3} + \sum_{j=0}^\infty a_j\left((s+j)(s+j-1)-2\right)x^{s+j-2} + \sum_{j=0}^\infty a_{j+1}(s+j+1)  x^{s+j-2} \\
+	&= a_0 sx^{s-3} + \sum_{j=0}^\infty \left[a_j((s+j)(s+j-1)-2)+a_{j+1}(s+j+1)\right]x^{s+j-2}
+\end{aligned}
+\end{equation*}
+Now, for the first term to be 0, $s$ must be 0. So we have:
+\begin{equation*}
+\begin{aligned}
+	0 &= \sum_{j=0}^\infty \left[a_j(j(j-1)-2)+a_{j+1}(j+1)\right]x^{j-2}
+\end{aligned}
+\end{equation*}
+Which gives us the recurrence relation:
+\begin{equation*}
+\begin{aligned}
+	a_{j+1} &= \frac{2-j(j-1)}{j+1}a_j \\
+	&= \frac{2+j-j^2}{j+1}a_j \\
+	&= \frac{(2-j)(1+j)}{j+1}a_j \\
+	&= (2-j)a_j
+\end{aligned}
+\end{equation*}
+Finding the first few coefficients:
+\begin{equation*}
+\begin{aligned}
+	a_1 &= 2a_0 \\
+	a_2 &= a_1 = 2a_0 \\
+	a_3 &= 0
+\end{aligned}
+\end{equation*}
+This means that all the terms past the third are also zero, so our solution is, as required:
+\begin{equation*}
+\begin{aligned}
+	y &= a_0 + 2a_0x + 2a+0x^2 \\
+	\Aboxed{ y &= a_0(1+2x+2x^2)} \\
+	y' &= a_0(2 + 4x) \\
+	y'' &= a_0(4)
+\end{aligned}
+\end{equation*}
+Substituting back into the original differential equation:
+\begin{equation*}
+\begin{aligned}
+	\text{LHS} &= a_0(4) + \frac{1}{x^2}a_0(2 + 4x)-\frac{2}{x^2}a_0(1+2x+2x^2) \\
+	&= a_0\left[4+\frac{2}{x^2}+\frac{4}{x}-\frac{2}{x^2}-\frac{4}{x}-4\right] = 0 = \text{RHS}
+\end{aligned}
+\end{equation*}
+%---------------------------------------------------------------------
+\textbf{Problem 7.6.3.} Using the Wronskian determinant, show that the set of functions
+\begin{equation*}
+\begin{aligned}
+	\left\{1, \frac{x^n}{n!}(n = 1, 2, \dots, N)\right\}
+\end{aligned}
+\end{equation*}
+is linearly independent.
+
+\textbf{Solution.} The Wronskian for this set of functions is:
+\begin{equation*}
+\begin{aligned}
+\mathbf{W} &= 
+\begin{vmatrix*}[c]
+1 & x & \frac{x^2}{2} & \dots & \frac{x^n}{n!} \\
+0 & 1 & x & \dots & \frac{x^{n-1}}{(n-1)!} \\
+0 & 0 & 1 & \dots & \frac{x^{n-2}}{(n-2)!} \\
+\dots & \dots & \dots & \dots & \dots \\
+0 & 0 & 0 & \dots & 1
+\end{vmatrix*} 
+\end{aligned}
+\end{equation*}
+This can be expanded along the first column, giving:
+\begin{equation*}
+\begin{aligned}
+\mathbf{W} &= 
+1 \cdot \begin{vmatrix*}[c]
+1 & x & \dots & \frac{x^{n-1}}{(n-1)!} \\
+0 & 1 & \dots & \frac{x^{n-2}}{(n-2)!} \\
+\dots & \dots & \dots & \dots \\
+0 & 0 & \dots & 1
+\end{vmatrix*} 
+\end{aligned}
+\end{equation*}
+This also can be expanded along the first column, and so can the result, and that result, etc. until we arrive here:
+\begin{equation*}
+\begin{aligned}
+\mathbf{W} &= 
+\begin{vmatrix*}[c]
+1 & x\\
+0 & 1
+\end{vmatrix*} = 1
+\end{aligned}
+\end{equation*}
+Since the Wronskian is not 0, the set of functions is linearly independent.
+
+\begin{center}
+\line(1,0){300}
+\end{center}
+%---------------------------------------------------------------------
+\textbf{Problem 7.6.9.} Legendre's differential equation
+\begin{equation*}
+\begin{aligned}
+	(1-x^2)y'' - 2xy' + n(n+1)y = 0
+\end{aligned}
+\end{equation*}
+has a regular solution $P_n(x)$ and an irregular solution $Q_n(x)$. Show that the Wronskian of $P_n$ and $Q_n$ is given by
+\begin{equation*}
+\begin{aligned}
+	P_n(x)Q'_n(x) - P'_n(x)Q_n(x) = \frac{A_n}{1-x^2},
+\end{aligned}
+\end{equation*}
+With $A_n$ independent of $x$.
+
+\textbf{Solution.} Given the regular solution $P_n(x)$, Equation (7.67) tells us we can find a second solution of the form:
+\begin{equation*}
+\begin{aligned}
+	Q_n(x) &= A_n P_n(x)\int^x \frac{\text{exp}\left(-\int^{x_2} R(x_1)\dd x_1\right)}{\left[P_n(x_2)\right]^2}\dd x_2
+\end{aligned}
+\end{equation*}
+Where $R(x)$ is the coefficient function of the first derivative in the original differential equation, with the coefficient of the second derivative being $1$. For Legendre's differential equation:
+\begin{equation*}
+\begin{aligned}
+	R(x) &= \frac{-2x}{1-x^2} \\
+	-\int^{x_2} R(x_1)\dd x_1 &= \ln \left|\frac{1}{1-{x_2}^2}\right| \\
+	\text{exp}\left(-\int^{x_2} R(x_1)\dd x_1\right) &= \frac{1}{1-{x_2}^2}
+\end{aligned}
+\end{equation*}
+So we have:
+\begin{equation*}
+\begin{aligned}
+	Q_n(x) &= A_n P_n(x)\int^x \frac{1}{(1-{x_2}^2)\left[P_n(x_2)\right]^2}\dd x_2 \\
+	Q_n'(x) &= A_n\left[P_n'(x)\int^x \frac{1}{(1-{x_2}^2)\left[P_n(x_2)\right]^2}\dd x_2 + P_n(x)\left(\frac{1}{(1-x^2)[P_n(x)]^2}\right)\right]
+\end{aligned}
+\end{equation*}
+So the Wronskian is:
+\begin{equation*}
+\begin{aligned}
+	W(x) &= P_n(x)Q_n'(x) - P_n'(x)Q_n(x) \\
+	&= P_n(x)A_n\left[P_n'(x)\int^x \frac{1}{(1-{x_2}^2)\left[P_n(x_2)\right]^2}\dd x_2 + P_n(x)\left(\frac{1}{(1-x^2)[P_n(x)]^2}\right)\right] \\
+	&\phantom{=} - P_n'(x)A_n P_n(x)\int^x \frac{1}{(1-{x_2}^2)\left[P_n(x_2)\right]^2}\dd x_2 \\
+	&= A_n [P_n(x)]^2\left(\frac{1}{(1-x^2)[P_n(x)]^2}\right) \\
+	\Aboxed{&= \frac{A_n}{1-x^2},\text{ as required.}}
+\end{aligned}
+\end{equation*}
+
+\begin{center}
+\line(1,0){300}
+\end{center}
+%---------------------------------------------------------------------
+\textbf{Problem 7.7.3.} Find the general solution to the following inhomogeneous ODE:
+\begin{equation*}
+\begin{aligned}
+	y'' + 4y = e^x.
+\end{aligned}
+\end{equation*}
+
+\textbf{Solution.} First, we need to find the solutions to the homogeneous ODE:
+\begin{equation*}
+\begin{aligned}
+	y'' + 4y = 0
+\end{aligned}
+\end{equation*}
+The characteristic polynomial:
+\begin{equation*}
+\begin{aligned}
+	r^2 + 4 &= 0 \\
+	r &= \pm 2i \\
+	y_1(x) &= \cos 2x \\
+	y_2(x) &= \sin 2x
+\end{aligned}
+\end{equation*}
+Now, we use variation of parameters to find a particular solution:
+\begin{equation*}
+\begin{aligned}
+	y(x) = u_1(x)y_1(x) + u_2(x)y_2(x)
+\end{aligned}
+\end{equation*}
+From equation (7.98), we also know:
+\begin{equation*}
+\begin{aligned}
+	0 &= y_1u'_1 + y_2u'_2 \\
+	F(x) &= y'_1u'_1 + y'_2u'_2
+\end{aligned}
+\end{equation*}
+Substituting $y_1$ and $y_2$ into the first equation:
+\begin{equation*}
+\begin{aligned}
+	0 &= (\cos 2x)u'_1 + (\sin 2x)u'_2 \\
+	u'_1 &= (-\tan 2x)u'_2
+\end{aligned}
+\end{equation*}
+Now the second equation:
+\begin{equation*}
+\begin{aligned}
+	e^x &= (-2\sin 2x)(-\tan 2x)u'_2 + (2\cos 2x)u'_2 \\
+	u'_2 &= \frac{e^x}{2\left[(\sin 2x)(\tan 2x)+\cos 2x\right]} \\
+		&= \frac{1}{2}e^x \cos 2x
+\end{aligned}
+\end{equation*}
+Substituting back to find $u'_1$:
+\begin{equation*}
+\begin{aligned}
+	u'_1 &= -\frac{1}{2}e^x \sin 2x
+\end{aligned}
+\end{equation*}
+Integrating to find $u_1$ and $u_2$ (integrating by parts twice):
+\begin{equation*}
+\begin{aligned}
+	u_1 &= -\frac{1}{2}\int e^x \sin 2x \dd x \\
+		&= -\frac{1}{10}e^x\left(\sin 2x - 2\cos 2x\right) \\
+	u_2 &= \frac{1}{2}\int e^x \cos 2x \dd x \\
+		&= \frac{1}{10}e^x\left(2\sin 2x + \cos 2x\right)
+\end{aligned}
+\end{equation*}
+So our particular solution is:
+\begin{equation*}
+\begin{aligned}
+	y(x) &= -\frac{1}{10}e^x\left(\sin 2x - 2\cos 2x\right)\cos 2x + \frac{1}{10}e^x\left(2\sin 2x + \cos 2x\right)\sin 2x \\
+		&= \frac{1}{10}e^x \left[2\sin ^2 2x + \cos 2x\sin 2x - \cos 2x\sin 2x + 2\cos ^2 2x\right] \\
+		&= \frac{1}{5}e^x
+\end{aligned}
+\end{equation*}
+So the complete, general solution is:
+\begin{equation*}
+\begin{aligned}
+	\boxed{y(x) = A\cos 2x + B\sin 2x + \frac{1}{5}e^x}
+\end{aligned}
+\end{equation*}
+
+\begin{center}
+\line(1,0){300}
+\end{center}
+%---------------------------------------------------------------------
+\textbf{Problem 7.7.5.} Find the general solution to the following inhomogeneous ODE:
+\begin{equation*}
+\begin{aligned}
+	xy'' -(1+x)y' + y = x^2.
+\end{aligned}
+\end{equation*}
+
+\textbf{Solution.} Rewriting:
+\begin{equation*}
+\begin{aligned}
+	y'' - \frac{1+x}{x}y' + \frac{1}{x}y = x
+\end{aligned}
+\end{equation*}
+First we solve the homogeneous equation:
+\begin{equation*}
+\begin{aligned}
+	y'' - \frac{1+x}{x}y' + \frac{1}{x}y = 0
+\end{aligned}
+\end{equation*}
+Guess from inspection:
+\begin{equation*}
+\begin{aligned}
+	y &= 1+x \\
+	y' &= 1 \\
+	y'' &= 0 \\
+\end{aligned}
+\end{equation*}
+Substituting:
+\begin{equation*}
+\begin{aligned}
+	(0) - \frac{1+x}{x}(1) + \frac{1}{x}(1+x) &\overset{?}{=} 0 \\
+	0 &\overset{\Checkmark}{=} 0
+\end{aligned}
+\end{equation*}
+Now we can use the Wronskian method to find the second solution:
+\begin{equation*}
+\begin{aligned}
+	y_2(x) &= y_1(x)\int^x \frac{\text{exp}\left[-\int^{x_2}P(x_1)\dd x_1\right]}{[y_1(x_2)]^2}\dd x_2 \\
+		&= (1+x)\int^x \frac{\text{exp}\left[-\int^{x_2}-\frac{1+x_1}{x_1}\dd x_1\right]}{(1+x_2)^2}\dd x_2 \\
+		&= (1+x)\int^x \frac{\text{exp}[x_2 + \ln{x_2}]}{(1+x_2)^2}\dd x_2 \\
+		&= (1+x)\int^x \frac{x_2 e^{x_2}}{(1+x_2)^2}\dd x_2 \\
+		&= (1+x)\frac{e^x}{1+x} \\
+		&= e^x
+\end{aligned}
+\end{equation*}
+%-------------------
+Now, we use variation of parameters to find a particular solution:
+\begin{equation*}
+\begin{aligned}
+	y(x) &= u_1(x)y_1(x) + u_2(x)y_2(x)
+\end{aligned}
+\end{equation*}
+From equation (7.98), we also know:
+\begin{equation*}
+\begin{aligned}
+	0 &= y_1u'_1 + y_2u'_2 \\
+	F(x) &= y'_1u'_1 + y'_2u'_2
+\end{aligned}
+\end{equation*}
+Substituting $y_1$ and $y_2$ into the first equation:
+\begin{equation*}
+\begin{aligned}
+	0 &= (1+x)u'_1 + e^x u'_2 \\
+	u'_1 &= -\frac{e^x}{1+x}u'_2
+\end{aligned}
+\end{equation*}
+Now the second equation:
+\begin{equation*}
+\begin{aligned}
+	x &= -\frac{e^x}{1+x}u'_2 + e^x u'_2 \\
+		&= \left(\frac{x}{1+x}\right)e^x u'_2 \\
+	u'_2 &= (1+x)e^{-x}
+\end{aligned}
+\end{equation*}
+Substituting back to find $u'_1$:
+\begin{equation*}
+\begin{aligned}
+	u'_1 &= -1
+\end{aligned}
+\end{equation*}
+Integrating to find $u_1$ and $u_2$:
+\begin{equation*}
+\begin{aligned}
+	u_1 &= -x \\
+	u_2 &= \int (1+x)e^{-x} \dd x \\
+		&= -e^{-x}\left(x+2\right)
+\end{aligned}
+\end{equation*}
+So our particular solution is:
+\begin{equation*}
+\begin{aligned}
+	y(x) &= -x (1+x) -e^{-x}\left(x+2\right)e^x \\
+		&= -x - x^2 - x - 2 \\
+		&= -(x^2 + 2x + 2) \\
+		&= -(x^2 + 2(y_1(x)))
+\end{aligned}
+\end{equation*}
+We can remove the multiples of $y_1(x)$, so the complete, general solution is:
+\begin{equation*}
+\begin{aligned}
+	\boxed{y(x) = A(1+x) + Be^x - x^2}
+\end{aligned}
+\end{equation*}
+%-------------------
+\begin{center}
+\line(1,0){300}
+\end{center}
+%---------------------------------------------------------------------
+\textbf{Problem 10.1.1.} Show that
+\begin{equation*}
+\begin{aligned}
+	G(x,t) =
+	\begin{cases}
+  		x, & 0 \leq x < t, \\
+  		t, & t < x \leq 1,    
+	\end{cases}
+\end{aligned}
+\end{equation*}
+is the Green's function for the operator $L = -\frac{\dd\phantom{}^2}{\dd x^2}$ and the boundary conditions $y(0) = 0, y'(1) = 0$.
+
+\textbf{Solution.} First, finding solutions for the homogeneous equation:
+\begin{equation*}
+\begin{aligned}
+	-\dv[2]{y}{x} &= 0 \\
+	y(x) &= c_1 x + c_2
+\end{aligned}
+\end{equation*}
+Since we have an arbitrary constant in the Green's function general form anyway, we can pick the simplest solutions that satisfy the boundary conditions:
+\begin{equation*}
+\begin{aligned}
+	y_1(x) &= x \\
+	y_2(x) &= 1
+\end{aligned}
+\end{equation*}
+Plugging into the general form:
+\begin{equation*}
+\begin{aligned}
+	G(x,t) &=
+	\begin{cases}
+		Ay_1(x)y_2(t), & 0<x<t \\
+		Ay_2(x)y_1(t), & t<x<1
+	\end{cases} \\
+	&= 
+	\begin{cases}
+		Ax, & 0<x<t \\
+		At, & t<x<1
+	\end{cases} \\
+\end{aligned}
+\end{equation*}
+Now, to find $A$, we have to find the expression for $p(t)$ by comparing our operator to Arfken's form:
+\begin{equation*}
+\begin{aligned}
+	-\dv[2]{}{x} &= \dv{}{x}\left(p(x)\dv{y}{x}\right) + q(x)y \\
+	p(x) &= p(t) = -1
+\end{aligned}
+\end{equation*}
+Now, substituting into eq. (10.19):
+\begin{equation*}
+\begin{aligned}
+	A &= \frac{1}{p(t)\left[y_2'(t)y_1(t) - y_1'(t)y_2(t)\right]} \\
+		&= \frac{1}{-1[0-1]} = +1
+\end{aligned}
+\end{equation*}
+So:
+\begin{equation*}
+\begin{aligned}
+	G(x,t) =
+	\begin{cases}
+		x, & 0\leq x<t \\
+		t, & t<x\leq 1
+	\end{cases}
+\end{aligned}
+\end{equation*}
+as required.
+
+\begin{center}
+\line(1,0){300}
+\end{center}
+%---------------------------------------------------------------------
+\textbf{Problem 10.1.2. (a)} Find the Green's function for
+\begin{equation*}
+\begin{aligned}
+	Ly(x) &= \dv[2]{y(x)}{x} + y(x),\quad
+	\begin{cases}
+	y(0) = 0, \\
+	y'(1) = 0.
+	\end{cases}
+\end{aligned}
+\end{equation*}
+
+\textbf{Solution.} The solutions to the homogeneous equation have the forms:
+\begin{equation*}
+\begin{aligned}
+	y(x) = \sin (Ax + B), \cos (Cx + D)
+\end{aligned}
+\end{equation*}
+Two possible solutions that satisfy the boundary conditions are:
+\begin{equation*}
+\begin{aligned}
+	y_1(x) &= \sin x \\
+	y_2(x) &= \cos (1-x)
+\end{aligned}
+\end{equation*}
+Substituting into the general form:
+\begin{equation*}
+\begin{aligned}
+	G(x,t) &=
+	\begin{cases}
+		A\sin x\cos (1-t), & 0\leq x<t \\
+		A\cos (1-x)\sin t, & t< x\leq1
+	\end{cases}
+\end{aligned}
+\end{equation*}
+Recognizing that $p(x) = 1$ for this operator in Arfken's form, we can solve for $A$:
+\begin{equation*}
+\begin{aligned}
+	A &= \frac{1}{+1\left[\sin (1-t)\sin t - \cos t\cos (1-t)\right]} \\
+		&= \frac{1}{-\cos(1-t+t)} \\
+		&= -\frac{1}{\cos 1}
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+	G(x,t) =
+	\begin{dcases}
+		-\frac{\sin x\cos (1-t)}{\cos 1}, & 0\leq x<t \\
+		\phantom{.}\\
+		-\frac{\cos (1-x)\sin t}{\cos 1}, & t< x\leq1
+	\end{dcases}
+\end{aligned}
+\end{equation*}
+
+\begin{center}
+\line(1,0){300}
+\end{center}
+%---------------------------------------------------------------------
+\textbf{Problem 10.1.2. (b)} Find the Green's function for
+\begin{equation*}
+\begin{aligned}
+	Ly(x) &= \dv[2]{y(x)}{x} - y(x),\quad y(x)\text{ finite for }-\infty < x < \infty .
+\end{aligned}
+\end{equation*}
+
+\textbf{Solution.} Two possible solutions for the homogeneous equation are
+\begin{equation*}
+\begin{aligned}
+	y_1(x) &= e^x \\
+	y_2(x) &= e^{-x}
+\end{aligned}
+\end{equation*}
+And this works perfectly, because the first equation is finite for $x \to -\infty$ and the second is finite for $x \to\infty$. Substituting into the standard form:
+\begin{equation*}
+\begin{aligned}
+	G(x,t) &=
+	\begin{cases}
+		Ae^{x-t}, & -\infty < x < t \\
+		Ae^{t-x}, & t < x < \infty
+	\end{cases}
+\end{aligned}
+\end{equation*}
+Recognizing that $p(x) = 1$ again, we can solve for $A$:
+\begin{equation*}
+\begin{aligned}
+	A &= \frac{1}{+1\left[-e^{-t}e^t - e^t e^{-t}\right]} \\
+		&= -\frac{1}{2}
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+	G(x,t) =
+	\begin{dcases}
+		-\frac{e^{x-t}}{2}, & -\infty < x < t  \\
+		\phantom{.}\\
+		-\frac{e^{t-x}}{2}, & t < x < \infty
+	\end{dcases}
+\end{aligned}
+\end{equation*}
+
+\end{document}

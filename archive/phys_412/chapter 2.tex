@@ -1,0 +1,203 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+% \usepackage{}
+
+%% Metadata
+\renewcommand{\Title}{Chapter 2 Problems}
+\renewcommand{\Course}{PHYS 412}
+\renewcommand{\Date}{February 20, 2017}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+
+\insertTitle
+
+\hrulefill
+
+\textbf{Problem 2.3} (pg. 63) Find the electric field a distance $z$ above one end of a straight line segment of length $L$ (Fig. 2.7), which carries a uniform line charge $\lambda$. Check that your formula is consistent with what you would expect for the case $z >\!\!> L$.
+
+\textbf{Solution.} From the text, when the source charges form a continuous charge distribution, the field is given by:
+\begin{equation*}
+\vb{E} = \frac{1}{4\pi\epsilon_0}\int \frac{\hat{\brcurs}}{\rcurs ^2}\dd{q}
+\end{equation*}
+
+Now, let the observation location be given by the position vector $z\hat{\vb{z}}$, and let the straight line segment lie on the $x$-axis, from the origin to $L\hat{\vb{x}}$. It follows, then, that the separation vector from each infinitesimal point on the segment is given by $\brcurs = -\vb{x} + \vb{z}$, and we can sum up all the contributions along the segmen, from $x = 0$ to $x = L$. Furthermore, since the segment has a uniform charge, we can say $\dd{q} = \lambda \dd{x}$.
+
+\begin{equation*}
+\begin{aligned}
+\vb{E} &= \frac{1}{4\pi\epsilon_0}\int \frac{\hat{\brcurs}}{\rcurs ^2}\dd{q} \\
+&= \frac{1}{4\pi\epsilon_0}\int \frac{\brcurs}{\rcurs ^3}\dd{q} \\
+&= \frac{1}{4\pi\epsilon_0}\int_0^L \frac{-\vb{x} + \vb{z}}{(x^2+z^2)^{3/2}}\lambda \dd{x} \\
+\end{aligned}
+\end{equation*}
+
+Now that we're speaking in terms of Cartesian vectors (the unit versions of which are always constant), our next goal should be to take them out of the integral and see what we're left with. It's also nice to note that, since our end goal is a function of $z$, $z$ can be treated as a constant in these calculations.
+
+\begin{equation*}
+\begin{aligned}
+\vb{E} &= \frac{\lambda}{4\pi\epsilon_0}\int_0^L \frac{-x\hat{\vb{x}} + z\hat{\vb{z}}}{(x^2+z^2)^{3/2}}\dd{x} \\
+&= \frac{\lambda}{4\pi\epsilon_0}\left[\int_0^L \frac{z\hat{\vb{z}}}{(x^2+z^2)^{3/2}}\dd{x} - \int_0^L \frac{x\hat{\vb{x}}}{(x^2+z^2)^{3/2}}\dd{x} \right]\\
+&= \frac{\lambda}{4\pi\epsilon_0}\left[\left(\int_0^L \frac{1}{(x^2+z^2)^{3/2}}\dd{x}\right)z\hat{\vb{z}} - \left(\int_0^L \frac{x}{(x^2+z^2)^{3/2}}\dd{x} \right)\hat{\vb{x}}\right]
+\end{aligned}
+\end{equation*}
+
+Using Mathematica to solve the definite integrals, we have the following solution:
+\begin{equation*}
+\begin{aligned}
+\vb{E} &= \frac{\lambda}{4\pi\epsilon_0}\left[\left(\frac{L}{z^2\sqrt{z^2+L^2}}\right)z\hat{\vb{z}} - \left(\frac{1}{z} - \frac{1}{\sqrt{z^2+L^2}} \right)\hat{\vb{x}}\right] \\
+&= \frac{\lambda}{4\pi\epsilon_0}\left[\left(\frac{L}{z\sqrt{z^2+L^2}}\right)\hat{\vb{z}} - \left(\frac{\sqrt{z^2+L^2} - z}{z\sqrt{z^2+L^2}} \right)\hat{\vb{x}}\right] \\
+&= \frac{1}{4\pi\epsilon_0}\frac{\lambda}{z\sqrt{z^2+L^2}}\left[(L)\hat{\vb{z}} + \left(z - \sqrt{z^2+L^2}\right)\hat{\vb{x}}\right]
+\end{aligned}
+\end{equation*}
+
+In the case where $z >\!\!> L$ (i.e. the observation point is far from the segment), we should expect our solution to reduce to the point charge case. Let's test it by approximating $\sqrt{z^2+L^2} \approx z$ in this limit (noting also that the total charge $Q$ of the segment is given by $Q = \lambda L$):
+\begin{equation*}
+\begin{aligned}
+\vb{E} &\approx \frac{1}{4\pi\epsilon_0}\frac{\lambda}{z(z)}\left[(L)\hat{\vb{z}} + \left(z - (z)\right)\hat{\vb{x}}\right] \\
+&\approx \frac{1}{4\pi\epsilon_0}\frac{\lambda L}{z^2}\hat{\vb{z}} \\
+&\approx \frac{1}{4\pi\epsilon_0}\frac{Q}{z^2}\hat{\vb{z}}
+\end{aligned}
+\end{equation*}
+
+So, we can see that the segment, in our calculations, does indeed `look like' a point charge from very far away, just as we would expect.
+
+\hrulefill
+
+\textbf{Problem 2.14} (pg. 75) Find the electric field inside a sphere which carries a charge density proportional to the distance from the origin, $\rho = kr$, for some constant $k$.
+
+\textbf{Solution.} We can use Gauss's Law in this problem because of spherical symmetry. $\vb{E}$ must have only a radial component, and depend only on $r$ because of this, as Griffiths argues in the footnote on page 70. So, we can start with the differential form of Gauss's Law and solve for $E$ (the magnitude of $\vb{E}$, and also its radial component).
+\begin{equation*}
+\begin{aligned}
+\nabla\cdot\vb{E} &= \frac{\rho}{\epsilon_0} \\
+\frac{1}{r^2}\frac{\partial}{\partial r}(r^2 E) &= \frac{kr}{\epsilon_0} \\
+\frac{\dd}{\dd{r}}(r^2 E) &= \frac{k}{\epsilon_0}r^3 \\
+r^2 E &= \int\frac{k}{\epsilon_0}r^3 \dd{r} \\
+E &= \frac{1}{r^2}\frac{k}{\epsilon_0}\frac{r^4}{4} \\
+\vb{E} &= \dfrac{kr^2}{4\epsilon_0}\hat{\vb{r}}
+\end{aligned}
+\end{equation*}
+
+\hrulefill
+
+\textbf{Problem 2.26} (pg. 87) A conical surface (an empty ice-cream cone) carries a uniform surface charge $\sigma$. The height of the cone is $h$, and the radius of the top is $R$. Find the potential difference between points \textbf{a} (the vertex) and \textbf{b} (the center of the top).
+
+\textbf{Solution.} The potential due to a surface charge with constant charge density is given by:
+\begin{equation}
+V(\vb{r}) = \frac{1}{4\pi\epsilon_0}\int\frac{\sigma}{\rcurs}\dd{a}
+\end{equation}
+
+Our first goal is to express $\rcurs$ and $\dd{a}$ in terms of nicely integrable variables. Imagine that the cone is balanced on the $xy$-plane like a top on a table, with the axis of the top being perfectly perpendicular to the surface (i.e., the $z$-axis). In cylindrical coordinates, each point on the surface has some location $\vb{r}' = s\hat{\vb{s}} + z\hat{\vb{z}}$. This location is not unique $-$ it is shared by an entire cross-sectional circle on the surface, so we have to also integrate from 0 to $2\pi$ over $\phi$. We haven't yet constrained $\vb{r}'$ to our particular surface. We can do that by recognizing that the edge of the cone, in any vertical cross-section, is given by the line $z = \frac{h}{R}s$. Thus, we have an equation for each source location in the surface:
+\begin{equation}
+\vb{r}' = s\left(\hat{\vb{s}}+\frac{h}{R}\hat{\vb{z}}\right)
+\end{equation}
+
+Now for $\dd{a}$. A region of area on our cone is essentially a piece of paper fitted to the contour of the surface. The horizontal (parallel to the $xy$-plane) boundaries are simply arcs of a circle, so their lengths can be expressed as $\dd w = s\dd{\phi}$. The other boundaries follow the equation of the line above, so their lengths can be expressed as $\dd l = \sqrt{\dd{s}^2 + \dd{z}^2} = \dd{s}\sqrt{1 + \left(\frac{h}{R}\right)^2}$. So, we have the final expression for $\dd{a}$:
+\begin{equation}
+\dd{a} = \dd w \dd l = \sqrt{1 + \left(\frac{h}{R}\right)^2}s\dd{s}\dd{\phi}
+\end{equation}
+
+So, we can rewrite the original integral in terms of these new expressions:
+\begin{equation}
+V(\vb{r}) = \frac{1}{4\pi\epsilon_0}\int_0^{2\pi}\int_0^R \frac{\sigma}{|\vb{r} - s(\hat{\vb{s}} + (h/R)\hat{\vb{z}})|}\sqrt{1 + \left(\frac{h}{R}\right)^2}s\dd{s}\dd{\phi}
+\end{equation}
+
+At the vertex \textbf{a}, which we set at the origin, $\vb{r} = 0$. So:
+\begin{equation}
+\begin{aligned}
+V(\textbf{a}) &= \frac{1}{4\pi\epsilon_0}\int_0^{2\pi}\int_0^R \frac{\sigma}{s\sqrt{1 + (h/R)^2}}\sqrt{1 + \left(\frac{h}{R}\right)^2}s\dd{s}\dd{\phi} \\
+&= \frac{1}{4\pi\epsilon_0}\int_0^{2\pi}\int_0^R\sigma\dd{s}\dd{\phi} \\
+&= \frac{R\sigma}{2\epsilon_0}
+\end{aligned}
+\end{equation}
+
+At location \textbf{b}, the integral is this:
+\begin{equation}
+\begin{aligned}
+V(\textbf{b}) &= \frac{1}{4\pi\epsilon_0}\int_0^{2\pi}\int_0^R \frac{\sigma}{\sqrt{(h -(h/R)s)^2 + s^2}}\sqrt{1 + \left(\frac{h}{R}\right)^2}s\dd{s}\dd{\phi}
+\end{aligned}
+\end{equation}
+
+I simplified the integral to this point, which WolframAlpha couldn't solve, even with the ``Pro computation time,'' so I guess that's \$6 down the drain, at least for now.
+
+\begin{equation}
+\begin{aligned}
+V(\textbf{b}) &= \frac{\sigma}{2\epsilon_0}\int_0^R((s-\beta)^2+\alpha)^{-1/2}s\dd{s}
+\end{aligned}
+\end{equation}
+
+with the following definitions:
+\begin{equation}
+\begin{aligned}
+\alpha &= \frac{(h^2+R^2-1)(R^2h^2)}{(h^2+R^2)^2} \\
+\beta &= \frac{hR}{h^2+R^2}
+\end{aligned}
+\end{equation}
+
+\hrulefill
+
+\textbf{Problem 2.30.}
+\textbf{(a)} Check that the results of Exs. 2.4 and 2.5, and Prob. 2.11, are consistent with Eq. 2.33.
+\[
+\vb{E}_\text{above} - \vb{E}_\text{below} = \frac{\sigma}{\epsilon_0}\hat{\vb{n}} \tag{2.33} \label{eq:2.33}
+\]
+
+\textbf{Solution.} The result from example 2.4 is $\vb{E} = (\sigma/\epsilon_0)\hat{\vb{n}}$. Since $\hat{\vb{n}}$ points in opposite directions on either side of the surface, we have the following:
+\begin{equation*}
+\begin{aligned}
+\vb{E}_\text{above} - \vb{E}_\text{below} &= \frac{\sigma}{2\epsilon_0}\hat{\vb{n}} - \left(-\frac{\sigma}{2\epsilon_0}\hat{\vb{n}}\right) \\
+&= \frac{\sigma}{\epsilon_0}\hat{\vb{n}}
+\end{aligned}
+\end{equation*}
+
+The result from example 2.5 is that the field inside the infinite discs is $\sigma/\epsilon_0$, and the field outside is 0. Clearly then, this result is consistent with eq. 5.23. Similarly, in Prob. 2.11, the field inside the sphere is 0, and the field outside is $\sigma/\epsilon_0$, so it too is consistent.
+
+\textbf{(b)} Use Gauss's law to find the field inside and outside a long hollow cylindrical tube, which carries a uniform surface charge $\sigma$. Check that your result is consistent with Eq. 2.33.
+
+\textbf{Solution.} Consider two Gaussian cylinders of height $h$; one located just inside the long cylinder (such that there's no enclosed charge) and the other located just outside. The flux through the caps of these cylinders must be zero, as there is essentially an equal amount of charge on either side of them (given that the charged cylinder is long). Thus, all the flux through both cylinders must be through the curved wall. Furthermore, the electric field must be constant at every point on the curved wall, due to symmetry. It must also have only a radial component and be parallel to $\dd \vb{a}$ at every point, due to symmetry. Thus, we can apply Gauss's Law to each cylinder to find the field on either side of the charged cylinder's wall. First, the inside Gaussian cylinder:
+\begin{equation*}
+\begin{aligned}
+\int \vb{E}\cdot \dd \vb{a} &= 0 \\
+E\int\dd{a} &= 0 \\
+E &= 0
+\end{aligned}
+\end{equation*}
+
+Now, the outside:
+\begin{equation*}
+\begin{aligned}
+\int \vb{E}\cdot \dd \vb{a} &= \frac{q}{\epsilon_0} \\
+E\int_0^{2\pi}\int_0^h R\dd{z}\dd{\phi} &= \frac{\sigma}{\epsilon_0}2\pi Rh \\
+&= \frac{\sigma}{\epsilon_0}
+\end{aligned}
+\end{equation*}
+
+So this result is also consistent with Eq. 2.33.
+
+\textbf{(c)} Check that the result of Ex. 2.7 is consistent with boundary conditions 2.34 and 2.36.
+
+\textbf{Solution.} Ex. 2.7 showed that:
+\begin{equation*}
+\begin{aligned}
+V_\text{outside} &= \frac{R^2\sigma}{\epsilon_0z} = \frac{R\sigma}{\epsilon_0}\Bigg|_{z = R} \\
+V_\text{inside} &= \frac{R\sigma}{\epsilon_0}
+\end{aligned}
+\end{equation*}
+
+So we can see that, at the boundary where $z = R$, this result is consistent with 2.34. Now, 2.36 requires:
+\begin{equation*}
+\nabla V_\text{outside}\cdot\hat{\vb{n}} - \nabla V_\text{inside}\cdot\hat{\vb{n}} = -\frac{\sigma}{\epsilon_0}
+\end{equation*}
+
+Let's solve for each term and check it. First, the outside:
+\begin{equation}
+\begin{aligned}
+\nabla V_\text{outside}\cdot\hat{\vb{n}} &= -\frac{\sigma}{\epsilon_0}\frac{R^2}{z^2}\hat{\vb{z}}\cdot\hat{\vb{n}} \\
+&= -\frac{\sigma}{\epsilon_0}
+\end{aligned}
+\end{equation}
+
+Now, $\nabla V_\text{inside}$ must be 0 because $V_\text{inside}$ is constant. So, the result agrees with 2.36, as required.
+
+\end{document}

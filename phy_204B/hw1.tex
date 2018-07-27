@@ -1,0 +1,345 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Metadata
+\renewcommand{\Author}{Miles Moser}
+\renewcommand{\Title}{Homework 1}
+\renewcommand{\Date}{January 22, 2018}
+\renewcommand{\Course}{PHY 204B}
+
+\begin{document}
+\insertTitle
+
+% -----------------------------------------------------------------------------
+% Arfken Ed 7, Problems 9.5.2, 9.6.2, 9.7.3, 19.1.2, 19.1.11, 19.1.14,
+% 19.2.6, 19.2.9, 19.2.13, 19.3.2
+% -----------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 9.5.2.} If $\Psi$ is a solution of Laplace's equation, $\nabla^2\Psi = 0$, show that $\pdv*{\Psi}{z}$ is also a solution.
+
+\textbf{Solution.} Since partial derivative operators commute, showing this is straightforward:
+\begin{equation*}
+\begin{aligned}
+    \nabla^2\pdv{\Psi}{z} &= \left(\pdv[2]{x} + \pdv[2]{y} + \pdv[2]{z}\right)\pdv{\Psi}{z} \\
+    &= \pdv{z}\left(\pdv[2]{x} + \pdv[2]{y} + \pdv[2]{z}\right)\Psi \\
+    &= \pdv{z}\nabla^2\Psi \\
+    &= 0
+\end{aligned}
+\end{equation*}
+
+So $\pdv*{\Psi}{z}$ is also a solution.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 9.6.2.} Solve the wave equation, Eq. (9.89), subject to the indicated conditions. Determine $\psi(x,t)$ given that at $t=0$, $\psi_0(x) = \delta(x)$ (Dirac delta function) and the initial time derivative of $\psi$ is zero.
+\begin{equation}
+    \frac{1}{c^2}\pdv[2]{\psi}{t} = \pdv[2]{\psi}{x}\tag{9.89}\label{eq:9.89}
+\end{equation}
+
+\textbf{Solution.} The general solution $\psi$ to the wave equation and its time derivative have these forms:
+\begin{equation*}
+\begin{aligned}
+    \psi(x,t) = f(x-ct) + g(x+ct) \\
+    \psi'(x,t) = -cf(x-ct) + cg(x+ct)
+\end{aligned}
+\end{equation*}
+
+So our second condition looks like this:
+\begin{equation*}
+\begin{aligned}
+    \psi_0'(x) = -cf'(x) + cg'(x) &= 0 \\
+    f'(x) &= g'(x) \\
+    f(x) &= g(x) + C
+\end{aligned}
+\end{equation*}
+
+Plugging into our first condition:
+\begin{equation*}
+\begin{aligned}
+    \psi_0(x) = f(x) + g(x) &= \delta(x) \\
+    2g(x) + C &= \delta(x), \\
+    2f(x) - C &= \delta(x) \\
+    \int 2g(x-a) + C \dd x &= \int 2f(x-a) - C \dd x \\
+    2 + Cx &= 2 - Cx \\
+    C = 0 \\
+    f(x) = g(x) &= \frac{\delta(x)}{2}
+\end{aligned}
+\end{equation*}
+So:
+\begin{equation}
+    \boxed{\psi(x,t) = \frac{1}{2}\left[\delta(x-ct) + \delta(x+ct)\right]}\tag{9.6.2}\label{eq:9.6.2}
+\end{equation}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 9.7.3.} Solve the PDE
+\begin{equation*}
+\begin{aligned}
+    \pdv{\psi}{t} = a^2\pdv[2]{\psi}{x},
+\end{aligned}
+\end{equation*}
+to obtain $\psi(x,t)$ for a rod of infinite extent (in both the $+x$ and $-x$ directions), with a heat pulse at time $t = 0$ that corresponds to $\psi_0(x) = A\delta(x)$.
+
+\textbf{Solution.} Arfken found the general solution in the section:
+\begin{equation}
+    \psi(x,t) = \frac{1}{\sqrt{\pi}}\int_{-\infty}^\infty \psi_0\left(x-2a\xi\sqrt{t}\right)e^{-\xi^2} \dd\xi \tag{9.114}\label{eq:9.114}
+\end{equation}
+
+Plugging in the given $\psi_0$:
+\begin{equation*}
+\begin{aligned}
+    \psi(x,t) &= \frac{1}{\sqrt{\pi}}\int_{-\infty}^\infty A\delta\left(x-2a\xi\sqrt{t}\right)e^{-\xi^2} \dd\xi
+\end{aligned}
+\end{equation*}
+
+Letting $u = 2a\xi\sqrt{t}$, so $\dd u = 2a\sqrt{t}\dd\xi$:
+\begin{equation*}
+\begin{aligned}
+    \psi(x,t) &= \frac{A}{\sqrt{\pi}}\frac{1}{2a\sqrt{t}}\int_{-\infty}^\infty \delta\left(x-u\right)e^{-u^2/4a^2t} \dd u
+\end{aligned}
+\end{equation*}
+\begin{equation}
+    \boxed{\psi(x,t) = \frac{A}{\sqrt{\pi}}\frac{1}{2a\sqrt{t}}\exp\left(-\frac{x^2}{4a^2t}\right)}\tag{9.7.3}\label{eq:9.7.3}
+\end{equation}
+
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.1.2.} In the analysis of a complex waveform (ocean tides, earthquakes, musical tones, etc.), it might be more convenient to have the Fourier series written as
+\begin{equation*}
+\begin{aligned}
+    f(x)= \frac{a_0}{2} + \sum_{n=1}^\infty \alpha_n\cos(nx-\theta_n).
+\end{aligned}
+\end{equation*}
+Show that this is equivalent to Eq. (19.1) with
+\begin{equation*}
+\begin{aligned}
+    a_n &= \alpha_n\cos\theta_n,&\alpha_n^2 = a_n^2 + b_n^2, \\
+    b_n &= \alpha_n\sin\theta_n,&\tan\theta_n = b_n/a_n.
+\end{aligned}
+\end{equation*}
+\textit{Note.} The coefficients $\alpha_n^2$ as a function of $n$ define what is called the \textbf{power spectrum}.
+The importance of $\alpha_n^2$ lies in their invariance under a shift in the phase $\theta_n$.
+\begin{equation}
+    f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n\cos nx + \sum_{n=1}^\infty b_n \sin nx. \tag{19.1}\label{eq:19.1}
+\end{equation}
+
+\textbf{Solution.} Starting with the given expression:
+\begin{equation*}
+\begin{aligned}
+    f(x) &= \frac{a_0}{2} + \sum_{n=1}^\infty \alpha_n\cos(nx-\theta_n) \\
+    &= \frac{a_0}{2} + \sum_{n=1}^\infty \alpha_n \left[\cos(nx)\cos(-\theta_n) - \sin(nx)\sin(-\theta_n)\right] \\
+    &= \frac{a_0}{2} + \sum_{n=1}^\infty \alpha_n \cos(\theta_n) \cos(nx) + \alpha_n \sin(\theta_n) \sin(nx) \\
+    &= \frac{a_0}{2} + \sum_{n=1}^\infty a_n\cos(nx) + b_n \sin(nx)
+\end{aligned}
+\end{equation*}
+So we see the equivalence with just a simple angle addition identity.
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.1.11.} Verify that $\delta(\varphi_1-\varphi_2) = \frac{1}{2\pi}\sum_{m=-\infty}^\infty e^{im(\varphi_1-\varphi_2)}$ is a Dirac delta function by showing that it satisfies the definition,
+\begin{equation*}
+\begin{aligned}
+    \int_{-\pi}^\pi f(\varphi_1)\frac{1}{2\pi}\sum_{m=-\infty}^\infty e^{im(\varphi_1-\varphi_2)}\dd\varphi_1 = f(\varphi_2)
+\end{aligned}
+\end{equation*}
+\textit{Hint.} Represent $f(\varphi_1)$ by an exponential Fourier series.
+
+\textbf{Solution.} Starting with the left-hand side, and using the fact that $\delta(x) = \delta(-x)$:
+\begin{equation*}
+\begin{aligned}
+    \int_{-\pi}^\pi f(\varphi_1)\frac{1}{2\pi}\sum_{m=-\infty}^\infty e^{im(\varphi_1-\varphi_2)}\dd\varphi_1 &= \int_{-\pi}^\pi f(\varphi_1)\frac{1}{2\pi}\sum_{m=-\infty}^\infty e^{im(\varphi_2-\varphi_1)}\dd\varphi_1 \\
+    &= \int_{-\pi}^\pi \sum_{m=-\infty}^{\infty} f_m e^{im\varphi_1}\frac{1}{2\pi}\sum_{m=-\infty}^\infty e^{im(\varphi_2-\varphi_1)}\dd\varphi_1 \\
+    &= \sum_{m=-\infty}^\infty f_m e^{im\varphi_2} \int_{-\pi}^\pi \frac{1}{2\pi}\dd\varphi_1 \\
+    &= f(\varphi_2)
+\end{aligned}
+\end{equation*}
+    
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.1.14.} Given
+\begin{equation*}
+\begin{aligned}
+    \varphi_1(x) &\equiv \sum_{n=1}^\infty \frac{\sin nx}{n} =
+    \begin{cases} 
+      -\dfrac{1}{2}(\pi+x), &-\pi \leq x< 0, \\[1em]
+      \phantom{-}\dfrac{1}{2}(\pi-x), &\phantom{-}0 <x\leq\pi,
+   \end{cases}
+\end{aligned}
+\end{equation*}
+show by integrating that
+\begin{equation*}
+\begin{aligned}
+    \varphi_2(x) &\equiv \sum_{n=1}^\infty \frac{\cos nx}{n^2} =
+    \begin{cases} 
+      \dfrac{1}{4}(\pi+x)^2-\dfrac{\pi^2}{12}, &-\pi \leq x \leq 0, \\[1em]
+      \dfrac{1}{4}(\pi-x)^2-\dfrac{\pi^2}{12}, &\phantom{-}0\leq x\leq\pi.
+   \end{cases}
+\end{aligned}
+\end{equation*}
+
+\textbf{Solution.} Integrating the summed expression from 0 to $x$:
+\begin{equation*}
+\begin{aligned}
+    \int_0^x \varphi_1(x') \dd x' &= \int_0^x \sum_{n=1}^\infty \frac{\sin nx'}{n} \dd x' \\
+    &= \sum_{n=1}^\infty \left[-\frac{\cos nx'}{n^2}\right]_0^x \\
+    &= \sum_{n=1}^\infty \frac{1}{n^2}\left(1 - \cos nx\right) \\
+    &= \frac{\pi^2}{6} - \sum_{n=1}^\infty \frac{\cos nx}{n^2}
+\end{aligned}
+\end{equation*}
+
+Integrating the piecewise expression from 0 to $x$, then equating:
+\begin{equation*}
+\begin{aligned}
+    \int_0^x \varphi_1(x') \dd x' &= \int_0^x \frac{1}{2}(\pi-x')\dd x' \\
+    &= \left[\frac{2\pi x' - (x')^2}{4}\right]_0^x \\
+    &= \frac{\pi x}{2} - \frac{x^2}{4} \\
+    \frac{\pi^2}{6} - \sum_{n=1}^\infty \frac{\cos nx}{n^2} &= \frac{\pi x}{2} - \frac{x^2}{4} \\
+    \sum_{n=1}^\infty \frac{\cos nx}{n^2} &= \frac{\pi^2}{6} - \frac{\pi x}{2} + \frac{x^2}{4} \\
+    &= \frac{1}{4}\left(x^2 - 2\pi x + \pi^2\right) - \frac{\pi^2}{12} \\
+    &= \frac{1}{4}(x -\pi)^2 -\frac{\pi^2}{12}
+\end{aligned}
+\end{equation*}
+
+If we do the same integrations from 0 to $-x$, to get the other expression, the effect is just replacing all the $x$ by $-x$, and we get:
+\begin{equation*}
+\begin{aligned}
+    \sum_{n=1}^\infty \frac{\cos nx}{n^2} &= \frac{1}{4}(x +\pi)^2 -\frac{\pi^2}{12}
+\end{aligned}
+\end{equation*}
+just as required.
+    
+    
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.2.6.} Develop the Fourier series representation of
+\begin{equation*}
+\begin{aligned}
+    f(t) &= 
+    \begin{cases} 
+        0, &-\pi\leq\omega t\leq0, \\[1em]
+        \sin\omega t, &\phantom{-}0\leq\omega t\leq\pi.
+    \end{cases}
+\end{aligned}
+\end{equation*}
+This is the output of a simple half-wave rectifier. It is also an approximation of the solar thermal effect that produces "tides" in the atmosphere.
+
+\textbf{Solution.} Starting with equation (19.1):
+\begin{equation*}
+\begin{aligned}
+    f(x) &= \frac{a_0}{2} + \sum_{n=1}^\infty a_n\cos nx + \sum_{n=1}^\infty b_n \sin nx \\
+\end{aligned}
+\end{equation*}
+
+Finding $a_0$:
+\begin{equation*}
+\begin{aligned}
+    a_0 &= \frac{1}{\pi}\int_{-\pi}^\pi f(t)\dd t \\
+    &= \frac{1}{\pi}\int_0^{\pi}\sin\omega t\dd \omega t \\
+    &= \frac{2}{\pi}
+\end{aligned}
+\end{equation*}
+
+Now $a_n$:
+\begin{equation*}
+\begin{aligned}
+    a_n &= \frac{1}{\pi}\int_{-\pi}^\pi f(t)\cos(nt)\dd t \\
+    &= \frac{1}{\pi}\int_0^\pi \sin\omega t \cos(n\omega t)\dd \omega t
+\end{aligned}
+\end{equation*}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.2.9.} A triangular wave (Fig. 19.4) is represented by
+\begin{equation*}
+\begin{aligned}
+    f(x) &=
+    \begin{cases} 
+        \phantom{-}x, &\phantom{-}0<x<\pi \\[1em]
+        -x, &-\pi<x<0.
+    \end{cases}
+\end{aligned}
+\end{equation*}
+Represent $f(x)$ by a Fourier series.
+
+\textbf{Solution.}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.2.13.} 
+\begin{enumerate}[(a)]
+    \item Find the Fourier series representation of
+    \begin{equation*}
+    \begin{aligned}
+        f(x) =
+        \begin{cases}
+            0, &-\pi<x\leq 0 \\[1em]
+            x, &\phantom{-}0\leq x<\pi.
+        \end{cases}
+    \end{aligned}
+    \end{equation*}
+
+    \item From the Fourier expansion show that
+    \begin{equation*}
+    \begin{aligned}
+        \frac{\pi^2}{8} = 1 + \frac{1}{3^2} + \frac{1}{5^2} + \ldots .
+    \end{aligned}
+    \end{equation*}
+        
+\end{enumerate}
+\textbf{Solution.}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 19.3.2.} Determine the partial sum, $s_n$, of the series in Eq. (19.33) by using
+\begin{equation*}
+\begin{aligned}
+    \text{(a)}\quad \frac{\sin mx}{m} = \int_0^x \cos my\dd y,\quad\quad\text{(b)}\quad \sum_{p=1}^n \cos(2p-1)y = \frac{\sin 2ny}{2\sin y}.
+\end{aligned}
+\end{equation*}
+Do you agree with the result given in Eq. (19.40)?
+\begin{equation}
+    f(x) = \frac{2h}{\pi}\left(\frac{\sin x}{1} + \frac{\sin 3x}{3} + \frac{\sin 5x}{5} + \ldots\right) \tag{19.33}\label{eq:19.33}
+\end{equation}
+\begin{equation}
+    \int_\pi^\infty \frac{\sin\xi}{\xi}\dd\xi = -\mathop{\text{si}}{(\pi)} \tag{19.40}\label{eq:19.40}
+\end{equation}
+
+\textbf{Solution.} Starting with equation (19.33), and using the small angle approximation, $y\approx\sin y$:
+\begin{equation*}
+\begin{aligned}
+    f(x) &= \frac{2h}{\pi}\left(\frac{\sin x}{1} + \frac{\sin 3x}{3} + \frac{\sin 5x}{5} + \ldots\right) \\
+    &= \frac{2h}{\pi}\left(\int_0^x \cos y\dd y + \int_0^x \cos 3y\dd y + \int_0^x \cos 5y\dd y + \ldots\right) \\
+    &= \frac{2h}{\pi}\int_0^x  \dd y\sum_{p=1}^n \cos((2p-1)y) \\
+    &= \frac{2h}{\pi}\int_0^x \frac{\sin 2ny}{2\sin y}\dd y \\
+    &\approx \frac{2h}{\pi}\int_0^x \frac{\sin 2n y}{2y}\dd y
+\end{aligned}
+\end{equation*}
+\begin{equation}
+    \boxed{f(x) \approx \frac{h}{\pi}\mathop{\text{si}}{(2nx)}}\tag{19.3.2}\label{eq:19.3.2}
+\end{equation}
+    
+To check equation (19.40), we could rewrite the integral this way:
+\begin{equation*}
+\begin{aligned}
+    f(x) &= \frac{h}{\pi}\int_0^x \frac{\sin 2n y}{y}\dd y \\
+    &= \frac{h}{\pi}\int_0^{2nx} \frac{\sin\xi}{\xi}\dd\xi \\
+    \mathop{\text{si}}{(2nx)} &= \int_0^{2nx} \frac{\sin\xi}{\xi}\dd\xi \\
+    \mathop{\text{si}}{(\pi)} &= \int_0^{\pi} \frac{\sin\xi}{\xi}\dd\xi
+\end{aligned}
+\end{equation*}
+Now, the integral of this integrand from 0 to $\infty$ must be 0 (equal area above and below the $\xi$--axis), so the integral from $\pi$ to $\infty$ must negate the above integral from 0 to $\pi$. This agrees exactly with equation (19.40).
+
+\end{document}

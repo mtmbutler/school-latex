@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Metadata
+\renewcommand{\Title}{HW 8-15 (pg 321)}
+\renewcommand{\Course}{PHYS 411}
+\renewcommand{\Date}{November 1, 2016}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\textbf{Problem.} Two large charged glass plates each of area $A$ are placed a short distance $s$ apart ($s$ is much smaller than the dimensions of a plate). The left-hand plate has a positive charge of $+Q$ evenly distributed over its surface ($Q$ is a positive number). The right-hand plate has a negative charge of $-2Q$ evenly distributed over its surface. A very thin plastic spherical shell of radius $r$ is placed between the plates. It has a uniformly distributed positive charge of $+2Q$. The shell is sufficiently thin that you can ignore the electric fields due to the polarization of the plastic.
+\begin{enumerate}[(a)]
+    \item Find the work required to move a particle with charge $+q$ along a direct horizontal path of length $r$ from point $B$ (a distance of $3r$ from the center of the sphere) to point $C$ (a distance of $2r$ from the center of the sphere).
+
+    \item Find the work required to move a particle with charge $+q$ from point $B$ to point $C$ along the path $B$ to $D$ to $C$ shown on the diagram ($D$ is a distance $2r$ directly above $C$)
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=120mm]{"8_15 fig1".jpg}
+\caption{Original Book Diagram \label{1figure}}
+\end{figure}
+
+\section*{Solution}
+
+The two parts of this problem will ask to compute the work done in moving a point charge between various points in the above configuration. Assuming that the particle is at rest at the beginning and end, we can conclude there is no change in kinetic energy. So, the work done is equal to the change in potential energy only, which can be calculated from the electric potential at each point in question, without respect to the path taken. Our first task, then, is to calculate the potential at each point B, C and D.
+
+Since the potential requires an integral of the electric field along a path, we should first find an expression for the field. The field due to the plates will be constant, and the field due to the shell will vary inversely as the square of the distance from its center $R$, assuming we are outside the shell. So, we have the following:
+\begin{equation*}
+\begin{aligned}
+\vb{E} &= \vb{E}_{\text{plates}} + \vb{E}_{\text{shell}} \\
+&= \frac{3Q}{2A\varepsilon_0}\vu{x} + \frac{1}{4 \pi\varepsilon_0}\frac{2Q}{R^2}\vu{R}
+\end{aligned}
+\end{equation*}
+
+When we integrate, we also have to keep in mind that if $R < r$, the shell contributes nothing to the electric field. So, the potential at C (relative to the center of the shell) is given by the following:
+\begin{equation*}
+\begin{aligned}
+V_C &= -\int_i^f \vb{E}\cdotp \dd{\vb*{\ell}} \\
+&= -\int_0^{-r} \frac{3Q}{2A\varepsilon_0}\dd{x} - \int_{-r}^{-2r} \frac{3Q}{2A\varepsilon_0} - \frac{1}{4 \pi\varepsilon_0}\frac{2Q}{x^2}\dd{x} \\
+&= \int_{-r}^0 \frac{3Q}{2A\varepsilon_0}\dd{x} + \int_{-2r}^{-r} \frac{3Q}{2A\varepsilon_0}\dd{x} - \int_{-2r}^{-r} \frac{1}{4 \pi\varepsilon_0}\frac{2Q}{x^2}\dd{x} \\
+&= \int_{-2r}^0 \frac{3Q}{2A\varepsilon_0}\dd{x} - \frac{Q}{2 \pi\varepsilon_0}\int_{-2r}^{-r} \frac{1}{x^2}\dd{x} \\
+&= \frac{3Q}{A\varepsilon_0}r - \frac{Q}{2 \pi\varepsilon_0}\left[-\frac{1}{x}\right]_{-2r}^{-r} \\
+&= \frac{3Q}{A\varepsilon_0}r - \frac{Q}{4 \pi\varepsilon_0}\frac{1}{r}
+\end{aligned}
+\end{equation*}
+
+Similarly, the potential at B is given by the following:
+\begin{equation*}
+\begin{aligned}
+V_B &= -\int_i^f \vb{E}\cdotp \dd{\vb*{\ell}} \\
+&= \int_{-3r}^0 \frac{3Q}{2A\varepsilon_0}\dd{x} - \frac{Q}{2 \pi\varepsilon_0}\int_{-3r}^{-r} \frac{1}{x^2}\dd{x} \\
+&= \frac{9Q}{2A\varepsilon_0}r - \frac{Q}{2 \pi\varepsilon_0}\left[-\frac{1}{x}\right]_{-3r}^{-r} \\
+&= \frac{9Q}{2A\varepsilon_0}r - \frac{Q}{6 \pi\varepsilon_0}\frac{1}{r}
+\end{aligned}
+\end{equation*}
+
+The potential at D requires a slight difference in setting up the integrals. The component of the potential due to the plates depends only on horizontal distance, while the component due to the shell depends on radial distance. So, the constants of integration are different for each part.
+\begin{equation*}
+\begin{aligned}
+V_D &= -\int_i^f \vb{E}\cdotp \dd{\vb*{\ell}} \\
+&= \int_{-2r}^0 \frac{3Q}{2A\varepsilon_0}\dd{x} - \frac{Q}{2 \pi\varepsilon_0}\int_{-2\sqrt{2}r}^{-r} \frac{1}{R^2}\dd{R} \\
+&= \frac{3Q}{A\varepsilon_0}r - \frac{Q}{2 \pi\varepsilon_0}\left[-\frac{1}{R}\right]_{-2\sqrt{2}r}^{-r} \\
+&= \frac{3Q}{A\varepsilon_0}r - \frac{(2\sqrt{2}-1)Q}{4\sqrt{2} \pi\varepsilon_0}\frac{1}{r} \\
+\end{aligned}
+\end{equation*}
+
+\begin{enumerate}[(a)]
+    \item
+    \begin{equation*}
+    \begin{aligned}
+    W &= -\Delta E_{pe} = -q\Delta V = -q(V_C - V_B) \\
+    &= -q\left[\left(\frac{3Q}{A\varepsilon_0}r - \frac{Q}{4 \pi\varepsilon_0}\frac{1}{r}\right) - \left(\frac{9Q}{2A\varepsilon_0}r - \frac{Q}{6 \pi\varepsilon_0}\frac{1}{r}\right) \right] \\
+    &= -q\left[\frac{Q}{A\varepsilon_0}r\left(3 - \frac{9}{2}\right) - \frac{Q}{\pi\varepsilon_0}\frac{1}{r}\left(\frac{1}{4}-\frac{1}{6}\right) \right] \\
+    &= -q\left[\frac{Q}{A\varepsilon_0}r\left(- \frac{3}{2}\right) - \frac{Q}{\pi\varepsilon_0}\frac{1}{r}\left(\frac{1}{12}\right) \right] \\
+    &= \frac{qQ}{\varepsilon_0}\left[\frac{3}{2A}r + \frac{1}{12\pi}\frac{1}{r}\right]
+    \end{aligned}
+    \end{equation*}
+
+    \item
+    \begin{equation*}
+    W = -\Delta E_{pe} = -q\Delta V = -q(V_C - V_D) - q(V_D - V_B) = -q(V_C - V_B) \\
+    \end{equation*}
+
+    Here we see that the $V_D$ term cancels out and the work is the same as before, despite taking a different path:
+
+    \begin{equation*}
+    W = \frac{qQ}{\varepsilon_0}\left[\frac{3}{2A}r + \frac{1}{12\pi}\frac{1}{r}\right]
+    \end{equation*}
+\end{enumerate}
+\end{document}

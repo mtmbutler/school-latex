@@ -1,0 +1,96 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+\usepackage{multicol}   % multiple columns for 11.7.1
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Homework 4}
+\newcommand{\DueDate}   {February 16, 2018}
+\newcommand{\Course}    {PHY 204B}
+
+% Kaloper: Arfken Ed 7 Problems 11.6.2, 11.6.7, 11.7.1, 11.7.2, 11.7.10, 11.8.4, due by Friday February 16, 5PM.
+
+\begin{document}
+{\huge\textbf{\Title}}
+
+Due \DueDate \hfill \Course
+
+\hrulefill
+
+\begin{enumerate}[align=parleft,labelsep=26pt]
+    %--------------------------------------------------------------------------
+    \item [\textbf{11.6.2}] Show that the function
+    \[
+        w(z) = \pqty{z^2-1}^{1/2}
+    \]
+    is single-valued if we make branch cuts on the real axis for $x>1$ and for $x<-1$.
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{11.6.7}] Show that negative numbers have logarithms in the complex plane. In particular, find $\ln(-1)$.
+
+    \hfill \textit{ANS. } $\ln(-1) = i\pi$.
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{11.7.1}] Determine the nature of the singularities of each of the following functions and evaluate the residues ($a>0$).
+    \begin{multicols}{2}
+        \begin{enumerate}[(a)]
+            \item \(\displaystyle
+                \frac{1}{z^2+a^2}.
+            \)
+            \item \(\displaystyle
+                \frac{1}{\pqty{z^2+a^2}^2}.
+            \)
+            \item \(\displaystyle
+                \frac{z^2}{\pqty{z^2+a^2}^2}.
+            \)
+            \item \(\displaystyle
+                \frac{\sin 1/z}{z^2+a^2}.
+            \)
+            \item \(\displaystyle
+                \frac{ze^{+iz}}{z^2+a^2}.
+            \)
+            \item \(\displaystyle
+                \frac{ze^{+iz}}{z^2-a^2}.
+            \)
+            \item \(\displaystyle
+                \frac{e^{+iz}}{z^2-a^2}.
+            \)
+            \item \(\displaystyle
+                \frac{z^{-k}}{z+1},\quad 0<k<1.
+            \)
+        \end{enumerate}
+    \end{multicols}
+    \textit{Hint.} For the point at infinity, use the transformation $w = 1/z$ for $\abs{z}\to 0$. For the residue, transform $f(z)\dd{z}$ into $g(w)\dd{w}$ and look at the behavior of $g(w)$.
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{11.7.2}] Evaluate the residues at $z=0$ and $z=-1$ of $\pi\cot\pi z/z(z+1)$.
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{11.7.10}] The statement that the integral halfway around a singular point is equal to one-half the integral all the way around was limited to simple poles. Show, by a specific example, that
+    \[
+        \int\limits_\text{Semicircle} f(z)\dd{z} = \frac{1}{2}\oint\limits_\text{Circle} f(z)\dd{z}
+    \]
+    does not necessarily hold if the integral encircles a pole of higher order.
+
+    \textit{Hint.} Try $f(z) = z^{-2}$.
+
+    %--------------------------------------------------------------------------
+    \item [\textbf{11.8.4}] Evaluate $\displaystyle\int\limits_0^{2\pi} \frac{\cos 3\theta\dd{\theta}}{5-4\cos\theta}$.
+
+    \hfill\textit{ANS. } $\pi/12$.
+\end{enumerate}
+\end{document}

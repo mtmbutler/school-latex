@@ -1,0 +1,87 @@
+\documentclass{article}
+
+%% Formatting
+%\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[paperheight=24in]{geometry}
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {}
+\newcommand{\DueDate}   {}
+\newcommand{\Course}    {}
+
+\begin{document}
+
+\textbf{Question.} Regarding the question about poles at infinity I asked in class today. Here is the specific problem I am having:
+\[
+\frac{\sin\frac{1}{z}}{z^2+a^2}
+\]
+Finding the residues for this function.
+
+There are two simples poles at $z_\pm = \pm ia$. 
+               
+It is easy to calculate the residues for the simple poles:
+\[                          
+\frac{\sin\frac{1}{\pm ia}}{\pm 2ia} =\frac{\mp\sinh\frac{1}{a}}{\pm 2a} = -\frac{\sinh\frac{1}{a}}{2a}
+\]
+Note that we have the same residue for both poles, because the $\mp$ in the numerator will always be the opposite sign of the $\pm$ in the denominator. Note that these two poles DO NOT add to 0. I have confirmed them in mathematica as well, so I am pretty sure they are correct.
+
+We now have to see if the $\sin$ should add extra poles for infinite $z$. Note that I am expecting this to be an affirmative answer, because the finite residues do not add to 0. 
+\[             
+f(z)\dd{z} \to \frac{1}{w^2}f(w) \to \frac{\dd{w}\sin w}{1+ a^2w^2}
+\]
+As far as I understand, we now look at this when $w\to 0$. There seem to be no poles there. However, we know that there should be a residue at $\infty$ if the sum of the residues for all finite poles in nonzero. Why is the existence of the pole/residue at infinity not manifest in this expression?
+
+I do see that we can expand the original expression in powers of $z^{-1}$:
+\[
+\frac{1}{z^2} \pqty{\frac{a^2}{z^2} - \frac{a^4}{x^4}+\ldots}\pqty{\frac{1}{z} - \frac{1}{6z^3}+\ldots}
+\]
+But I am unsure what this gets us.
+
+\textbf{Kaloper's Response.} Class: See the question - at the bottom of the message. I will include the answer up top. I hope you know \TeX\ math mode.
+
+So look at $\dfrac{\sin(1/z)}{z^2+a^2}$. Indeed, there are poles at $\pm i a$. They are simple poles.
+
+But there is NO singularity at $z\to\infty$. There the function is finite, actually zero. The reason is that as $z\to\infty$, $\sin(1/z)\to\sin(0)$, and in addition there are those two powers of large $z$ in the denominator. 
+
+However: there is an ESSENTIAL singularity at $z=0$. Note, that $\sin(1/z)$ is bounded along the real axis as $z \rightarrow 0$. The function oscillates like crazy but is bounded -- if $z$ is real. But if $z$ is complex\ldots no. Take, e.g., $z$ to be purely imaginary, $\sin$ becomes $\sinh$ and so you have $\sinh(1/y)$ (for $z=iy$) which blows up as you approach the origin.
+
+So you get an extra residue there. It's not a pole\ldots But there is the $\sin(1/z)$ term in the expansion. Let's get it. So you have
+\[
+\begin{aligned}
+    \sin(\frac{1}{z}) &= \sum_n \frac{(-1)^n}{(2n+1)!} \frac{1}{z^{2n+1}} \\
+    \frac{1}{z^2+a^2} &= \frac{1}{a^2} \frac{1+ z^2}{a^2} \\
+    &= \frac{1}{a^2} \sum (-1)^k \frac{z^{2k}}{a^{2k}}
+\end{aligned}
+\]
+
+So the product Laurent series is the double series
+
+\[
+\frac{\sin(1/z)}{z^2+a^2} = \frac{1}{a^2} \sum_{k,n} \frac{(-1)^{n+k}}{a^{2k}(2n+1)! } z^{2k-2n-1}
+\]
+
+Now when you take a circle around this, all the powers where $k$ is not equal to $n$ give vanishing integrals. Remember $\oint \dd{z} z^N = 2\pi i \delta_{N,-1}$. So only the power $\sin(1/z)$ yields a residue. That means, $k = n$. So only the diagonal subset of the double sum for which $k = n$ is contributes. But there is still infinitely many of them that do. So we need to sum up the series. The total residue therefore is the coefficient of the $1/z$ term, which is
+\[
+\begin{aligned}
+    \frac{1}{a^2} \sum_{n=k} \frac{(-1)^{2n}}{a^{2n}(2n+1)!} &= - \frac{i}{a}\sum_n\frac{(-1)^{n}}{(2n+1)!} \qty(\frac{i}{a})^{2n+1} \\
+    &= - \frac{i}{a} \sin(\frac{i}{a}) \\
+    &= \frac{1}{a} \sinh(\frac{1}{a})
+\end{aligned}
+\]
+And this is precisely what you need: the sum of the residues at $\pm ia$, with the overall sign flipped\ldots
+\end{document}

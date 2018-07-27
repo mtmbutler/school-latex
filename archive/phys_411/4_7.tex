@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Metadata
+\renewcommand{\Title}{HW 4-7 (pg 156)}
+\renewcommand{\Course}{PHYS 411}
+\renewcommand{\Date}{October 22, 2016}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\textbf{Problem.} Two large, thin charged plastic plates each of area $A$ are placed a short distance $s$ apart ($s$ is much smaller than the dimensions of a plate). The left-hand plate has a positive charge of $+Q$ evenly distributed over its surface of area $A$ ($Q$ is a positive number). The right-hand plate has a negative charge of $-2Q$ evenly distributed over its surface of area $A$. A very thin plastic spherical shell of radius $r$ is placed midway between the plates (and shown in cross section). It has a uniformly distributed positive charge of $+2Q$. You can ignore the contributions to the electric field due to the polarization of the thin plastic shell and the thin plastic plates.
+\begin{enumerate}[(a)]
+    \item Calculate the $x$-- and $y$--components of the electric field at location 1, a horizontal distance $r/2$ to the right of the center of the sphere.
+
+    \item Calculate the $x$-- and $y$--components of the electric field at location 2, a horizontal distance $3r$ to the left of the center of the sphere.
+
+    \item Calculate the $x$-- and $y$--components of the electric field at location 3, a horizontal distance $3r$ to the left and a vertical distance $3r$ above the center of the sphere.
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=110mm]{"4_7 fig1".png}
+\caption{Original Book Diagram \label{3figure}}
+\end{figure}
+
+\textbf{Solution.} For each of the three locations, we could sum the separate electric field contributions from the left plate ($\vb{E}_{nL}$), the right plate ($\vb{E}_{nR}$) and the plastic shell ($\vb{E}_{nShell}$), where $n$ is the location number. However, to make the computations easier, I will make some simplifying assumptions. First, recall the result from the text for the electric field very near a uniformly charged plate with charge density $Q/A$:
+\begin{equation}
+E = \frac{Q}{2A\epsilon_0}
+\end{equation}
+
+Because the field doesn't depend on distance from the plate, the net contributions from both plates $\vb{E}_p$ will be the same at all three points in question, given by the following (defining $\vu{x}$ as the unit vector pointing to the right in the diagram):
+\begin{equation*}
+\vb{E}_p = \vb{E}_{nL} + \vb{E}_{nR} = \frac{Q}{2A\epsilon_0}\vu{x} + \frac{2Q}{2A\epsilon_0}\vu{x}
+\end{equation*}
+\begin{equation}
+\vb{E}_p = \frac{3Q}{2A\epsilon_0}\vu{x}
+\end{equation}
+
+Next, we have to determine $\vb{E}_{nShell}$ at each location $n$. To do this, we should use the result from the text: The electric field inside an empty shell with a uniform charge distribution is zero, and the electric field outside the shell is the same as it would be if all the charge on the shell were concentrated in a point charge at the center of the shell.
+
+\begin{enumerate}[(a)]
+    \item At location 1, $\vb{E}_{1Shell} = 0$ because of the aforementioned simplification. So, the net field $\vb{E}_1$ is simply the field due to the plates:
+    \begin{equation}
+    \vb{E}_1 = \vb{E}_p = \frac{3Q}{2A\epsilon_0}\vu{x}
+    \end{equation}
+
+    \item Because location 2 is outside of the shell, we can model the shell as a point charge at its own center, with charge $+2Q$. Then, we can use the equation for a field set up by a point charge (note that the field points to the left because the positive shell would push a positive test charge in that direction):
+    \begin{equation}
+    \vb{E}_{2Shell} = \frac{k|2Q|}{(3r)^2}(-\vu{x}) = - \frac{2}{9} \frac{kQ}{r^2} \vu{x}
+    \end{equation}
+
+    Now, the net field is the sum of the contributions from the plates and from the shell:
+    \begin{equation*}
+    \vb{E}_2 = \vb{E}_p + \vb{E}_{2Shell} = \frac{3Q}{2A\epsilon_0}\vu{x} - \frac{2}{9} \frac{kQ}{r^2} \vu{x}
+    \end{equation*}
+    \begin{equation}
+    \vb{E}_2 = Q\left(\frac{3}{2A\epsilon_0} - \frac{2k}{9r^2}\right)\vu{x}
+    \end{equation}
+
+    \item Again, location 3 is outside of the shell, so we can model the shell as a point charge again. The complication here is that the field points up in addition to left, so we'll have to take into account the slightly larger distance and the 45° angle.
+    \begin{equation*}
+    \vb{E}_{3Shell} = \frac{k|2Q|}{(3r)^2 + (3r)^2}\cos(45^{\circ})(-\vu{x}) + \frac{k|2Q|}{(3r)^2 + (3r)^2}\sin(45^{\circ})(\vu{y})
+    \end{equation*}
+    \begin{equation}
+    \vb{E}_{3Shell} = -\frac{\sqrt{2}kQ}{18r^2}\vu{x} + \frac{\sqrt{2}kQ}{18r^2}\vu{y}
+    \end{equation}
+
+    Now to determine the net field at location 3:
+    \begin{equation*}
+    \vb{E}_3 = \vb{E}_p + \vb{E}_{3Shell} = \frac{3Q}{2A\epsilon_0}\vu{x} - \frac{\sqrt{2}kQ}{18r^2}\vu{x} + \frac{\sqrt{2}kQ}{18r^2}\vu{y}
+    \end{equation*}
+    \begin{equation}
+    \vb{E}_3 = Q\left(\frac{3}{2A\epsilon_0} - \frac{\sqrt{2}k}{18r^2}\right)\vu{x} + Q\left(\frac{\sqrt{2}k}{18r^2}\right)\vu{y}
+    \end{equation}
+\end{enumerate}
+\end{document}

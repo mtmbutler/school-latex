@@ -1,0 +1,60 @@
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry}    % page setup
+\usepackage[USenglish]{babel}       % proper hyphenation
+\usepackage[T1]{fontenc}            % validates output font
+\usepackage[utf8]{inputenc}         % validates input characters
+\usepackage[final,babel]{microtype} % Fewer badboxes
+\usepackage{parskip}                % removes paragraph indentations
+\usepackage{fancyhdr}               % headers and footers
+\usepackage{lastpage}               % gets n for 'page x of n'
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+
+%% Fonts
+\usepackage{libertine}              % serif
+\usepackage[libertine]{newtxmath}   % math
+\usepackage{berasans}               % sans-serif
+\usepackage{inconsolata}            % monospace
+\usepackage[font={small,it},justification=centering]{caption}   % captions
+
+%% Content
+\usepackage{amsmath}                % math
+\usepackage{physics}                % physics
+\usepackage{siunitx}                % SI units
+\usepackage{graphicx}               % include graphics
+\usepackage{booktabs}               % tables
+\usepackage{float}                  % [H] option for floats
+
+%% Optional (put these in each document if needed, don't uncomment here)
+% \usepackage[version=4]{mhchem}    % chemical equations
+% \usepackage{tikz}                 % creating figures
+% \usepackage[math]{blindtext}      % lorem ipsum templates with math
+% \usepackage{multicol}             % multiple columns
+% \usepackage{mathtools}            % matrix alignment in starred env's
+% \usepackage{empheq}               % multiple lines in a box
+
+%% Code to set different margins in document
+% \newcommand{\marginwidth}{1in}
+% \newgeometry{left=\marginwidth,right=\marginwidth,top=\marginwidth,bottom=\marginwidth} % Define new margins
+% \fancyhfoffset[O]{0pt}  % Recalculate footer width
+
+%% Headers and footers
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{\Author{} $-$ \Title{}}
+\cfoot{}
+\rfoot{Page\,\thepage\,of\,\pageref{LastPage}}
+\renewcommand\headrulewidth{0.0pt}
+\renewcommand\footrulewidth{0.4pt}
+
+%% Custom commands
+\newcommand{\rcurs}{\mbox{$\resizebox{.09in}{.08in}{\includegraphics[trim= 1em 0 14em 0,clip]{../griffiths_r_script.pdf}}$}}    % Griffiths script r
+\newcommand{\brcurs}{\mbox{$\resizebox{.09in}{.08in}{\includegraphics[trim= 1em 0 14em 0,clip]{../griffiths_r_bold.pdf}}$}}     % Griffiths bold script r
+
+%% Metadata
+\newcommand{\Title}{\textbackslash Title}
+\newcommand{\Course}{\textbackslash Course}
+\newcommand{\Date}{\textbackslash Date}
+\newcommand{\Author}{\textbackslash Author}
+\newcommand{\insertTitle}{{\noindent\Huge\\[1.5\baselineskip]\textbf{\Title}\\[0.5\baselineskip]}\textbf{\Course}\\\textit{\Date}\hfill\MakeUppercase{\Author}}

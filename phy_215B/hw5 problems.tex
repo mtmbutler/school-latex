@@ -1,0 +1,62 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Problem Set 5}
+\newcommand{\DueDate}   {March 1, 2018}
+\newcommand{\Course}    {PHY 215B}
+
+\begin{document}
+{\huge\textbf{\Title}}
+
+Due \DueDate \hfill \Course
+
+\hrulefill
+
+\begin{enumerate}%[align=parleft,labelsep=26pt]
+    %--------------------------------------------------------------------------
+    \item Add $j_1=1$ and $j_2=1$ by constructing the table to account for all possible states. Use the table to find states $\ket{i_1i_2JJ-2}$, $\ket{i_1i_2J-1J-2}$, and $\ket{i_1i_2J-2J-2}$ in terms of $\ket{j_1m_1,j_2m_2}$.
+
+    \item Given the state
+    \[
+        \frac{\sqrt{3}}{5}\ket{\frac{3}{2}\,{-\frac{1}{2}}}\ket{1\,{-1}} + \frac{\sqrt{2}}{5}\ket{\frac{3}{2}\,{-\frac{3}{2}}}\ket{1\,{0}},
+    \]
+    \begin{enumerate}[(a)]
+        \item What are the $\ket{j_1m_1,j_2m_2}$ for the two components and $\ket{j_1j_2JM}$?
+
+        \item What are the Clebsch-Gordan coefficients?
+
+        \item What are the expansion coefficients for the two components onto the state $\ket{j_1j_2J-1M}$?
+    \end{enumerate}
+
+    \item Let the deuteron spin be 1 and the electric quadrupole moment operator be $Q(2,0)$. Calculate the ratios of the expectation values of $Q$ for the three states of the spin of the deuteron by considering $Q$ as a tensor operator and using the Wigner-Eckart theorem.
+
+    \item Given that $T(k,q)$ is a tensor operator, and
+    \[
+        \vb{J}^2\Bqty{A} = \comm{J_x}{\comm{J_x}{A}} + \comm{J_y}{\comm{J_y}{A}} + \comm{J_z}{\comm{J_z}{A}},
+    \]
+    show that
+    \[
+        \vb{J}^2\Bqty{T(k,q)} = k(k+1)T(k,q).
+    \]
+
+    \item Work out an operator for an infinitesimal translation. Examine the effect of the inversion symmetry on this operator.
+\end{enumerate}
+
+Suggested readings: Messiah 560-577; Schiff 212-224.
+\end{document}

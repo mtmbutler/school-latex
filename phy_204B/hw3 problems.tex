@@ -1,0 +1,129 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Homework 3}
+\newcommand{\DueDate}   {February 9, 2018}
+\newcommand{\Course}    {PHY 204B}
+
+\begin{document}
+{\huge\textbf{\Title}}
+
+Due \DueDate \hfill \Course
+
+% Arfken Ed 7 Problems 11.3.7, 11.4.1, 11.4.2, 11.4.3, 11.4.6, 11.4.9,
+% 11.5.2, 11.5.3, 11.5.5, 11.5.7, 11.5.8, due by Friday February 9, 5PM.
+
+\hrulefill
+\begin{enumerate} %[leftmargin=0.5in]
+
+%------------------------------------------------------------------------------
+
+\item [\textbf{11.3.7.}] Show that
+\[
+    \oint\limits_C \frac{\dd{z}}{z^2+z} = 0,
+\]
+in which the contour $C$ is a circle defined by $\abs{z} = R>1$.
+
+\textit{Hint.} Direct use of the Cauchy integral theorem is illegal. The integral may be evaluated by expanding into partial fractions and then treating the two terms individually. This yields $0$ for $R>1$ and $2\pi i$ for $R<1$.
+
+%------------------------------------------------------------------------------
+
+
+\item [\textbf{11.4.1.}] Show that
+\[
+    \frac{1}{2\pi i}\oint z^{m-n-1}\dd{z},\quad\text{$m$ and $n$ integers}
+\]
+(with the contour encircling the origin once), is a representation of the Kronecker $\delta_{mn}$.
+
+%------------------------------------------------------------------------------
+
+
+\item [\textbf{11.4.2.}] Evaluate
+\[
+    \oint\limits_C \frac{\dd{z}}{z^2-1},
+\]
+where $C$ is the circle $\abs{z-1} = 1$.
+
+%------------------------------------------------------------------------------
+
+
+\item [\textbf{11.4.3.}] Assuming that $f(z)$ is analytic on and within a closed contour $C$ and that the point $z_0$ is within $C$, show that
+\[
+    \oint\limits_C \frac{f'(z)}{z-z_0}\dd{z} = \oint\limits_C \frac{f(z)}{\pqty{z-z_0}^2}\dd{z}.
+\]
+
+%------------------------------------------------------------------------------
+
+
+\item [\textbf{11.4.6.}] Evaluate
+\[
+    \oint\limits_C \frac{e^{iz}}{z^3}\dd{z},
+\]
+for the contour a square with sides of length $a>1$, centered at $z=0$.
+
+%------------------------------------------------------------------------------
+
+
+\item [\textbf{11.4.9.}] Evaluate
+\[
+    \oint\limits_C \frac{f(z)}{z(2z+1)^2}\dd{z},
+\]
+for the contour the unit circle.
+
+\textit{Hint.} Make a partial fraction expansion.
+
+%------------------------------------------------------------------------------
+
+
+\item [\textbf{11.5.2.}] Derive the binomial expansion
+\[
+    (1+z)^m = 1 + mz + \frac{m(m-1)}{1\cdot 2}z^2 + \ldots = \sum_{n=0}^\infty \binom{m}{n}z^n
+\]
+for $m$, any real number. The expansion is convergent for $\abs{z}<1$. Why?
+
+%------------------------------------------------------------------------------
+
+
+\item [\textbf{11.5.3.}] A function $f(z)$ is analytic on and within the unit circle. Also, $\abs{f(z)}<1$ for $\abs{z}\leq 1$ and $f(0) = 0$. Show that $\abs{f(z)}< \abs{z}$ for $\abs{z}\leq 1$.
+
+\textit{Hint.} One approach is to show that $f(z)/z$ is analytic and then to express $\bqty{f(z_0)/z_0}^n$ by the Cauchy integral formula. Finally, consider absolute magnitudes and take the $n$th root. This exercise is sometimes called Schwarz's theorem.
+
+%------------------------------------------------------------------------------
+
+
+\item [\textbf{11.5.5.}] Prove that the Laurent expansion of a given function about a given point is unique; that is, if
+\[
+    f(z) = \sum_{n=-N}^\infty a_n\pqty{z-z_0}^n = \sum_{n=-N}^\infty b_n\pqty{z-z_0}^n,
+\]
+show that $a_n = b_n$ for all $n$.
+
+\textit{Hint.} Use the Cauchy integral formula.
+
+%------------------------------------------------------------------------------
+
+
+\item [\textbf{11.5.7.}] Obtain the Laurent expansion of $ze^z/(z-1)$ about $z=1$.
+
+%------------------------------------------------------------------------------
+
+
+\item [\textbf{11.5.8.}] Obtain the Laurent expansion of $(z-1)e^{1/z}$ about $z=0$.
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,65 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Problem Set 2}
+\newcommand{\DueDate}   {Feburary 1, 2018}
+\newcommand{\Course}    {PHY 215B}
+
+\begin{document}
+{\huge\bf\Title}
+
+Due \DueDate \hfill \Course
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 1.} In the abstract Hilbert space $\mathcal{H}$, the energy eigenvectors of a particle in an infinite square well of width $L$ are designated by $\ket{E_1}, \ket{E_2}, \ket{E_3}, \ldots$ for the ground state, the first excited state, the second excited state and so on. Suppose that at a given time a particle is in the state
+\begin{equation*}
+\begin{aligned}
+    \ket{\Psi} &= \frac{1}{2}\ket{E_1} - \frac{\sqrt{3}}{2}\ket{E_3}.
+\end{aligned}
+\end{equation*}
+\begin{enumerate}[(a)]
+    \item Express this state in the $x$--representation.
+    \item In the Schr\"odinger picture, how does this state develop in time? What is the state in the Heisenberg picture?
+    \item If an electromagnetic wave is incident onto the square well, find the equation of motion of this state in the interaction picture. Assume that the particle has charge $q$.
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 2.} Consider a wave--function, $\Phi_a(\vb{r}) = Nxy$, and a rotation of $120^\circ$ about the $z$--axis.
+\begin{enumerate}[(a)]
+    \item Construct the operator $R$ for the rotation.
+    \item Find a way to apply $R$ on $\Phi_a(\vb{r})$ using the active point of view.
+    \item Express $\Phi_a(\vb{r})$ in terms of $Y_{\ell m}$'s.
+    \item Do you apply the operator in (b) to the wave function in (c)? If yes, why? If no, why?
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 3.} Given $\vu{x}$ and $\vu{y}$ as unit vectors for a square,
+\begin{enumerate}[(a)]
+    \item Construct matrices for rotations of $90^\circ$, $180^\circ$ and $270^\circ$ about the $z$--axis (these matrices are representations of the operators).
+    \item Combine a unit two-dimensional matrix and show these operators form a group and work out the multiplication table for the group.
+    \item To see the origin of the symmetries of the system, work out the Coulomb potentials from four ions at the corners of the square to a small $\vb{r}(x,y,z)$ from the center of the square, Taylor expand each potential so that the resultant potential is non-vanishing. Show that the potential is invariant under the symmetries in (a). (Show at least two operators.)
+\end{enumerate}
+
+\end{document}

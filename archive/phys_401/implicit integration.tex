@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage{/Users/miles/Documents/latex/hw}
+
+%% Extra packages
+\usepackage{nicefrac}
+\usepackage{multicol}
+\usepackage{mathtools}  % Aboxed
+
+%% Metadata
+\renewcommand{\Title}{Implicit Integration Practice}
+\renewcommand{\Course}{PHYS 401}
+\renewcommand{\Date}{January 24, 2017}
+\renewcommand{\Author}{Miles Moser}
+
+\begin{document}
+\insertTitle
+
+\begin{multicols*}{2}
+
+\begin{enumerate}
+\item $y y' = e^x$
+\begin{equation*}
+\begin{aligned}
+y\frac{\dd y}{\dd x} &= e^x \\
+y\dd y &= e^x\dd x \\
+\int y\dd y &= \int e^x\dd x \\
+\frac{y^2}{2} &= e^x + C \\
+\Aboxed{y &= \sqrt{2e^x + C}}
+\end{aligned}
+\end{equation*}
+
+\vfill
+\item $y'e^{2y} = x^3$
+\begin{equation*}
+\begin{aligned}
+e^{2y}\dd y &= x^3\dd x \\
+2e^{2y}\dd y &= 2x^3\dd x \\
+\int 2e^{2y}\dd y &= \int 2x^3\dd x \\
+e^{2y} &= \frac{x^4}{2} + C \\
+2y &= \ln\left|\frac{x^4}{2}+C\right| \\
+\Aboxed{y &= \frac{1}{2}\ln\left|\frac{x^4}{2}+C\right|}
+\end{aligned}
+\end{equation*}
+
+\vfill
+\item $y'\sqrt{y} = \cos x$
+\begin{equation*}
+\begin{aligned}
+y^{\nicefrac{1}{2}}\dd y &= \cos x\dd x \\
+\int y^{\nicefrac{1}{2}}\dd y &= \int\cos x\dd x \\
+\frac{2}{3}y^{\nicefrac{3}{2}} &= \sin x + C \\
+y^{\nicefrac{3}{2}} &= \frac{3}{2}\sin x + C \\
+\Aboxed{y &= \left(\frac{3}{2}\sin x + C\right)^{\nicefrac{2}{3}}}
+\end{aligned}
+\end{equation*}
+
+\vfill
+\item $x^4 y' + 4x^3 y = x^4$
+\begin{equation*}
+\begin{aligned}
+\frac{\dd}{\dd x}(x^4y) &= x^4 \\
+\int \dd\,(x^4y) &= \int x^4\dd x \\
+x^4y &= \frac{x^5}{5} + C \\
+\Aboxed{y &= \frac{x}{5} + \frac{C}{x^4}}
+\end{aligned}
+\end{equation*}
+
+\vfill
+\item $e^{3x} y' + 3e^{3x}y = e^{5x}$
+\begin{equation*}
+\begin{aligned}
+\frac{\dd}{\dd x}(e^{3x}y) &= e^{5x} \\
+\int\dd\,(e^{3x}y) &= \int e^{5x}\dd x \\
+e^{3x}y &= \frac{1}{5}e^{5x} + C \\
+\Aboxed{y &= \frac{1}{5}e^{2x} + Ce^{-3x}}
+\end{aligned}
+\end{equation*}
+
+\vfill
+\item $y' \tan x + y\sec^2 x = \cos x$
+\begin{equation*}
+\begin{aligned}
+\frac{\dd}{\dd x}(y\tan x) &= \cos x \\
+\int\dd\,(y\tan x) &= \int\cos x\dd x \\
+y\tan x &= \sin x + C \\
+\Aboxed{y &= \cos x + \frac{C}{\tan x}}
+\end{aligned}
+\end{equation*}
+
+\vfill
+\item $y' \cos y = e^{-x}$, $y(0) = 0$
+\begin{equation*}
+\begin{aligned}
+\cos y \dd y &= e^{-x}\dd x \\
+\int_0^y\cos y' \dd y' &= \int_0^x e^{-x'}\dd x' \\
+\Bigg[\sin y'\Bigg]_0^y &= \Bigg[-e^{-x'}\Bigg]_0^x \\
+\sin y &= 1 - e^{-x} \\
+\Aboxed{y &= \sin^{-1}(1-e^{-x})}
+\end{aligned}
+\end{equation*}
+\vfill\null
+
+\columnbreak
+\item $-y^{-2}y' = 2x$, $y(0) = 3$
+\begin{equation*}
+\begin{aligned}
+-y^{-2}\dd y &= 2x\dd x \\
+\int_3^y -(y')^{-2}\dd y' &= \int_0^x 2x'\dd x' \\
+\Bigg[\frac{1}{y'}\Bigg]_3^y &= \Bigg[(x')^2\Bigg]_0^x \\
+\frac{1}{y} - \frac{1}{3} &= x^2 \\
+\frac{1}{y} &= x^2 + \frac{1}{3} \\
+\frac{3}{y} &= 3x^2 + 1 \\
+\Aboxed{y &= \frac{3}{3x^2 + 1}}
+\end{aligned}
+\end{equation*}
+
+\end{enumerate}
+\end{multicols*}
+
+\end{document}

@@ -1,0 +1,51 @@
+%% Language and font encodings
+\usepackage[USenglish]{babel} % Ensures correct hyphenation
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newunicodechar}
+
+%% Misc packages
+\usepackage{fancyhdr} % header and footer
+\usepackage{float}
+\usepackage{booktabs}
+
+%% Page settings
+\usepackage[letterpaper,margin=1in,headheight=13pt]{geometry}
+\usepackage{parskip} % Removes paragraph indentations
+\setlength\parindent{0pt}
+
+% Headers and footers
+\pagestyle{fancy}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\renewcommand\headrulewidth{0.0pt}
+\renewcommand\footrulewidth{0.0pt}
+
+%% Font settings
+\usepackage{berasans}
+\usepackage[charter]{mathdesign} % Bitstream Charter
+\usepackage{inconsolata} % Consolas
+  
+% Caption font
+\usepackage[font={small,it},justification=centering]{caption}
+
+%% Metadata
+\newcommand{\Title}{Syllabus Title}
+\newcommand{\Instructor}{Miles Moser}
+\newcommand{\Email}{mmoser@ucdavis.edu}
+\newcommand{\Hours}{Office Hours}
+\newcommand{\insertTitle}{
+\begin{center}
+\Huge\textbf{\Title}\\
+\end{center}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{rl}
+        \textbf{Instructor} & \Instructor \\
+        \textbf{Email} & \Email \\
+        \textbf{Office Hours} & \Hours \\
+        \phantom{----------------------------------------} & \phantom{----------------------------------------}
+    \end{tabular}\\[-1\baselineskip]
+\end{table}}
+

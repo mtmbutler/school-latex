@@ -1,0 +1,140 @@
+\documentclass{article}
+
+%% Formatting
+\usepackage[letterpaper,margin=1.5in]{geometry} % page setup
+\usepackage[shortlabels]{enumitem}  % customizeable enumerators
+\usepackage[USenglish]{babel}   % ensure correct hyphenation
+\usepackage[T1]{fontenc}        % validate output font
+\usepackage[utf8]{inputenc}     % validate input characters
+\usepackage{siunitx}    % SI units
+\usepackage{graphicx}   % include graphics
+\usepackage{booktabs}   % tables
+\usepackage{float}      % [H] option for floats
+\usepackage{parskip}    % remove paragraph indentations
+
+%% Content
+\usepackage{amsmath}    % math
+\usepackage{physics}    % physics
+
+%% Metadata
+\newcommand{\Title}     {Problem Set 3}
+\newcommand{\DueDate}   {January 31, 2018}
+\newcommand{\Course}    {PHY 200B}
+
+\begin{document}
+{\huge\bf\Title}
+
+Due \DueDate \hfill \Course
+
+% -----------------------------------------------------------------------------
+% 5.5, 5.13, 5.14, 5.16, 5.24, 6.4, 6.13, 6.19
+% -----------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 5.5.} A point charge $q$ lies a distance $r > R$ from the center of an uncharged, conducting sphere of radius $R$. Express the induced surface charge density in the form
+\begin{equation*}
+\begin{aligned}
+    \sigma(\theta) = \sum_{\ell = 1}^\infty \sigma_\ell P_\ell(\cos\theta)
+\end{aligned}
+\end{equation*}
+where $\theta$ is the polar angle measured from a positive $z$--axis which points from the sphere center to the point charge.
+\begin{enumerate}[(a)]
+    \item Show that the total electrostatic energy is
+    \begin{equation*}
+    \begin{aligned}
+        U_E = \frac{1}{\epsilon_0}\sum_{\ell=0}^\infty \frac{\sigma_\ell}{2\ell + 1}\left[\frac{R^3\sigma_\ell}{2}\frac{4\pi}{2\ell + 1} + \frac{q R^{\ell+2}}{r^{\ell+1}}\right].
+    \end{aligned}
+    \end{equation*}
+
+    \item Use Thomson's theorem to find $\sigma(\theta)$.
+\end{enumerate}
+
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 5.13.} A conducting disk of radius $R$ held at potential $V$ sits in the $x$--$y$ plane centered on the $z$--axis.
+\begin{enumerate}[(a)]
+    \item Use the charge density for this system calculated in the text to find the potential everywhere on the $z$--axis.
+    \item Ground the disk and place a unit point charge $q_0$ on the axis at $z = d$. Use the results of part (a) and Green’s reciprocity relation to find the amount of charge brought up from ground to the disk.
+\end{enumerate}
+
+
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 5.14.}
+\begin{enumerate}[(a)]
+     \item What is the self-capacitance (in farads) of the Earth? How much energy is required to add one electron to the (neutral) Earth?
+     \item What is the self-capacitance (in farads) of a conducting nanosphere of radius 10 nm? How much energy (in electron volts) is required to add one electron to the (neutral) sphere?
+     \item Two conducting spheres with radii $R_A$ and $R_B$ are separated by a distance $R$ and carry net charges $Q_A$ and $Q_B$. Find the potential matrix $\mathbf{P}$ and the capacitance matrix $\mathbf{C}$ assuming that the two spheres influence one another but that $R >\!\!> R_A$, $R_B$ so that the charge density on each remains spherical.
+     \item Compare the diagonal elements of $\mathbf{C}$ computed at the end of part (c) with the self capacitances of the spheres.
+ \end{enumerate} 
+
+
+
+%------------------------------------------------------------------------------
+\hrulefill
+
+\textbf{Problem 5.16.} A non-conducting square has a fixed surface charge distribution. Make a rectangle with the same area and total charge by cutting off a slice from one side of the square and gluing it onto an adjacent side. The energy of the rectangle is lower than the energy of the square because we have moved charge from points of high potential to points of low potential. An even lower energy results if we let the charge of the rectangle rearrange itself in any manner that keeps the total charge fixed. By definition, the rectangle is now a conductor. The electrostatic energy $U_E = Q^2/2C$ of the rectangle is lower, so the capacitance of the rectangle is larger than the capacitance of the square.
+
+Maxwell made this argument in 1879 in the course of editing the papers of Henry Cavendish. Much later, the eminent mathematician Gy\"{o}rgy Polya observed that the conclusion is correct but that “Maxwell’s proof is amazingly fallacious.”
+\begin{enumerate}[(a)]
+    \item Find the logical error in Maxwell's argument.
+    \item Make a physical argument which shows that $C_{\text{rect}} > C_{\text{sq}}$. Hint: Think about the electrostatic energy cost to add a bit of charge $\delta Q$ to either the square or the rectangle.
+\end{enumerate}
+
+
+
+%------------------------------------------------------------------------------
+\vfill
+\hrulefill
+
+\textbf{Problem 5.24.} A conducting shell of radius $R$ has total charge $Q$. If sawed in half, the two halves of the shell will fly apart. This can be prevented by placing a point charge $Q'$ at the center of the shell.
+\begin{enumerate}[(a)]
+    \item What value of $Q'$ which just barely keep the shell together?
+    \item How does the answer to part (a) change for the case of an insulating sphere with uniform charge density $\sigma = Q/4\pi R^2$?
+\end{enumerate}
+
+
+
+%------------------------------------------------------------------------------
+\vfill
+\hrulefill
+
+\textbf{Problem 6.4.} The polarization in all of space has the form $\mathbf{P} = P\Theta(r-R)\hat{\vb{r}}$, where $P$ and $R$ are constants. Find the polarization charge density and the electric field everywhere.
+
+
+
+%------------------------------------------------------------------------------
+\vfill
+\hrulefill
+
+\textbf{Problem 6.13.} Two concentric, spherical, conducting shells have radii $R_2>R_1$ and charges $q_2$ and $q_1$. The volume between the shells is filled with a linear dielectric with permittivity $\epsilon = \kappa \epsilon_0$. Determine the elements of the capacitance matrix for this system.
+
+
+
+%------------------------------------------------------------------------------
+\newpage
+\hrulefill
+
+\textbf{Problem 6.19.} The parallel-plate capacitor shown below is made of two identical conducting plates of area $A$ carrying charges $\pm q$. The capacitor is filled with a compressible dielectric solid with permittivity $\epsilon$ and elastic energy
+\begin{equation*}
+\begin{aligned}
+ U_e = \frac{1}{2}k(d-d_0)^2 .
+\end{aligned}
+\end{equation*}
+\begin{enumerate}[(a)]
+ \item Find the equilibrium separation between the plates $d(q)$.
+ \item Sketch the potential difference between the plates $V(q)$. Comment on any unusual behavior of the differential capacitance $C_d(q) = \dd q/\dd V$.
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{"hw3 6_19".png}
+\end{figure}
+
+\end{document}
